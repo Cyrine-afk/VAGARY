@@ -1,5 +1,5 @@
 <?php
-require_once 'D:/Programmes/xampp/htdocs/Back&Front/config.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
 
 class InfluC {
     
@@ -66,7 +66,7 @@ class InfluC {
         try {
             $sql="update influenceur set nom_inf=:nom_inf,prenom_inf=:prenom_inf,date_ajout_inf=:date_ajout_inf,bio_inf=:bio_inf,feedback_inf=:feedback_inf,img_inf=:img_inf,nbr_ab_inf=:nbr_ab_inf,fb_inf=:fb_inf,insta_inf=:insta_inf where id_inf=:id_inf";
             $db=config::getConnexion();
-            $query=$db->prepare($sql);
+            $query=$db->prepare($sql); 
             $query->execute([
             'id_inf'=>$id_inf,
             'nom_inf'=>$influenceur->getNomInf(),

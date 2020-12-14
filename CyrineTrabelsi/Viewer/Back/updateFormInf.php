@@ -1,8 +1,17 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/InfluC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Influ.php';
-
-    if(isset($_POST["id_inf"])&& isset($_POST["name_inf"])&& isset($_POST["lastName_inf"]) && isset($_POST["dateAjout_inf"]) && isset($_POST["bio_inf"]) && isset($_POST["feedback_inf"]) && isset($_POST["profilePic_inf"])&& isset($_POST["nbrFollowers_inf"]) && isset($_POST["fb_inf"]) && isset($_POST["insta_inf"]) ) {
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
+    
+    if(isset($_POST["id_inf"])&& 
+    isset($_POST["name_inf"])&& 
+    isset($_POST["lastName_inf"]) && 
+    isset($_POST["dateAjout_inf"]) && 
+    isset($_POST["bio_inf"]) && 
+    isset($_POST["feedback_inf"]) && 
+    isset($_POST["profilePic_inf"])&& 
+    isset($_POST["nbrFollowers_inf"]) && 
+    isset($_POST["fb_inf"]) && 
+    isset($_POST["insta_inf"]) ) {
       var_dump($_POST['nbrFollowers_inf']);
       $inf= new Influ($_POST["name_inf"] ,$_POST["lastName_inf"] ,$_POST["dateAjout_inf"] ,$_POST["bio_inf"] ,$_POST["feedback_inf"] ,$_POST["profilePic_inf"] ,$_POST["nbrFollowers_inf"] ,$_POST["fb_inf"], $_POST["insta_inf"] );
       $newinf= new InfluC();
@@ -189,11 +198,11 @@
                 <div class="block">
                   <div class="title"><strong>Update an influencer</strong></div>
                   <div class="block-body">
-                  <form class="form-horizontal" method="POST" action="">
+                  <form class="form-horizontal" method="POST">
                     <div class="form-group row">
                       <label class="col-sm-3 form-control-label">ID</label>
                       <div class="col-sm-9">
-                        <input type="number" disabled="" class="form-control" name="id_inf" id="id_inf" value="<?= $i['id_inf'] ?>">
+                        <input type="number" readonly class="form-control" name="id_inf" id="id_inf" value="<?= $_GET['id_inf'] ?>">
                       </div>
                     </div>
                       <div class="line"></div>
@@ -280,9 +289,9 @@
                     </form>
 
                     <?php }
-                      else { // Si l'utilisateur essaye d'accéder directement à la page sans passer par showAlbums
+                      /*else { // Si l'utilisateur essaye d'accéder directement à la page sans passer par showAlbums
                         header("Location:influ.php");
-                      }
+                      }*/
                     ?>
 
                   </div>

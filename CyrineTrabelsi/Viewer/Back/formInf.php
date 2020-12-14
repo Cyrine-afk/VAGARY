@@ -1,12 +1,13 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/InfluC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Influ.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
     if(isset($_POST["name_inf"])&& isset($_POST["lastName_inf"]) && isset($_POST["dateAjout_inf"]) && isset($_POST["bio_inf"]) && isset($_POST["feedback_inf"]) && isset($_POST["profilePic_inf"])&& isset($_POST["nbrFollowers_inf"]) && isset($_POST["fb_inf"]) && isset($_POST["insta_inf"]) ) {
       var_dump($_POST['name_inf']);
       $inf= new Influ($_POST["name_inf"] ,$_POST["lastName_inf"] ,$_POST["dateAjout_inf"] ,$_POST["bio_inf"] ,$_POST["feedback_inf"] ,$_POST["profilePic_inf"] ,$_POST["nbrFollowers_inf"] ,$_POST["fb_inf"], $_POST["insta_inf"] );
       $newinf= new InfluC();
       $newinf->ajouterInfluenceur($inf);
+      header("Location:influ.php");
     }
     else  
       echo "ICI";
@@ -257,7 +258,7 @@
                       <div class="form-group row">
                         <div class="col-sm-9 ml-auto">
                           <input type="submit" value="Save" name="submit" class="btn btn-primary"> 
-                          <input type="reset" value="Cancel" name="submit" class="btn btn-secondary"> 
+                          <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
                         </div>
                       </div>
 

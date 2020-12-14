@@ -1,9 +1,23 @@
 <?php
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
   $tp1= new TypeC();
   $liste=$tp1->afficherType();
+
+
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TrinInf.php';
+
+  if(isset($_GET['id_inf'])&& isset($_POST["nom_voy"])&& isset($_POST["date_voy"]) && isset($_POST["nbr_perso_voy"]) && isset($_POST["destination_voy"]) && isset($_POST["duree_voy"]) && isset($_POST["planning_voy"])&& isset($_POST["prix_voy"]) && isset($_POST["img_voy"]) /*&& isset($_POST["id_type"]) */) {
+    var_dump($_POST['nom_voy']);
+    $tripinf= new Influ($_POST["nom_voy"] ,$_POST["date_voy"] ,$_POST["nbr_perso_voy"] ,$_POST["destination_voy"] ,$_POST["duree_voy"] ,$_POST["img_voy"] ,$_POST["planning_voy"] ,$_POST["prix_voy"], $_POST["id_type"], $_GET['id_inf'] );
+    $newtripinf= new InfluC();
+    $newtripinf->ajouterTripInf($tripinf);
+    header("Location:TripInf.php");
+  }
+  else  
+    echo "ICI";
 
 ?>
 
@@ -232,26 +246,7 @@
                         </div>
                       </div>
 
-                      <div class="line"></div>
-                      <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Themes <br><small class="text-primary">Pick a theme for the trip</small></label></label>
-                        <div class="col-sm-9">
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <button data-toggle="dropdown" type="button" class="btn btn-outline-secondary dropdown-toggle">Select<span class="caret"></span></button>
-                              <div class="dropdown-menu">
-                                <?php
-                                  foreach($liste as $t) {
-                                ?>
-                                  <a class="dropdown-item">  <?php echo $t['nom_type'] ?>  </a> 
-                                  <?php
-                                    }
-                                  ?>                            
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <br>
 
                       <div class="line"></div>
                       <div class="form-group row">
@@ -270,12 +265,28 @@
 
                       <div class="line"></div>
                       <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Pick a theme for the trip</label>
+                        <div class="col-sm-9">
+                          <select name="id_type" id="id_type" value="<?= $t['nom_type'] ?>" class="form-control mb-3 mb-3">
+                            <option> Select </option>
+                            <?php
+                              foreach($liste as $t) {
+                            ?>
+                            <option>   <?php echo $t['nom_type'] ?>   </option>
+                            <?php
+                              }
+                            ?>
+                          </select>
+                        </div>
+
+
+                      <div class="line"></div>
+                      <div class="form-group row">
                         <div class="col-sm-9 ml-auto">
-                          <button type="submit" class="btn btn-secondary">Cancel</button>
-                          <button type="submit" class="btn btn-primary">Save changes</button>
+                          <input type="submit" value="Save" name="submit" class="btn btn-primary"> 
+                          <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
                         </div>
                       </div>
-
                       
                     </form>
                   </div>

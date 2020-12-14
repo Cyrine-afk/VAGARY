@@ -1,5 +1,7 @@
 <?php
 
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
+
 //Definition et structure d'un objet Voyage
 
 class Voyage {

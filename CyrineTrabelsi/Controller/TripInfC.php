@@ -1,5 +1,5 @@
 <?php
-require_once 'D:/Programmes/xampp/htdocs/Back&Front/config.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
 
 class TripInfC {
     

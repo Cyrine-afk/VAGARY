@@ -1,12 +1,13 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
     if( isset($_POST["nom_type"]) ) {
       var_dump($_POST['nom_type']);
       $tp= new Type( $_POST["nom_type"] );
       $newtp= new TypeC();
       $newtp->ajouterTypeVoy($tp);
+      header("Location:themes.php");
     }
     else  
       echo "ICI";
@@ -192,6 +193,7 @@
                       <div class="form-group row">       
                         <div class="col-sm-9 offset-sm-3">
                           <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                          <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
                         </div>
                       </div>
                     </form>

@@ -1,6 +1,6 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
     $tp1= new TypeC();
     $liste=$tp1->afficherType();

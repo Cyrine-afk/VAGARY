@@ -1,6 +1,6 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/InfluC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Influ.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
     /*$inf1= new InfluC();
     $liste=$inf1->afficherInfluenceur();*/
@@ -182,16 +182,25 @@
         <div class="row">
           <div class="col-lg-3 mr-lg-auto">
             <div class="card border-0 shadow mb-6 mb-lg-0">
+
+              <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
+                <svg class="svg-icon text-white">
+                  <use xlink:href="#heart-1"> </use>
+                </svg></a>
+              </div>
+              
               <div class="card-header bg-gray-100 py-4 border-0 text-center"><a class="d-inline-block" href="#"><img class="d-block avatar avatar-xxl p-2 mb-2" src="<?php  echo $i['img_inf']?>" alt=""></a>
                 <h5><?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h5>
               </div>
               <div class="card-body p-4">
                 <div class="media align-items-center mb-3">
+
                   <div class="icon-rounded icon-rounded-sm bg-primary-light mr-2">
                     <svg class="svg-icon text-primary svg-icon-md">
                       <use xlink:href="#diploma-1"> </use>
                     </svg>
                   </div>
+                  
                   <div class="media-body">
                     <p class="mb-0"><?php echo $i['nbr_ab_inf'] ?> followers</p>
                   </div>

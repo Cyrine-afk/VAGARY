@@ -1,13 +1,14 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
-    if(isset($_POST["id__type"]) && isset($_POST["nom_type"]) ) {
+    
+    if(isset($_POST["id_type"]) && isset($_POST["nom_type"]) ) {
       var_dump($_POST['nom_type']);
       $tp= new Type($_POST["nom_type"]);
       $newtp= new TypeC();
-      if ($newtp->modifierTypeVoy($tp,$_POST['id__type']) ) {
-        var_dump($_POST['id__type']);
+      if ($newtp->modifierTypeVoy($tp,$_POST['id_type']) ) {
+        var_dump($_POST['id_type']);
       }
       header("Location:themes.php");
     }
@@ -114,7 +115,7 @@
             <!-- Tasks end-->
             
             <!-- Log out               -->
-            <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
+            <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
           </div>
         </div>
       </nav>
@@ -196,7 +197,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 form-control-label">Theme's ID</label>
                       <div class="col-sm-9">
-                        <input type="number" disabled="" class="form-control" name="id__type" id="id__type" value="<?= $i['id__type'] ?>">
+                        <input type="number" readonly class="form-control" name="id_type" id="id__type" value="<?= $i['id__type'] ?>">
                       </div>
                     </div>
 

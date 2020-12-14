@@ -1,13 +1,13 @@
 <?php 
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/InfluC.php';
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Influ.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
   $inf1= new InfluC();
   $liste=$inf1->afficherInfluenceur();
 
   
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-  require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
   $tp1= new TypeC();
   $listetp=$tp1->afficherType();
@@ -249,7 +249,7 @@
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title"> <?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase"><?php echo $i['nbr_ab_inf'] ?> followers    </p>
+                <p class="card-subtitle text-muted text-xs text-uppercase"><?php echo $i['nbr_ab_inf'] ?>K followers    </p>
               </div>
             </div>
           </div>

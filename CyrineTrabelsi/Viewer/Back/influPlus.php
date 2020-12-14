@@ -2,12 +2,9 @@
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
-    $inf1= new InfluC();
-    $liste=$inf1->afficherInfluenceur();
+    /*$inf1= new InfluC();
+    $liste=$inf1->afficherInfluenceur();*/
 
-    if(isset($_GET['id_inf'])) {
-      $inf1->supprimerInfluenceur($_GET['id_inf']);
-  }
 
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
@@ -28,19 +25,6 @@
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <script
-  src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
-
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom Font Icons CSS-->
@@ -189,48 +173,42 @@
             <li class="breadcrumb-item active">Influencers </li>
           </ul>
         </div>
-        <section >
-          <div class="container">
-
-                  <div class="title"><strong>List of influencers</strong></div>
-                    <table class="table table-fluid " id="myTable">
+        <section class="no-padding-top">
+          <div class="container-fluid">
+            <div class="row">
+              
+              <div class="col-lg-6-perso">
+                <div class="block">
+                  <div class="title"><strong>More infos</strong></div>
+                  <div class="table-responsive"> 
+                    <table class="table table-striped table-hover">
                       <thead>
                         <tr>
-                          <th> ID </th>
-                          <th>Profile picture</th>
-                          <th>Name</th>
-                          <th>Last Name</th>
-                          <th>Further Infos</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
-                          <th>Add a trip</th>
-                          <th>View trips</th>
+                          <th>ID</th>
+                          <th>Picture</th>
+                          <th>Followers</th>
+                          <th>Add date</th>
+                          <th>Bio</th>
+                          <th>Feedback</th>
+                          <th>Facebook</th>
+                          <th>Instagram</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
-                          foreach($liste as $i) {
-                        ?>
+                          if (isset($_GET['id_inf'])) {
+                            $influenceur=new InfluC();
+                            $i=$influenceur->chercherid($_GET['id_inf']);                            
+                            ?>
                         <tr>
                           <th scope="row"> <?php echo $i['id_inf'] ?></th>
                           <td><img src="<?php  echo $i['img_inf']?>" ></td>
-                          <td><?php echo $i['nom_inf'] ?></td>
-                          <td><?php echo $i['prenom_inf'] ?></td>
-                          <td>
-                            <a href="influPlus.php?id_inf=<?php echo $i['id_inf'] ?>"> More infos </a>
-                          </td>
-                          <td>
-                            <a href="updateFormInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Edit </a>
-                          </td>
-                          <td>
-                            <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
-                          </td>
-                          <td>
-                            <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Add trip </a>
-                          </td>
-                          <td>
-                            <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> View trips </a>
-                          </td>
+                          <td><?php echo $i['nbr_ab_inf'] ?></td>
+                          <td><?php echo $i['date_ajout_inf'] ?></td>
+                          <td><?php echo $i['bio_inf'] ?></td>
+                          <td><?php echo $i['feedback_inf'] ?></td>
+                          <td><?php echo $i['fb_inf'] ?></td>
+                          <td><?php echo $i['insta_inf'] ?></td>
                         </tr>
                         <?php
                           }
@@ -238,8 +216,12 @@
                         
                       </tbody>
                     </table>
-             
-
+                  </div>
+                </div>
+              </div>
+              
+              </div>
+            </div>
           </div>
         </section>
         <footer class="footer">
@@ -252,12 +234,6 @@
         </footer>
       </div>
     </div>
-    <!-- Datatables -->
-    <script>
-      $(document).ready( function () {
-      $('#myTable').DataTable();
-      } );
-    </script>
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>

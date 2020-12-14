@@ -1,6 +1,6 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/InfluC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Influ.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
     $inf1= new InfluC();
     $liste=$inf1->afficherInfluenceur();
@@ -9,8 +9,8 @@
       $inf1->supprimerInfluenceur($_GET['id_inf']);
   }
 
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/Back&Front/Model/Type.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
     $tp1= new TypeC();
     $listetp=$tp1->afficherType();
@@ -187,20 +187,20 @@
                     <table class="table table-striped table-hover">
                       <thead>
                         <tr>
-                          <th> Id </th>
+                          <th> ID </th>
                           <th>Name</th>
-                          <th>Last Name</th>
-                          <th>Add date</th>
-                          <th>Bio</th>
-                          <th>Feedback</th>
-                          <th>Profile picture</th>
-                          <th>Number Of followers</th>
-                          <th>Facebook</th>
-                          <th>Instagram</th>
+                          <th>Date</th>
+                          <th>Date</th>
+                          <th>Maximum number of participants</th>
+                          <th>Destination</th>
+                          <th>Duration</th>
+                          <th>Image</th>
+                          <th>Planning</th>
+                          <th>Price</th>
+                          <th>Theme</th>
+                          <th>Influencer's ID</th>
                           <th>Update</th>
                           <th>Delete</th>
-                          <th>Add a trip</th>
-                          <th>View trips</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -225,10 +225,10 @@
                             <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
                           </td>
                           <td>
-                            <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Add trip </a>
+                            <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Update </a>
                           </td>
                           <td>
-                            <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> View </a>
+                            <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
                           </td>
                         </tr>
                         <?php
