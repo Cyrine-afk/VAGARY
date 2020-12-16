@@ -6,7 +6,7 @@ class Influ {
     private $id_inf;
     private string $nom_inf;
     private string $prenom_inf;
-    private string $date_ajout_inf;
+    private $date_ajout_inf;
     private string $bio_inf;
     private string $feedback_inf;
     private string $image_inf;
@@ -15,7 +15,7 @@ class Influ {
     private string $insta_inf;
 
 
-    public function __construct (string $nom_inf, string $prenom_inf, string $date_ajout_inf, string $bio_inf, string $feedback_inf, string $image_inf, $nbr_ab_inf, string $fb_inf, string $insta_inf) {
+    public function __construct (string $nom_inf, string $prenom_inf, $date_ajout_inf, string $bio_inf, string $feedback_inf, string $image_inf, $nbr_ab_inf, string $fb_inf, string $insta_inf) {
         $this->nom_inf=$nom_inf;
         $this->prenom_inf=$prenom_inf;
         $this->date_ajout_inf=$date_ajout_inf;

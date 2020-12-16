@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="img/JD&Co3.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->  
   </head>
   <body>
     <header class="header">   
@@ -189,9 +189,24 @@
             <li class="breadcrumb-item active">Influencers </li>
           </ul>
         </div>
-        <section >
-          <div class="container">
+        <section>
 
+
+          <!-- Search Icon 
+          <div class="search-panel">
+            <div class="search-inner d-flex align-items-center justify-content-center">
+              <div class="close-btn">Close <i class="fa fa-close"></i></div>
+              <form id="searchForm" action="#">
+                <div class="form-group">
+                  <input type="search" name="search" placeholder="What are you searching for...">
+                  <button type="submit" class="submit">Search</button>
+                </div>
+              </form>
+            </div>
+          </div> -->
+
+
+          <div class="container">
                   <div class="title"><strong>List of influencers</strong></div>
                     <table class="table table-fluid " id="myTable">
                       <thead>
@@ -201,10 +216,10 @@
                           <th>Name</th>
                           <th>Last Name</th>
                           <th>Further Infos</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
                           <th>Add a trip</th>
                           <th>View trips</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -220,27 +235,40 @@
                             <a href="influPlus.php?id_inf=<?php echo $i['id_inf'] ?>"> More infos </a>
                           </td>
                           <td>
-                            <a href="updateFormInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Edit </a>
-                          </td>
-                          <td>
-                            <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
-                          </td>
-                          <td>
                             <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Add trip </a>
                           </td>
                           <td>
                             <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> View trips </a>
                           </td>
+                          <td>
+                            <a href="updateFormInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Edit </a>
+                          </td>
+                          <td>
+                            <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
+                          </td>
                         </tr>
                         <?php
                           }
                         ?>
-                        
                       </tbody>
                     </table>
-             
-
-          </div>
+                    <br>
+                    <form class="form-inline" method="post" action="generate_pdf.php">
+						          <button type="submit"  id="pdf" name="generate_pdf" class="btn btn-primary"><i class="fa fa-pdf" aria-hidden="true"></i>
+                        Generate PDF
+                      </button>
+						        </form>
+                  </div>
+                  <br>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
         </section>
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">

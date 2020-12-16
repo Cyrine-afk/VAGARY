@@ -170,18 +170,14 @@
             <li class="breadcrumb-item active">Themes</li>
           </ul>
         </div>
-        <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
-              
-              <div class="col-lg-6">
-                <div class="block">
+        <section >
+          <div class="container">
                   <div class="title"><strong>List of themes</strong></div>
                   <div class="table-responsive"> 
                     <table class="table table-striped table-hover">
                       <thead>
                         <tr>
-                          <th>Id</th>
+                          <th>ID</th>
                           <th>Theme Name</th>
                           <th>Update theme</th>
                           <th>Delete theme</th>
@@ -211,10 +207,7 @@
                       </tbody>
                     </table>
                   </div>
-                </div>
-              </div>
               
-            </div>
           </div>
         </section>
         <footer class="footer">

@@ -7,7 +7,7 @@ require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type
 class Voyage {
     private $id_voy;
     private string $nom_voy;
-    private string $date_voy;
+    private $date_voy;
     private $nbr_perso_voy;
     private string $destination_voy;
     private $duree_voy;
@@ -17,7 +17,7 @@ class Voyage {
     private $id_type;
 
 
-    public function __construct (string $nom_voy, string $date_voy, $nbr_perso_voy, string $destination_voy, $duree_voy, string $img_voy, string $planning_voy, $prix_voy, $id_type) {
+    public function __construct (string $nom_voy, $date_voy, $nbr_perso_voy, string $destination_voy, $duree_voy, string $img_voy, string $planning_voy, $prix_voy, $id_type) {
         $this->id_voy=$id_voy;
         $this->nom_voy=$nom_voy;
         $this->date_voy=$date_voy;

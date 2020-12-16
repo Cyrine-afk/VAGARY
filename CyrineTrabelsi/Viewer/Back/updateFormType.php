@@ -210,7 +210,35 @@
 
                       <div class="form-group row">       
                         <div class="col-sm-9 offset-sm-3">
-                          <input type="submit" value="Save" name="submit" class="btn btn-primary">
+
+                          <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
+                        
+                            <input type="hidden" value=<?PHP echo $i['id__type']; ?> name="id">
+                            <div id="id" class="modal">
+                              <span onclick="document.getElementById('id').style.display='none'" class="close" title="Close Modal"><div class="close-btn">Close <i class="fa fa-close"></i></div></span>
+                              <form class="modal-content" method="POST" action="influ.php">
+                                <div class="container ">
+                                  <h1>You just updated the theme <?PHP echo $i['nom_type']?>'s informations</h1>
+                                  
+                                  <div class="clearfix ">
+                                    <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
+                                  </div>
+
+                                </div>
+                              </form>
+                            </div>
+
+                            <script>
+                            var modal = document.getElementById('id');
+
+                            window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                            }
+                            </script>
+
+
                         </div>
                       </div>
                     </form>

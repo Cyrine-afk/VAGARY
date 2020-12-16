@@ -118,9 +118,9 @@
                   </div></a><a href="#" class="dropdown-item text-center"> <strong>See All Tasks <i class="fa fa-angle-right"></i></strong></a>
               </div>
             </div>
-            <!-- Tasks end-->
+            <!-- Tasks end -->
             
-            <!-- Log out               -->
+            <!-- Log out -->
             <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
           </div>
         </div>
@@ -281,17 +281,43 @@
                       <div class="line"></div>
                       <div class="form-group row">
                         <div class="col-sm-9 ml-auto">
-                        <input type="submit" value="Save" name="submit" class="btn btn-primary" > 
-                        <input type="reset" value="Cancel" name="submit" class="btn btn-secondary"> 
+                          <input type="reset" value="Cancel" name="submit" class="btn btn-secondary"> 
+
+                          <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
+                        
+                            <input type="hidden" value=<?PHP echo $i['id_inf']; ?> name="id">
+                            <div id="id" class="modal">
+                              <span onclick="document.getElementById('id').style.display='none'" class="close" title="Close Modal"><div class="close-btn">Close <i class="fa fa-close"></i></div></span>
+                              <form class="modal-content" method="POST" action="influ.php">
+                                <div class="container ">
+                                  <h1>You just updated <?PHP echo $i['nom_inf'].' '.$i['prenom_inf']?>'s informations</h1>
+                                  
+                                  <div class="clearfix ">
+                                    <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
+                                  </div>
+
+                                </div>
+                              </form>
+                            </div>
+
+                            <script>
+                            var modal = document.getElementById('id');
+
+                            window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                            }
+                            </script>
+
+
                         </div>
                       </div>
 
                     </form>
 
-                    <?php }
-                      /*else { // Si l'utilisateur essaye d'accéder directement à la page sans passer par showAlbums
-                        header("Location:influ.php");
-                      }*/
+                    <?php 
+                      }
                     ?>
 
                   </div>
