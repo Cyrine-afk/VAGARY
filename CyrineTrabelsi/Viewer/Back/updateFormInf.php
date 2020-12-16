@@ -289,7 +289,7 @@
                           <div id="id" class="modal">
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                               <form method="POST" action="influ.php">
-                                <strong>Great !</strong> You just updated the theme <?PHP echo $i['nom_inf'].' '.$i['prenom_inf'];?>'s informations
+                                <strong>Great !</strong> You just updated the influencer <?PHP echo $i['nom_inf'].' '.$i['prenom_inf'];?>'s informations
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>

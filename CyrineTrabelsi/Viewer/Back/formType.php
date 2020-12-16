@@ -205,8 +205,34 @@
 
                       <div class="form-group row">       
                         <div class="col-sm-9 offset-sm-3">
-                          <input type="submit" value="Submit" name="submit" class="btn btn-primary">
                           <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
+                          <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+
+                          <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
+                          
+                          <div id="id" class="modal">
+                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                              <form method="POST" action="influ.php">
+                                <strong>Great !</strong> You just added a theme 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="clearfix ">
+                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-secondary" value="Okay">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+
+                          <script>
+                          var modal = document.getElementById('id')
+                          window.onclick = function(event) {
+                          if (event.target == modal) {
+                              modal.style.display = "none";
+                          }
+                          }
+                          </script>
+
                         </div>
                       </div>
                     </form>
@@ -227,6 +253,7 @@
         </footer>
       </div>
     </div>
+
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>

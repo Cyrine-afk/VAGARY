@@ -29,17 +29,8 @@
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <script
-  src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
@@ -190,68 +181,37 @@
           </ul>
         </div>
         <section>
-
-
-          <!-- Search Icon 
-          <div class="search-panel">
-            <div class="search-inner d-flex align-items-center justify-content-center">
-              <div class="close-btn">Close <i class="fa fa-close"></i></div>
-              <form id="searchForm" action="#">
-                <div class="form-group">
-                  <input type="search" name="search" placeholder="What are you searching for...">
-                  <button type="submit" class="submit">Search</button>
-                </div>
-              </form>
-            </div>
-          </div> -->
-
-
+        <input type="text" placeholder="Research" class="form-control" id="rech" >
+        <br>
           <div class="container">
                   <div class="title"><strong>List of influencers</strong></div>
-                    <table class="table table-fluid " id="myTable">
-                      <thead>
-                        <tr>
-                          <th> ID </th>
-                          <th>Profile picture</th>
-                          <th>Name</th>
-                          <th>Last Name</th>
-                          <th>Further Infos</th>
-                          <th>Add a trip</th>
-                          <th>View trips</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                          foreach($liste as $i) {
-                        ?>
-                        <tr>
-                          <th scope="row"> <?php echo $i['id_inf'] ?></th>
-                          <td><img src="<?php  echo $i['img_inf']?>" ></td>
-                          <td><?php echo $i['nom_inf'] ?></td>
-                          <td><?php echo $i['prenom_inf'] ?></td>
-                          <td>
-                            <a href="influPlus.php?id_inf=<?php echo $i['id_inf'] ?>"> More infos </a>
-                          </td>
-                          <td>
-                            <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Add trip </a>
-                          </td>
-                          <td>
-                            <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> View trips </a>
-                          </td>
-                          <td>
-                            <a href="updateFormInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Edit </a>
-                          </td>
-                          <td>
-                            <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
-                          </td>
-                        </tr>
-                        <?php
+                    <div class="table-responsive" id="pagination_data">
+
+                      <script>
+                        $(document).ready(function(){
+                          load_data();
+                          function load_data(page){
+                            $.ajax({
+                             url  : "pagination.php",
+                             type : "POST",
+                             cache: false,
+                             data : {page:page},
+                             success:function(data){
+                              $("#pagination_data").html(data);
+                             }
+                            });
                           }
-                        ?>
-                      </tbody>
-                    </table>
+
+                          $(document).on('click', '.pagination_link', function(){
+                            var page = $(this).attr("id");
+                            load_data(page);
+                          });
+
+                        });
+                      </script>
+
+                    </div>
+                    
                     <br>
                     <form class="form-inline" method="post" action="generate_pdf.php">
 						          <button type="submit"  id="pdf" name="generate_pdf" class="btn btn-primary"><i class="fa fa-pdf" aria-hidden="true"></i>
@@ -260,15 +220,6 @@
 						        </form>
                   </div>
                   <br>
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
         </section>
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
@@ -280,12 +231,11 @@
         </footer>
       </div>
     </div>
-    <!-- Datatables -->
-    <script>
-      $(document).ready( function () {
-      $('#myTable').DataTable();
-      } );
-    </script>
+    
+    <!-- Pagination -->
+
+        
+
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
@@ -296,3 +246,4 @@
     <script src="js/front.js"></script>
   </body>
 </html>
+

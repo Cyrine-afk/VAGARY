@@ -185,7 +185,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_inf" id="name_inf" placeholder="Name" required onblur="document.queryselector('.line-name').innerHTML='verifierLeNom';">
+                          <input type="text" class="form-control" name="name_inf" id="name_inf" placeholder="Name" required >
                         </div>
                       </div>
                       <div class="line-name"></div>
@@ -199,7 +199,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Join date</label>
                         <div class="col-sm-9">
-                          <input type="date" name="dateAjout_inf" id="dateAjout_inf"  class="form-control"> <small class="help-block-none" required>Make sure to pick a recent date !</small>
+                          <input type="date" name="dateAjout_inf" id="dateAjout_inf"  class="form-control" required onblur="document.queryselector('.line-name').innerHTML='verifierLaDate';"> <small class="help-block-none" required>Make sure to pick a recent date !</small>
                         </div>
                       </div>
                       <div class="line"></div>
@@ -257,8 +257,49 @@
                       <div class="line"></div>
                       <div class="form-group row">
                         <div class="col-sm-9 ml-auto">
-                          <input type="submit" value="Save" name="submit" class="btn btn-primary"> 
                           <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
+                          <!-- <input type="submit" value="Save" name="submit" class="btn btn-primary"> -->
+
+                          <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
+                          
+                          <div id="id" class="modal">
+                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                              <form method="POST" action="influ.php">
+                                <strong>Great !</strong> You just added an influencer 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="clearfix ">
+                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-secondary" value="Okay">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+
+                          <script>
+                          function verifierLaDate ()
+                          {
+                              var dateAjout_inf=document.getElementById("dateAjout_inf").value
+                              if (dateAjout_inf=="") {
+                                  error+="<li> The date is obligatory </li>"
+                              }
+                              else {
+                                var today = new Date();
+                                dateA=new Date(dateA)
+                                if(today.getFullYear() > 2) {
+                                    toterr++;
+                                    error+="<li> Incorrect date </li>"
+                                }
+                              }
+                          }
+                          var modal = document.getElementById('id')
+                          window.onclick = function(event) {
+                          if (event.target == modal) {
+                              modal.style.display = "none";
+                          }
+                          }
+                          </script>
+
                         </div>
                       </div>
 
@@ -280,6 +321,8 @@
         </footer>
       </div>
     </div>
+
+
     <!-- JavaScript files-->
     <script src="jav.js"> </script>
     <script src="vendor/jquery/jquery.min.js"></script>
