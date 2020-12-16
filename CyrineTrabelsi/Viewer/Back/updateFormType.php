@@ -3,11 +3,11 @@
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
     
-    if(isset($_POST["id_type"]) && isset($_POST["nom_type"]) ) {
+    if(isset($_POST["id_type"]) && isset($_POST["nom_type"]) && isset($_POST["img_type"]) ) {
       var_dump($_POST['nom_type']);
-      $tp= new Type($_POST["nom_type"]);
+      $tp= new Type($_POST["nom_type"],$_POST["img_type"]);
       $newtp= new TypeC();
-      if ($newtp->modifierTypeVoy($tp,$_POST['id_type']) ) {
+      if ($newtp->modifierTypeVoy($tp,$_POST['id_type'])) {
         var_dump($_POST['id_type']);
       }
       header("Location:themes.php");
@@ -194,53 +194,67 @@
                   <div class="block-body">
                     <form class="form-horizontal" method="POST">
 
-                    <div class="form-group row">
-                      <label class="col-sm-3 form-control-label">Theme's ID</label>
-                      <div class="col-sm-9">
-                        <input type="number" readonly class="form-control" name="id_type" id="id__type" value="<?= $i['id__type'] ?>">
-                      </div>
-                    </div>
-
                       <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Theme's name</label>
+                        <label class="col-sm-3 form-control-label">Theme's ID</label>
                         <div class="col-sm-9">
-                          <input type="text" name="nom_type" id="nom_type" value="<?= $i['nom_type'] ?>" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
+                          <input type="number" readonly class="form-control" name="id_type" id="id__type" value="<?= $i['id__type'] ?>">
                         </div>
                       </div>
 
-                      <div class="form-group row">       
-                        <div class="col-sm-9 offset-sm-3">
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Theme's name</label>
+                          <div class="col-sm-9">
+                            <input type="text" name="nom_type" id="nom_type" value="<?= $i['nom_type'] ?>" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Theme's Picture</label>
+                          <div class="col-sm-9">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group row">       
+                          <div class="col-sm-9 offset-sm-3">
 
                           <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
-                        
-                            <input type="hidden" value=<?PHP echo $i['id__type']; ?> name="id">
-                            <div id="id" class="modal">
-                              <span onclick="document.getElementById('id').style.display='none'" class="close" title="Close Modal"><div class="close-btn">Close <i class="fa fa-close"></i></div></span>
-                              <form class="modal-content" method="POST" action="influ.php">
-                                <div class="container ">
-                                  <h1>You just updated the theme <?PHP echo $i['nom_type']?>'s informations</h1>
-                                  
-                                  <div class="clearfix ">
-                                    <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
-                                  </div>
+                          <input type="hidden" value=<?PHP echo $i['id__type']; ?> name="id">
 
+                          <div id="id" class="modal">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              <form method="POST" action="influ.php">
+                                <strong>Great !</strong> You just updated the theme <?PHP echo $i['nom_type']?>'s informations
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="clearfix ">
+                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
                                 </div>
                               </form>
                             </div>
+                          </div>
 
-                            <script>
-                            var modal = document.getElementById('id');
+                          <script>
+                          var modal = document.getElementById('id')
+                          window.onclick = function(event) {
+                          if (event.target == modal) {
+                              modal.style.display = "none";
+                          }
+                          }
+                          </script>
 
-                            window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                            }
-                            </script>
 
-
+                          </div>
                         </div>
-                      </div>
                     </form>
                   </div>
                 </div>

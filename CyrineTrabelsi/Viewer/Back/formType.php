@@ -2,9 +2,9 @@
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
-    if( isset($_POST["nom_type"]) ) {
-      var_dump($_POST['nom_type']);
-      $tp= new Type( $_POST["nom_type"] );
+    if( isset($_POST["nom_type"])&& isset($_POST["img_type"]) ) {
+      var_dump($_POST['img_type']);
+      $tp= new Type( $_POST["nom_type"], $_POST["img_type"] );
       $newtp= new TypeC();
       $newtp->ajouterTypeVoy($tp);
       header("Location:themes.php");
@@ -187,6 +187,19 @@
                         <label class="col-sm-3 form-control-label">Theme's name</label>
                         <div class="col-sm-9">
                           <input type="text" name="nom_type" id="nom_type" placeholder="Travel theme" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Theme's picture</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 

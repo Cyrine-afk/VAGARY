@@ -30,12 +30,13 @@ class TypeC {
     }
 
      public function ajouterTypeVoy($typev) {
-        $sql = "insert into typev (nom_type) values (:nom_type)" ;
+        $sql = "insert into typev (nom_type,img_type) values (:nom_type,:img_type)" ;
         try{
         $db = config::getConnexion();
         $query = $db->prepare($sql);
         $query->execute([
-            'nom_type'=>$typev->getNomType()
+            'nom_type'=>$typev->getNomType(),
+            'img_type'=>$typev->getImgType()
         ]);
         }
         catch (PDOException $e) {
@@ -56,12 +57,13 @@ class TypeC {
 
      public function modifierTypeVoy($type,$id_type) {
         try {
-            $sql="update typev set nom_type=:nom_type where id__type=:id__type";
+            $sql="update typev set nom_type=:nom_type,img_type=:img_type where id__type=:id__type";
             $db=config::getConnexion();
             $query=$db->prepare($sql);
             $query->execute([
             'id__type'=>$id_type,
-            'nom_type'=>$type->getNomType()
+            'nom_type'=>$type->getNomType(),
+            'img_type'=>$type->getImgType()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {

@@ -271,7 +271,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf"></input>
+                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf" ></input>
                               </div>
                             </div>
                           </div>
@@ -284,32 +284,30 @@
                           <input type="reset" value="Cancel" name="submit" class="btn btn-secondary"> 
 
                           <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
-                        
-                            <input type="hidden" value=<?PHP echo $i['id_inf']; ?> name="id">
-                            <div id="id" class="modal">
-                              <span onclick="document.getElementById('id').style.display='none'" class="close" title="Close Modal"><div class="close-btn">Close <i class="fa fa-close"></i></div></span>
-                              <form class="modal-content" method="POST" action="influ.php">
-                                <div class="container ">
-                                  <h1>You just updated <?PHP echo $i['nom_inf'].' '.$i['prenom_inf']?>'s informations</h1>
-                                  
-                                  <div class="clearfix ">
-                                    <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
-                                  </div>
+                          <input type="hidden" value=<?PHP echo $i['id_inf']; ?> name="id">
 
+                          <div id="id" class="modal">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              <form method="POST" action="influ.php">
+                                <strong>Great !</strong> You just updated the theme <?PHP echo $i['nom_inf'].' '.$i['prenom_inf'];?>'s informations
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="clearfix ">
+                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-primary" value="Okay">
                                 </div>
                               </form>
                             </div>
+                          </div>
 
-                            <script>
-                            var modal = document.getElementById('id');
-
-                            window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                            }
-                            </script>
-
+                          <script>
+                          var modal = document.getElementById('id')
+                          window.onclick = function(event) {
+                          if (event.target == modal) {
+                              modal.style.display = "none";
+                          }
+                          }
+                          </script>
 
                         </div>
                       </div>
