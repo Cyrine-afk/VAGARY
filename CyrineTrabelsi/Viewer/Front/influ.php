@@ -198,25 +198,17 @@
 
                   
 
-                  <select class="selectpicker" title="Trip categories" data-style="btn-form-control">
+                  <select class="selectpicker" title="Trip themes" name="nom_type" id="nom_type" >
 
-                  <?php
-                    foreach($listetp as $t) {
-                  ?>
+                    <?php
+                      foreach($listetp as $t) {
+                    ?>
 
-                  <option value="small">  <?php echo $t['nom_type'] ?>  </option>
-                      <!-- <option value="medium">Arts & Culture</option>
-                      <option value="large">Gaming & Sports</option>
-                      <option value="x-large">Nature & Well-being</option>
-                      <option value="large">Fashion</option>
-                      <option value="large">Anime & Cosplay</option>
-                      <option value="x-large">Adventure</option> -->
+                    <option >  <?php echo $t['nom_type'] ?>  </option>
 
-
-                  
-                  <?php
-                    }
-                  ?>
+                    <?php
+                      }
+                    ?>
                   </select>
 
                 </div>

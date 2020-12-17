@@ -5,6 +5,12 @@
     /*$inf1= new InfluC();
     $liste=$inf1->afficherInfluenceur();*/
 
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
+
+    $trip1= new TripInfC();
+    $liste=$trip1->afficherTripInf();
+
 ?>
 
 <!DOCTYPE html>
@@ -234,9 +240,14 @@
               <h4 class="mb-5"><?php echo $i['nom_inf'] ?>'s Upcoming Trips</h4>
               <div class="row">
                 <!-- place item-->
+
+                <?php
+                  foreach($liste as $ti) {
+                ?>
+
                 <div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                   <div class="card h-100 border-0 shadow">
-                    <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1484154218962-a197022b5858.jpg" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="Up_thailand.html"></a>
+                    <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?php  echo $ti['img_voy']?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="Up_trip_profile.php?id_voy=<?php echo $ti['id_voy'] ?>"></a>
                       
                       <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
                           <svg class="svg-icon text-white">
@@ -245,60 +256,20 @@
                     </div>
                     <div class="card-body d-flex align-items-center">
                       <div class="w-100">
-                        <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Tokyo, Japan</a></h6>
+                        <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $ti['id_voy'] ?>"><?php  echo $ti['destination_voy']?></a></h6>
                         <div class="d-flex card-subtitle mb-3">
-                          <p class="flex-grow-1 mb-0 text-muted text-sm">Anime </p>
+                          <p class="flex-grow-1 mb-0 text-muted text-sm"><?php  echo $ti['nom_type']?> </p>
                           
                         </div>
-                        <p class="card-text text-muted"><span class="h4 text-primary">$80</span></p>
+                        <p class="card-text text-muted"><span class="h4 text-primary"><?php  echo $ti['prix_voy'].' '.'DT'?></span></p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- place item-->
-                <div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e322f3375db4d89128">
-                  <div class="card h-100 border-0 shadow">
-                    <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1426122402199-be02db90eb90.jpg" alt="Cute Quirky Garden apt, NYC adjacent"/><a class="tile-link" href="detail-rooms.html"></a>
-                      
-                      <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                          <svg class="svg-icon text-white">
-                            <use xlink:href="#heart-1"> </use>
-                          </svg></a></div>
-                    </div>
-                    <div class="card-body d-flex align-items-center">
-                      <div class="w-100">
-                        <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Thailand </a></h6>
-                        <div class="d-flex card-subtitle mb-3">
-                          <p class="flex-grow-1 mb-0 text-muted text-sm">Adventure</p>
-                          
-                        </div>
-                        <p class="card-text text-muted"><span class="h4 text-primary">$121</span></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- place item-->
-                <div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e3a31e62979bf147c9">
-                  <div class="card h-100 border-0 shadow">
-                    <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1512917774080-9991f1c4c750.jpg" alt="Modern Apt - Vibrant Neighborhood!"/><a class="tile-link" href="detail-rooms.html"></a>
-                      
-                      <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                          <svg class="svg-icon text-white">
-                            <use xlink:href="#heart-1"> </use>
-                          </svg></a></div>
-                    </div>
-                    <div class="card-body d-flex align-items-center">
-                      <div class="w-100">
-                        <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Seoul, Korea</a></h6>
-                        <div class="d-flex card-subtitle mb-3">
-                          <p class="flex-grow-1 mb-0 text-muted text-sm">Kpop Culture</p>
-                          
-                        </div>
-                        <p class="card-text text-muted"><span class="h4 text-primary">$75</span> </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                <?php
+                  }
+                ?>
                 
               </div>
             </div>

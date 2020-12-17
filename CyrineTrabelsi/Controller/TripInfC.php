@@ -30,9 +30,9 @@ class TripInfC {
     }
 
 
-     public function ajouterTripInf($tripinf) {
+     public function ajouterTripInf($tripinf,$id_inf) {
 
-        $sql = "insert into tripinf (nom_voy,date_voy,nbr_perso_voy,destination_voy,duree_voy,img_voy,planning_voy,prix_voy,id_type,id_inf) values (:nom_voy,:date_voy,:nbr_perso_voy,:destination_voy,:duree_voy,:img_voy,:planning_voy,:prix_voy,:id_type,:id_inf)" ;
+        $sql = "insert into tripinf (nom_voy,date_voy,nbr_perso_voy,destination_voy,duree_voy,img_voy,planning_voy,prix_voy,nom_type,id_inf) values (:nom_voy,:date_voy,:nbr_perso_voy,:destination_voy,:duree_voy,:img_voy,:planning_voy,:prix_voy,:nom_type,:id_inf)" ;
         try{
         $db = config::getConnexion();
         $query = $db->prepare($sql);
@@ -42,11 +42,11 @@ class TripInfC {
             'nbr_perso_voy'=>$tripinf->getNbrPersoVoy(),
             'destination_voy'=>$tripinf->getDestVoy(),
             'duree_voy'=>$tripinf->getDureeVoy(),
-            'img_voy'=>$tripinf->getImageInf(),
+            'img_voy'=>$tripinf->getImgVoy(),
             'planning_voy'=>$tripinf->getPlanVoy(),
             'prix_voy'=>$tripinf->getPrixVoy(),
-            'id_type'=>$tripinf->getIdTypeVoy(),
-            'id_inf'=>$tripinf->getIdInf()
+            'nom_type'=>$tripinf->getNomTypeVoy(),
+            'id_inf'=>$id_inf
         ]);
         }
         catch (PDOException $e) {
@@ -69,7 +69,7 @@ class TripInfC {
 
      public function modifierTripInf($tripinf,$id_voy) {
         try {
-            $sql="update tripinf set nom_voy=:nom_voy,date_voy=:date_voy,nbr_perso_voy=:nbr_perso_voy,destination_voy=:destination_voy,duree_voy=:duree_voy,img_voy=:img_voy,planning_voy=:planning_voy,prix_voy=:prix_voy,id_type=:id_type,id_inf=:id_inf where id_voy=:id_voy";
+            $sql="update tripinf set nom_voy=:nom_voy,date_voy=:date_voy,nbr_perso_voy=:nbr_perso_voy,destination_voy=:destination_voy,duree_voy=:duree_voy,img_voy=:img_voy,planning_voy=:planning_voy,prix_voy=:prix_voy,nom_type=:nom_type,id_inf=:id_inf where id_voy=:id_voy";
             $db=config::getConnexion();
             $query=$db->prepare($sql);
             $query->execute([
@@ -82,7 +82,7 @@ class TripInfC {
             'img_voy'=>$tripinf->getImgVoy(),
             'planning_voy'=>$tripinf->getPlanVoy(),
             'prix_voy'=>$tripinf->getPrixVoy(),
-            'id_type'=>$tripinf->getIdTypeVoy(),
+            'nom_type'=>$tripinf->getNomTypeVoy(),
             'id_inf'=>$tripinf->getIdInf()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -91,8 +91,8 @@ class TripInfC {
         }
     }
 
-    public function chercherTripInf($destination_voy) {
-        $sql="SELECT * FROM tripinf where destination_voy='$destination_voy'";
+    public function chercherTripInf($nom_type) {
+        $sql="SELECT * FROM tripinf where nom_type='$nom_type'";
         $db=Config::getConnexion();
         try{
         $liste = $db->query($sql);

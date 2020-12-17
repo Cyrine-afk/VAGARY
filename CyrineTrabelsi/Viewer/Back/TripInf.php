@@ -1,19 +1,14 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 
-    $inf1= new InfluC();
-    $liste=$inf1->afficherInfluenceur();
+    $trip1= new TripInfC();
+    $liste=$trip1->afficherTripInf();
 
-    if(isset($_GET['id_inf'])) {
-      $inf1->supprimerInfluenceur($_GET['id_inf']);
+    if(isset($_GET['id_voy'])) {
+      $trip1->supprimerTripInf($_GET['id_voy']);
   }
 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
-
-    $tp1= new TypeC();
-    $listetp=$tp1->afficherType();
 
 ?>
 
@@ -60,7 +55,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -133,7 +128,7 @@
         
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-          <li><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+          <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
 
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Influencers' forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -172,33 +167,28 @@
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Influencers </li>
+            <li class="breadcrumb-item active">Trips </li>
           </ul>
         </div>
         <section class="no-padding-top">
           <div class="container-fluid">
-            <div class="row">
-              
-              <div class="col-lg-6-perso">
-                <div class="block">
-                  <div class="title"><strong>List of influencers</strong></div>
+                  <div class="title"><strong>List of influencer's trips</strong></div>
                   <div class="table-responsive"> 
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" >
                       <thead>
                         <tr>
                           <th> ID </th>
+                          <th>Image</th>
                           <th>Name</th>
-                          <th>Date</th>
                           <th>Date</th>
                           <th>Maximum number of participants</th>
                           <th>Destination</th>
                           <th>Duration</th>
-                          <th>Image</th>
                           <th>Planning</th>
                           <th>Price</th>
                           <th>Theme</th>
-                          <th>Influencer's ID</th>
                           <th>Update</th>
                           <th>Delete</th>
                         </tr>
@@ -208,27 +198,21 @@
                           foreach($liste as $i) {
                         ?>
                         <tr>
-                          <th scope="row"> <?php echo $i['id_inf'] ?></th>
-                          <td><?php echo $i['nom_inf'] ?></td>
-                          <td><?php echo $i['prenom_inf'] ?></td>
-                          <td><?php echo $i['date_ajout_inf'] ?></td>
-                          <td><?php echo $i['bio_inf'] ?></td>
-                          <td><?php echo $i['feedback_inf'] ?></td>
-                          <td><img src="<?php  echo $i['img_inf']?>" ></td>
-                          <td><?php echo $i['nbr_ab_inf'] ?></td>
-                          <td><?php echo $i['fb_inf'] ?></td>
-                          <td><?php echo $i['insta_inf'] ?></td>
+                          <th scope="row"> <?php echo $i['id_voy'] ?></th>
+                          <td><img src="<?php  echo $i['img_voy']?>" ></td>
+                          <td><?php echo $i['nom_voy'] ?></td>
+                          <td><?php echo $i['date_voy'] ?></td>
+                          <td><?php echo $i['nbr_perso_voy'] ?></td>
+                          <td><?php echo $i['destination_voy'] ?></td>
+                          <td><?php echo $i['duree_voy'] ?></td>
+                          <td><?php echo $i['planning_voy'] ?></td>
+                          <td><?php echo $i['prix_voy'].'DT' ?> </td>
+                          <td><?php echo $i['nom_type'] ?></td>
                           <td>
-                            <a href="updateFormInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Update </a>
+                            <a href="updateFormTripInf.php?id_voy=<?php echo $i['id_voy'] ?>"> Update </a>
                           </td>
                           <td>
-                            <a href="influ.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
-                          </td>
-                          <td>
-                            <a href="formTripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Update </a>
-                          </td>
-                          <td>
-                            <a href="TripInf.php?id_inf=<?php echo $i['id_inf'] ?>"> Delete </a>
+                            <a href="TripInf.php?id_voy=<?php echo $i['id_voy'] ?>"> Delete </a>
                           </td>
                         </tr>
                         <?php
@@ -239,17 +223,13 @@
                     </table>
                   </div>
                 </div>
-              </div>
-              
-              </div>
-            </div>
           </div>
         </section>
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

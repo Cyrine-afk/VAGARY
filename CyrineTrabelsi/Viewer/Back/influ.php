@@ -64,7 +64,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -137,7 +137,7 @@
         
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-          <li><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+          <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
 
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Influencers' forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -176,17 +176,18 @@
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Influencers </li>
           </ul>
         </div>
         <section>
-        <input type="text" placeholder="Research" class="form-control" id="rech" >
-        <br>
+
+       
           <div class="container">
                   <div class="title"><strong>List of influencers</strong></div>
                     <div class="table-responsive" id="pagination_data">
-
+                                        
+                    <!-- Pagination -->
                       <script>
                         $(document).ready(function(){
                           load_data();
@@ -225,17 +226,12 @@
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>
       </div>
     </div>
-    
-    <!-- Pagination -->
-
-        
-
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
@@ -246,4 +242,6 @@
     <script src="js/front.js"></script>
   </body>
 </html>
+
+
 

@@ -1,3 +1,10 @@
+<?php
+$connect = mysqli_connect('localhost','root','','vagary');
+$page_query = "SELECT * FROM influenceur";
+$page_result = mysqli_query($connect, $page_query);
+$total_records = mysqli_num_rows($page_result);
+?>
+
 <!DOCTYPE html>
 <html>
   <head> 
@@ -41,7 +48,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -114,7 +121,7 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-          <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+          <li class="active"><a href="index.php"> <i class="icon-home"></i>Home </a></li>
           
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Influencers' forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -156,9 +163,9 @@
                 <div class="statistic-block block">
                   <div class="progress-details d-flex align-items-end justify-content-between">
                     <div class="title">
-                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
+                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Influencers</strong>
                     </div>
-                    <div class="number dashtext-1">27</div>
+                    <div class="number dashtext-1"><?php echo $total_records ?></div>
                   </div>
                   <div class="progress progress-template">
                     <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
@@ -378,7 +385,7 @@
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

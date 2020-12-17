@@ -1,3 +1,12 @@
+<?php 
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
+
+    $trip1= new TripInfC();
+    $liste=$trip1->afficherTripInf();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -182,20 +191,27 @@
         <div class="swiper-button-next swiper-button-white"></div>
       </div>
     </section>
+    
+    <?php
+      if (isset($_GET['id_voy'])) {
+        $tripinf=new TripInfC();
+        $trip=$tripinf->chercherid($_GET['id_voy']); // récupère l'influenceur à afficher de la base
+        //foreach($liste as $i) {
+    ?>
     <div class="container py-5">
       <div class="row">
         <div class="col-lg-8"> 
           <div class="text-block">
-            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1"></i> Thailand </p>
-            <h1>Upcoming trip to Thailand</h1>
-            <p class="text-muted text-uppercase mb-4">With Meredith </p>
+            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1"></i> <?php echo $trip['destination_voy'] ?> </p>
+            <p class="text-success"><?php echo $trip['date_voy'] ?> </p>
+            <h1>Upcoming trip to <?php echo $trip['destination_voy'] ?></h1>
             <ul class="list-inline text-sm mb-4">
-              <li class="list-inline-item mr-3"><i class="fa fa-users mr-1 text-secondary"></i> 4 guests</li>
-              <li class="list-inline-item mr-3"><i class="fa fa-door-open mr-1 text-secondary"></i> 1 bedroom</li>
-              <li class="list-inline-item mr-3"><i class="fa fa-bed mr-1 text-secondary"></i> 3 beds</li>
+              <li class="list-inline-item mr-3"><i class="fa fa-users mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy'] ?> guests</li>
+              <li class="list-inline-item mr-3"><i class="fa fa-door-open mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/2 ?> bedroom</li>
+              <li class="list-inline-item mr-3"><i class="fa fa-bed mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/4 ?> beds</li>
               <li class="list-inline-item mr-3"><i class="fa fa-bath mr-1 text-secondary"></i> 1 bath</li>
             </ul>
-            <p class="text-muted font-weight-light">Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan. </p>
+            <p class="text-muted font-weight-light"><?php echo $trip['planning_voy'] ?></p>
             
             <h6 class="mb-3">Interaction with guests</h6>
             <p class="text-muted font-weight-light">We live in the two floors above the garden apartment so we are usually available to answer questions. The garden apartment is separate from our living space. We are happy to provide advice on local attractions, restaurants and transportation around the city. If there's anything you need please don't hesitate to ask!</p>
@@ -221,20 +237,6 @@
               </div>
             </div>
           </div>
-          <div class="text-block">
-            <h4 class="mb-0">Related Themes</h4>
-            <p class="subtitle text-sm text-primary mb-4">You might also like...</p>
-            <ul class="list-inline">
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Wifi</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Cable TV</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Air conditioning</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Heating</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Toiletteries</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Equipped Kitchen</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Desk for work</span></li>
-              <li class="list-inline-item mb-2"><span class="badge badge-pill badge-light p-3 text-muted font-weight-normal">Washing machine</span></li>
-            </ul>
-          </div>
           
           <div class="text-block">
             <h5 class="mb-4">Listing location</h5>
@@ -247,7 +249,7 @@
         </div>
         <div class="col-lg-4">
           <div class="p-4 shadow ml-lg-4 rounded sticky-top" style="top: 100px;">
-            <p class="text-muted"><span class="text-primary h2">$120</span></p>
+            <p class="text-muted"><span class="text-primary h2"><?php echo $trip['prix_voy'].' '.'DT' ?></span></p>
             <hr class="my-4">
             <form class="form" id="booking-form" method="get" action="#" autocomplete="off">
               <div class="form-group">
@@ -278,6 +280,10 @@
         </div>
       </div>
     </div>
+
+    <?php
+      }
+    ?>
     
     <!-- Footer-->
     <!-- Footer-->

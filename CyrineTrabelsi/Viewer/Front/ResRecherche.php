@@ -8,6 +8,9 @@
   
     $tp1= new TypeC();
     $listetp=$tp1->afficherType();
+
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 ?>
 
 <!DOCTYPE html>
@@ -176,17 +179,7 @@
     </header>
 
 
-    <?php
-      if (isset($_POST['searchInf'])) {
-        //var_dump($_POST['searchInf']);
-        $inf2=new InfluC();
-        if ($liste2=$inf2->chercherInfluenceur($_POST['searchInf'])) {
-        //echo "done";
-   ?>
-
-    <?php
-      foreach ($liste2 as $elt) {
-    ?>
+    
     
     <!-- Hero Section-->
     <section class="py-7 position-relative dark-overlay"><img class="bg-image" src="img/photo/photo-1497436072909-60f360e1d4b1.jpg" alt="">
@@ -202,19 +195,13 @@
                  <input class="form-control border-0 shadow-0" type="text" name="searchInf" placeholder="Which influencer are you searching for?">
                 </div>
                 <div class="col-lg-3 d-flex align-items-center form-group no-divider">
-                <select class="selectpicker" title="Trip categories" data-style="btn-form-control">
+                <select class="selectpicker" title="Trip categories" name="nom_type" id="nom_type" >
 
                   <?php
                     foreach($listetp as $t) {
                   ?>
                   
-                  <option value="small">  <?php echo $t['nom_type'] ?>  </option>
-                      <!-- <option value="medium">Arts & Culture</option>
-                      <option value="large">Gaming & Sports</option>
-                      <option value="x-large">Nature & Well-being</option>
-                      <option value="large">Fashion</option>
-                      <option value="large">Anime & Cosplay</option>
-                      <option value="x-large">Adventure</option> -->
+                  <option>  <?php echo $t['nom_type'] ?>  </option>
                     
                   <?php
                     }
@@ -240,7 +227,17 @@
     <section class="pt-6 pb-4">
 
               
+    <?php
+      if (isset($_POST['searchInf'])) {
+        //var_dump($_POST['searchInf']);
+        $inf2=new InfluC();
+        if ($liste2=$inf2->chercherInfluenceur($_POST['searchInf'])) {
+        //echo "done";
+   ?>
 
+    <?php
+      foreach ($liste2 as $elt) {
+    ?>
         <div class="container">
           <h6 class="subtitle text-center text-primary mb-5">Search Results</h6>
           
@@ -265,30 +262,66 @@
             
 
         </div>
-
-        
-    </section>
-
-    <?php
+        <?php
         } // foreach
 
       } // récupère l'influenceur recherché de la base
-      else  {
-    ?>
-
-    <div class="mh-full-screen d-flex align-items-center dark-overlay"><img class="bg-image" src="img/photo/aron-visuals-3jBU9TbKW7o-unsplash.jpg" alt="Not found">
-      <div class="container text-white text-lg overlay-content py-6 py-lg-0">
-        <h1 class="display-3 font-weight-bold mb-5">Error 404</h1>
-        <p class="font-weight-light mb-5">Oops it seems like your reserch is invalid, you could go back to the home page using this button : </p>
-        <p class="mb-6"> <a class="btn btn-outline-light" href="index.php"><i class="fa fa-home mr-2"></i>Start from the Homepage</a></p>                      
-      </div>
-    </div>
-
-    <?php
-      } 
+      
 
     }// isset              
     ?>
+
+<?php
+      if (isset($_POST['nom_type'])) {
+        //var_dump($_POST['nom_type']);
+        $tripinf2=new TripInfC();
+        if ($listetrip2=$tripinf2->chercherTripInf($_POST['nom_type'])) {
+        //echo "done";
+   ?>
+
+    
+        <div class="container">
+          <h6 class="subtitle text-center text-primary mb-5">Search Results</h6>
+          <?php
+      foreach ($listetrip2 as $lt) {
+    ?>
+          <div class="row">
+
+         
+          
+          <div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
+                  <div class="card h-100 border-0 shadow">
+                    <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?php  echo $lt['img_voy']?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="Up_trip_profile.php?id_voy=<?php echo $ti['id_voy'] ?>"></a>
+                      
+                    </div>
+                    <div class="card-body d-flex align-items-center">
+                      <div class="w-100">
+                        <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $lt['id_voy'] ?>"><?php  echo $lt['destination_voy']?></a></h6>
+                        <div class="d-flex card-subtitle mb-3">
+                          <p class="flex-grow-1 mb-0 text-muted text-sm"><?php  echo $lt['nom_type']?> </p>
+                          
+                        </div>
+                        <p class="card-text text-muted"><span class="h4 text-primary"><?php  echo $lt['prix_voy'].' '.'DT'?></span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+         
+            
+
+        </div>
+        <?php
+        } // foreach
+
+      } // récupère l'influenceur recherché de la base
+      
+
+    }// isset              
+    ?>
+        
+    </section>
+
+   
     
     <!-- Footer-->
     <!-- Footer-->

@@ -7,13 +7,32 @@
 
 
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
-  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TrinInf.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 
-  if(isset($_GET['id_inf'])&& isset($_POST["nom_voy"])&& isset($_POST["date_voy"]) && isset($_POST["nbr_perso_voy"]) && isset($_POST["destination_voy"]) && isset($_POST["duree_voy"]) && isset($_POST["planning_voy"])&& isset($_POST["prix_voy"]) && isset($_POST["img_voy"]) /*&& isset($_POST["id_type"]) */) {
-    var_dump($_POST['nom_voy']);
-    $tripinf= new Influ($_POST["nom_voy"] ,$_POST["date_voy"] ,$_POST["nbr_perso_voy"] ,$_POST["destination_voy"] ,$_POST["duree_voy"] ,$_POST["img_voy"] ,$_POST["planning_voy"] ,$_POST["prix_voy"], $_POST["id_type"], $_GET['id_inf'] );
-    $newtripinf= new InfluC();
-    $newtripinf->ajouterTripInf($tripinf);
+  if( isset($_GET['id_inf'])
+  && isset($_POST["nom_voy"])
+  && isset($_POST["date_voy"]) 
+  && isset($_POST["nbr_perso_voy"]) 
+  && isset($_POST["destination_voy"]) 
+  && isset($_POST["duree_voy"]) 
+  && isset($_POST["planning_voy"])
+  && isset($_POST["prix_voy"]) 
+  && isset($_POST["img_voy"]) 
+  && isset($_POST["nom_type"]) ) {
+    var_dump($_POST['nom_type']);
+    $tripinf= new TripInf(
+    $_POST["nom_voy"] ,
+    $_POST["date_voy"] ,
+    $_POST["nbr_perso_voy"] ,
+    $_POST["destination_voy"] ,
+    $_POST["duree_voy"] ,
+    $_POST["img_voy"] ,
+    $_POST["planning_voy"] ,
+    $_POST["prix_voy"], 
+    $_POST["nom_type"], 
+    $_GET['id_inf'] );
+    $newtripinf= new TripInfC();
+    $newtripinf->ajouterTripInf($tripinf,$_GET['id_inf']);
     header("Location:TripInf.php");
   }
   else  
@@ -65,7 +84,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -138,7 +157,7 @@
         
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-          <li><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+          <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
 
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Influencers' forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -177,7 +196,7 @@
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Forms</li>
           </ul>
         </div>
@@ -190,7 +209,7 @@
                 <div class="block">
                 <div class="title"><strong>Add a trip to an influencer</strong></div>
                   <div class="block-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="POST">
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Name</label>
                         <div class="col-sm-9">
@@ -267,12 +286,12 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Pick a theme for the trip</label>
                         <div class="col-sm-9">
-                          <select name="id_type" id="id_type" value="<?= $t['nom_type'] ?>" class="form-control mb-3 mb-3">
+                          <select name="nom_type" id="nom_type" class="form-control mb-3 mb-3">
                             <option> Select </option>
                             <?php
                               foreach($liste as $t) {
                             ?>
-                            <option>   <?php echo $t['nom_type'] ?>   </option>
+                            <option>  <?php echo $t['nom_type'] ?>   </option>
                             <?php
                               }
                             ?>
@@ -299,7 +318,7 @@
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>
