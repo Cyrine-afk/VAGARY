@@ -238,45 +238,27 @@ $total_records = mysqli_num_rows($page_result);
           <div class="container-fluid">
             <div class="row">
               <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-2">1st</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Richard Nevoreski</h3><span>@richardnevo</span></a>
-                  <div class="contributions">950 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>150</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>340</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>460</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="img/avatar-4.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-1">2nd</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Samuel Watson</h3><span>@samwatson</span></a>
-                  <div class="contributions">772 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>80</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>420</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>272</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-4">3rd</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Sebastian Wood</h3><span>@sebastian</span></a>
-                  <div class="contributions">620 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>150</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>280</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>190</strong></div>
-                  </div>
+                <div class="user-block block text-center" id="statInf_data">
+                  <!-- Stat -->
+                  <script>
+                        $(document).ready(function(){
+                          load_data();
+                          function load_data(page){
+                            $.ajax({
+                             url  : "stat.php",
+                             type : "POST",
+                             cache: false,
+                             data : {page:page},
+                             success:function(data){
+                              $("#statInf_data").html(data);
+                             }
+                            });
+                          }
+
+                         
+
+                        });
+                      </script>
                 </div>
               </div>
             </div>
@@ -288,10 +270,10 @@ $total_records = mysqli_num_rows($page_result);
             <div class="row">
               <div class="col-lg-4">
                 <div class="stats-with-chart-2 block">
-                  <div class="title"><strong class="d-block">Credit Sales</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
+                  <div class="title"><strong class="d-block">New Influencers</strong></div>
                   <div class="piechart chart">
                     <canvas id="pieChartHome1"></canvas>
-                    <div class="text"><strong class="d-block">$2.145</strong><span class="d-block">Sales</span></div>
+                    <div class="text"><strong class="d-block"><?php echo $total_records ?></strong><span class="d-block">Influencers</span></div>
                   </div>
                 </div>
               </div>
