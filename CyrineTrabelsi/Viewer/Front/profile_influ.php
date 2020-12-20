@@ -188,15 +188,30 @@
         <div class="row">
           <div class="col-lg-3 mr-lg-auto">
             <div class="card border-0 shadow mb-6 mb-lg-0">
-
-              <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                <svg class="svg-icon text-white">
-                  <use xlink:href="#heart-1"> </use>
-                </svg></a>
-              </div>
               
               <div class="card-header bg-gray-100 py-4 border-0 text-center"><a class="d-inline-block" href="#"><img class="d-block avatar avatar-xxl p-2 mb-2" src="<?php  echo $i['img_inf']?>" alt=""></a>
                 <h5><?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h5>
+                <button class="btn btn-primary like_button rounded-xl h-100" name="like_bttuon" type="button" data-content_id="7" > Follow </button>
+
+                <script> 
+                  $(document).on('click', '.like_button', function(){
+                    var id_inf = $(this).attr("id_inf");
+                    $(this).attr('disabled', 'disabled');
+                    $.ajax({
+                      url:"follow_section.php",
+                      method:"POST",
+                      data:{id_inf:id_inf},
+                      success:function(data)
+                      {
+                        if (data == 'done')
+                        {
+                          load_stuff();
+                        }
+                      }
+                    });
+                  });
+                </script>
+
               </div>
               <div class="card-body p-4">
                 <div class="media align-items-center mb-3">

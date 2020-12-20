@@ -15,6 +15,19 @@ class InfluC {
         }	
     }
 
+
+    public function afficherInfluenceurStat() {
+        $sql='SELECT * FROM influenceur WHERE nbr_ab_inf=(SELECT max(nbr_ab_inf) FROM influenceur)';
+        $db=Config::getConnexion();
+        try{
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+    }
+
     
 
     public function chercherid($id) {

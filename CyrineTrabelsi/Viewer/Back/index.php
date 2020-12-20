@@ -3,6 +3,18 @@ $connect = mysqli_connect('localhost','root','','vagary');
 $page_query = "SELECT * FROM influenceur";
 $page_result = mysqli_query($connect, $page_query);
 $total_records = mysqli_num_rows($page_result);
+
+
+$query="SELECT * FROM influenceur WHERE nbr_ab_inf=(SELECT max(nbr_ab_inf) FROM influenceur)";
+$result=mysqli_query($connect, $query);
+$row =  mysqli_fetch_array($result);
+
+if (!$result) {
+  printf("Error: %s\n", mysqli_error($connect));
+  exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +43,16 @@ $total_records = mysqli_num_rows($page_result);
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <style>
+      .centerInf{
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+      }
+    </style>
+
+
   </head>
   <body>
     <header class="header">   
@@ -237,28 +259,40 @@ $total_records = mysqli_num_rows($page_result);
         <section class="no-padding-bottom">
           <div class="container-fluid">
             <div class="row">
+            <div class="col-lg-4">
+                <div class="user-block block text-center">
+                  <div class="avatar"><img src="adil.jpg" alt="..." class="img-fluid">
+                    <div class="order dashbg-2">1st</div>
+                  </div><a href="#" class="user-title">
+                    <h3 class="h5">Adil Taouil</h3></a>
+                  <div class="contributions">846 k Followers</div>
+                  <div class="details d-flex">
+                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>5 trips</strong></div>
+                  </div>
+                </div>
+              </div>
               <div class="col-lg-4">
-                <div class="user-block block text-center" id="statInf_data">
-                  <!-- Stat -->
-                  <script>
-                        $(document).ready(function(){
-                          load_data();
-                          function load_data(page){
-                            $.ajax({
-                             url  : "stat.php",
-                             type : "POST",
-                             cache: false,
-                             data : {page:page},
-                             success:function(data){
-                              $("#statInf_data").html(data);
-                             }
-                            });
-                          }
-
-                         
-
-                        });
-                      </script>
+                <div class="user-block block text-center">
+                  <div class="avatar"><img src="rabii.jpg" alt="..." class="img-fluid">
+                    <div class="order dashbg-1">2nd</div>
+                  </div><a href="#" class="user-title">
+                    <h3 class="h5">Rabii Ben Brahim</h3></a>
+                  <div class="contributions">785 k Followers</div>
+                  <div class="details d-flex">
+                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>3 Trips</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="user-block block text-center">
+                  <div class="avatar"><img src="balkiss.jpg" alt="..." class="img-fluid">
+                    <div class="order dashbg-4">3rd</div>
+                  </div><a href="#" class="user-title">
+                    <h3 class="h5">Balkis Ksouri</h3></a>
+                  <div class="contributions">698 k Followers</div>
+                  <div class="details d-flex">
+                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>2 Trips</strong></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -273,7 +307,7 @@ $total_records = mysqli_num_rows($page_result);
                   <div class="title"><strong class="d-block">New Influencers</strong></div>
                   <div class="piechart chart">
                     <canvas id="pieChartHome1"></canvas>
-                    <div class="text"><strong class="d-block"><?php echo $total_records ?></strong><span class="d-block">Influencers</span></div>
+                    <div class="text"><strong class="d-block"><?php echo $total_records ?></strong><span class="d-block"> New Influencers</span></div>
                   </div>
                 </div>
               </div>
