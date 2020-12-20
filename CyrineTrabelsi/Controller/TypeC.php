@@ -83,6 +83,18 @@ class TypeC {
         }
     } 
 
+    function rechercherType($str){
+        $sql="SELECT * FROM typev where nom_type like '".$str."%' ";
+        $db = config::getConnexion();
+        try{
+            $liste=$db->query($sql);
+            return $liste;
+        }
+        catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
 
 }
 ?>

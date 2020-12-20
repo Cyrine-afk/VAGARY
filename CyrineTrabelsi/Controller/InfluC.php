@@ -15,6 +15,8 @@ class InfluC {
         }	
     }
 
+    
+
     public function chercherid($id) {
         $sql="SELECT * FROM influenceur where id_inf=:id";
         $db=Config::getConnexion();

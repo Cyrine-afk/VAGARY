@@ -1,5 +1,8 @@
 <?php
 
+if(isset($_GET['id_voy'])){
+  session_start();
+
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
@@ -260,11 +263,17 @@ $liste=$trip1->afficherTripInf();
                 </li>
               </ul>
             </div>
+
             <div class="row form-block flex-column flex-sm-row">
-              <div class="col text-center text-sm-left">
-              </div>
-              <div class="col text-center text-sm-right"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Book the trip <i class="fa-chevron-right fa ml-2"></i></a></div>
+              <form method="POST">
+                <div class="col text-center text-sm-left">
+                </div>
+                <div class="col text-center text-sm-right" name="ViewRes"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Book the trip <i class="fa-chevron-right fa ml-2"></i></a></div>
+                </br>
+                <div class="col text-center text-sm-right" name="reserver"><a class="btn btn-primary px-3" > View reservations <i class="fa-chevron-right fa ml-2"></i></a></div>
+              </form>
             </div>
+
           </div>
           <div class="col-lg-5 pl-xl-5">
             <div class="card border-0 shadow">
@@ -402,8 +411,29 @@ $liste=$trip1->afficherTripInf();
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script>var basePath = ''</script>
+    <script>var basePath = '' ;</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
   </body>
 </html>
+
+<?php
+    $_SESSION['id_client']=1;
+    if(isset($_POST['reserver'])){
+      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
+      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
+      $date = date('m/d/y', time());
+      $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['id_client'],16,$date);
+      $Res1C=new TripInfUserC();
+      if($Res1C->ajouterTripInfUser($Res1)){
+?>
+            <script>
+                document.location.replace("user-grid.php") ;
+            </script>
+
+<?php
+        }
+    }
+
+}
+?>

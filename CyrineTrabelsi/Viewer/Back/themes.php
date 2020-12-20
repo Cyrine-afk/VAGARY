@@ -9,6 +9,7 @@
       $tp1->supprimerTypeVoy($_GET['id__type']);
   }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -173,6 +174,20 @@
         <section >
           <div class="container">
                   <div class="title"><strong>List of themes</strong></div>
+
+                  </br>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary" >Search</button>
+                      </div>
+                      <input type="text" id="rech" class="form-control" placeholder="Look for a theme">
+                    </div>
+
+
+
+                  </div>
+                  </br>
                   
                   <div class="table-responsive"> 
 
@@ -187,30 +202,45 @@
                         </tr>
                       </thead>
 
-                      <?php
-                        foreach($liste as $t) {
-                      ?>
 
-                      <tbody>
-                        <tr>
-                          <th scope="row">  <?php echo $t['id__type'] ?>  </th>
-                          <td>  <?php echo $t['nom_type'] ?>  </td>
-                          <td><img src="<?php  echo $i['img_type']?>" ></td>
-                          <td>
-                            <a href="updateFormType.php?id__type=<?php echo $t['id__type'] ?>"> Update </a>
-                          </td>
-                          <td>
-                            <a href="themes.php?id__type=<?php echo $t['id__type'] ?>"> Delete </a>
-                          </td>
-                        </tr>
-
-                        <?php
-                          }
-                        ?>
+                      <tbody id="tableau">
+                        
 
                       </tbody>
                     </table>
                   </div>
+
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+                    <script type = "text/javascript">
+                        $(document).ready(function(){
+                            load_data();
+                            function load_data(str)
+                            {
+                                $.ajax({
+                                    url:"Theme.php",
+                                    method:"post",
+                                    data:{str:str},
+                                    success:function(data)
+                                    {
+                                        $('#tableau').html(data);
+                                    }
+                                });
+                            }
+                          
+                            $('#rech').keyup(function(){
+                                var recherche = $(this).val();
+                                if(recherche != '')
+                                {
+                                    load_data(recherche);
+                                }
+                                else
+                                {
+                                    load_data();
+                                }
+                            });
+                        });
+                    </script>
               
           </div>
         </section>

@@ -359,7 +359,7 @@ $liste=$trip1->afficherTripInf();
             <button class="btn btn-link pl-0" onclick="window.print()"><i class="fa fa-print mr-2"></i>Print </button>
           </div>
           <div class="text-block ">
-            <a class="btn btn-primary px-3" href="user-grid.html" > View reservations </a>
+            <a class="btn btn-primary px-3" href="user-grid.php" > View reservations </a>
           </div>
         </div>
         <div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">

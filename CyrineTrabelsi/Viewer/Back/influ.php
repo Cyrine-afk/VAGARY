@@ -185,7 +185,9 @@
        
           <div class="container">
                   <div class="title"><strong>List of influencers</strong></div>
+                  
                     <div class="table-responsive" id="pagination_data">
+                  </br>
                                         
                     <!-- Pagination -->
                       <script>
