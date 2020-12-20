@@ -1,13 +1,16 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 
-    if( isset($_POST["nom_type"])&& isset($_POST["img_type"]) ) {
-      var_dump($_POST['img_type']);
-      $tp= new Type( $_POST["nom_type"], $_POST["img_type"] );
-      $newtp= new TypeC();
-      $newtp->ajouterTypeVoy($tp);
-      header("Location:themes.php");
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ImgTripC.php';
+    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ImgTrip.php';
+
+    if(isset($_GET["id_voy"])&& isset($_POST["img1"])&& isset($_POST["img2"]) && isset($_POST["img3"]) && isset($_POST["img4"]) && isset($_POST["img5"]) && isset($_POST["img6"]) ) {
+      var_dump($_POST['img1']);
+      $imgtripinf= new ImagesTrip($_GET["id_voy"],$_POST["img1"],$_POST["img2"],$_POST["img3"],$_POST["img4"],$_POST["img5"],$_POST["img6"] );
+      $images= new ImagesTripC();
+      $images->ajouterImgTrip($imgtripinf);
+      header("Location:TripInf.php");
     }
     else  
       echo "ICI";
@@ -170,33 +173,108 @@
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active">Forms  </li>
+            <li class="breadcrumb-item active">Trips</li>
           </ul>
         </div>
         <section class="no-padding-top">
           <div class="container-fluid">
             <div class="row">
-              
+                         
               <!-- Horizontal Form-->
+
+              <?php
+                if (isset($_GET['id_voy'])) {
+                  $imgtrip2=new TripInfC();
+                  $img=$imgtrip2->chercherid($_GET['id_voy']); 
+              ?>
+
               <div class="col-lg-6">
                 <div class="block">
-                  <div class="title"><strong class="d-block">Add a theme</strong><span class="d-block">Fill in this form to add a new travel theme to your website</span></div>
+                  <div class="title"><strong class="d-block">Add some pictures</div>
                   <div class="block-body">
                     <form class="form-horizontal" method="POST">
                       <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Theme's name</label>
+                        <label class="col-sm-3 form-control-label">Trip's name</label>
                         <div class="col-sm-9">
-                          <input type="text" name="nom_type" id="nom_type" placeholder="Travel theme" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
+                          <input type="text" readonly name="nom_type" id="nom_type" value="<?= $img['nom_voy'] ?>" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Theme's picture</label>
+                        <label class="col-sm-3 form-control-label">Picture 1</label>
                         <div class="col-sm-9">
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
+                                <input type="file" class="btn btn-primary" name="img1" id="img1" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Picture 2</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img2" id="img2" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Picture 3</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img3" id="img3" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Picture 4</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img4" id="img4" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Picture 5</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img5" id="img5" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Picture 6</label>
+                        <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <input type="file" class="btn btn-primary" name="img6" id="img6" ></input>
                               </div>
                             </div>
                           </div>
@@ -212,12 +290,12 @@
                           <div id="id" class="modal">
                             <div class="alert alert-primary alert-dismissible fade show" role="alert">
                               <form method="POST" action="influ.php">
-                                <strong>Great !</strong> You just added a theme 
+                                <strong>Great !</strong> You just added pictures to the trip
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                                 <div class="clearfix ">
-                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-secondary" value="Okay">
+                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-secondary" value="Okay"> 
                                 </div>
                               </form>
                             </div>
@@ -238,6 +316,10 @@
                   </div>
                 </div>
               </div>
+
+              <?php
+                }
+              ?>
               
             </div>
           </div>

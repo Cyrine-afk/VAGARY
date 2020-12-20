@@ -1,25 +1,22 @@
 <?php 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ImgTripC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ImgTrip.php';
+   
+    $images= new ImagesTripC();
+    $listeImages=$images->afficherImgTrip();
 
-    if( isset($_POST["nom_type"])&& isset($_POST["img_type"]) ) {
-      var_dump($_POST['img_type']);
-      $tp= new Type( $_POST["nom_type"], $_POST["img_type"] );
-      $newtp= new TypeC();
-      $newtp->ajouterTypeVoy($tp);
-      header("Location:themes.php");
+      if(isset($_GET['id_img'])) {
+        $images->supprimerImgTrip($_GET['id_img']);
     }
-    else  
-      echo "ICI";
+    
 ?>
-
 
 <!DOCTYPE html>
 <html>
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Forms</title>
+    <title>Influencers' Tables</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -42,7 +39,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-  <header class="header">   
+    <header class="header">   
       <nav class="navbar navbar-expand-lg">
         <div class="search-panel">
           <div class="search-inner d-flex align-items-center justify-content-center">
@@ -110,7 +107,6 @@
               </div>
             </div>
             <!-- Tasks end-->
-            
             <!-- Log out               -->
             <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
           </div>
@@ -128,6 +124,7 @@
             <p>By JD&Co</p>
           </div>
         </div>
+        
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
           <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
@@ -163,83 +160,67 @@
         <!-- Page Header-->
         <div class="page-header no-margin-bottom">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Trips' forms</h2>
+            <h2 class="h5 no-margin-bottom">Influencers' Information</h2>
           </div>
         </div>
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active">Forms  </li>
+            <li class="breadcrumb-item active">Influencers </li>
+            <li class="breadcrumb-item active">Trips </li>
           </ul>
         </div>
         <section class="no-padding-top">
           <div class="container-fluid">
-            <div class="row">
-              
-              <!-- Horizontal Form-->
-              <div class="col-lg-6">
-                <div class="block">
-                  <div class="title"><strong class="d-block">Add a theme</strong><span class="d-block">Fill in this form to add a new travel theme to your website</span></div>
-                  <div class="block-body">
-                    <form class="form-horizontal" method="POST">
-                      <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Theme's name</label>
-                        <div class="col-sm-9">
-                          <input type="text" name="nom_type" id="nom_type" placeholder="Travel theme" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
-                        </div>
-                      </div>
+                  <div class="title"><strong>List trips' images</strong></div>
+                  <div class="table-responsive"> 
+                    <table class="table table-striped table-hover" >
+                    <?php
+                      if (isset($_GET['id_voy'])) {
+                      $newimgs=new ImagesTripC();
+                      $li=$newimgs->chercheridVoy($_GET['id_voy']); 
+                    ?>
+                      <thead>
 
-                      <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Theme's picture</label>
-                        <div class="col-sm-9">
-                        <div class="form-group">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">       
-                        <div class="col-sm-9 offset-sm-3">
-                          <input type="reset" value="Cancel" name="reset" class="btn btn-secondary"> 
-
-                          <input type="button" onclick="document.getElementById('id').style.display='block'" value="Save" name="Submit" class="btn btn-primary"> 
-                          
-                          <div id="id" class="modal">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                              <form method="POST" action="influ.php">
-                                <strong>Great !</strong> You just added a theme 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="clearfix ">
-                                  <input type="submit" onclick="document.getElementById('id').style.display='none'" class="btn-secondary" value="Okay">
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-
-                          <script>
-                          var modal = document.getElementById('id')
-                          window.onclick = function(event) {
-                          if (event.target == modal) {
-                              modal.style.display = "none";
+                        <tr>
+                          <th> ID </th>
+                          <th>Image 1 </th>
+                          <th>Image 2 </th>
+                          <th>Image 3 </th>
+                          <th>Image 4 </th>
+                          <th>Image 5 </th>
+                          <th>Image 6 </th>
+                          <th>Update</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        <tr>
+                          <th scope="row"> <?php echo $li['id_img'] ?></th>
+                          <td><img src="<?php  echo $li['img1']?>" > </td>
+                          <td><img src="<?php  echo $li['img2']?>" > </td>
+                          <td><img src="<?php  echo $li['img3']?>" > </td>
+                          <td><img src="<?php  echo $li['img4']?>" > </td>
+                          <td><img src="<?php  echo $li['img5']?>" > </td>
+                          <td><img src="<?php  echo $li['img6']?>" > </td>
+                          <td>
+                            <a href="updateFormImgTripInf.php?id_img=<?php echo $li['id_img'] ?>"> Edit </a>
+                          </td>
+                          <td>
+                            <a href="ImgTripInf.php?id_img=<?php echo $li['id_img'] ?>"> Delete </a>
+                          </td>
+                        </tr>
+                        
+                        
+                      </tbody>
+                      <?php
                           }
-                          }
-                          </script>
-
-                        </div>
-                      </div>
-                    </form>
+                        ?>
+                    </table>
                   </div>
                 </div>
-              </div>
-              
-            </div>
           </div>
         </section>
         <footer class="footer">
@@ -252,7 +233,6 @@
         </footer>
       </div>
     </div>
-
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>

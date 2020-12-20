@@ -208,7 +208,7 @@
                   </div>
                   
                   <div class="media-body">
-                    <p class="mb-0"><?php echo $i['nbr_ab_inf'] ?> followers</p>
+                    <p class="mb-0"><?php echo $i['nbr_ab_inf'] ?> K followers</p>
                   </div>
                 </div>
                 <div class="media align-items-center mb-3">
@@ -242,8 +242,15 @@
                 <!-- place item-->
 
                 <?php
-                  foreach($liste as $ti) {
+                  if (isset($_GET['id_inf'])) {
+                  $newt=new TripInfC();
+                  if($ti=$newt->chercheridInf($_GET['id_inf'])){
+                   /*<?php
+                      foreach($liste as $ti) {
+                  ?>*/
                 ?>
+
+                
 
                 <div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                   <div class="card h-100 border-0 shadow">
@@ -269,6 +276,9 @@
 
                 <?php
                   }
+                  else 
+                  echo "This influencer has no trips yet, try again next time :)";
+                }
                 ?>
                 
               </div>

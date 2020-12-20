@@ -30,6 +30,21 @@ class TripInfC {
     }
 
 
+    public function chercheridInf($id) {
+        $sql="SELECT * FROM tripinf where id_inf=:id2";
+        $db=Config::getConnexion();
+        try{
+            $query=$db->prepare($sql);
+        $query->execute(['id2' =>$id ]);
+        $liste=$query->fetch();
+        return $liste;
+        } 
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+
      public function ajouterTripInf($tripinf,$id_inf) {
 
         $sql = "insert into tripinf (nom_voy,date_voy,nbr_perso_voy,destination_voy,duree_voy,img_voy,planning_voy,prix_voy,nom_type,id_inf) values (:nom_voy,:date_voy,:nbr_perso_voy,:destination_voy,:duree_voy,:img_voy,:planning_voy,:prix_voy,:nom_type,:id_inf)" ;

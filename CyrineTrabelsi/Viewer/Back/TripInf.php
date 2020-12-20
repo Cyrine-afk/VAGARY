@@ -177,10 +177,13 @@
                   <div class="title"><strong>List of influencer's trips</strong></div>
                   <div class="table-responsive"> 
                     <table class="table table-striped table-hover" >
+
+                    
+
                       <thead>
                         <tr>
                           <th> ID </th>
-                          <th>Image</th>
+                          <th>Images</th>
                           <th>Name</th>
                           <th>Date</th>
                           <th>Maximum number of participants</th>
@@ -194,32 +197,53 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php
-                          foreach($liste as $i) {
-                        ?>
+                      <?php
+                      if (isset($_GET['id_inf'])) {
+                      $newt=new TripInfC();
+                      if($li=$newt->chercheridInf($_GET['id_inf'])){
+                       /*
+                        foreach($i as $li) {*/
+                    ?>
+                        
                         <tr>
-                          <th scope="row"> <?php echo $i['id_voy'] ?></th>
-                          <td><img src="<?php  echo $i['img_voy']?>" ></td>
-                          <td><?php echo $i['nom_voy'] ?></td>
-                          <td><?php echo $i['date_voy'] ?></td>
-                          <td><?php echo $i['nbr_perso_voy'] ?></td>
-                          <td><?php echo $i['destination_voy'] ?></td>
-                          <td><?php echo $i['duree_voy'] ?></td>
-                          <td><?php echo $i['planning_voy'] ?></td>
-                          <td><?php echo $i['prix_voy'].'DT' ?> </td>
-                          <td><?php echo $i['nom_type'] ?></td>
+                          <th scope="row"> <?php echo $li['id_voy'] ?></th>
+                          <td><img src="<?php  echo $li['img_voy']?>" > 
+                          <br>
+                          <br>
+                          <a href="formImgTrip.php?id_voy=<?php echo $li['id_voy'] ?>"> Add Images </a>
+                          <br>
+                          <br>
+                          <a href="ImgTripInf.php?id_voy=<?php echo $li['id_voy'] ?>"> View more </a>
+                          <br>
+                          </td>
+                          <td><?php echo $li['nom_voy'] ?></td>
+                          <td><?php echo $li['date_voy'] ?></td>
+                          <td><?php echo $li['nbr_perso_voy'] ?></td>
+                          <td><?php echo $li['destination_voy'] ?> </td>
+                          <td><?php echo $li['duree_voy'] ?></td>
+                          <td><?php echo $li['planning_voy'] ?></td>
+                          <td><?php echo $li['prix_voy'].'DT' ?> </td>
+                          <td><?php echo $li['nom_type'] ?></td>
                           <td>
-                            <a href="updateFormTripInf.php?id_voy=<?php echo $i['id_voy'] ?>"> Update </a>
+                            <a href="updateFormTripInf.php?id_voy=<?php echo $li['id_voy'] ?>"> Update </a>
                           </td>
                           <td>
-                            <a href="TripInf.php?id_voy=<?php echo $i['id_voy'] ?>"> Delete </a>
+                            <a href="TripInf.php?id_voy=<?php echo $li['id_voy'] ?>"> Delete </a>
                           </td>
                         </tr>
-                        <?php
-                          }
-                        ?>
                         
+                      <?php
+                          //}
+                        }
+                        else 
+                        echo "This influencer has no trips yet, try again next time :)";
+                      }
+                      else 
+                      echo "error";
+                      ?>
                       </tbody>
+
+
                     </table>
                   </div>
                 </div>

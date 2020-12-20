@@ -33,7 +33,7 @@
     $_GET['id_inf'] );
     $newtripinf= new TripInfC();
     $newtripinf->ajouterTripInf($tripinf,$_GET['id_inf']);
-    header("Location:TripInf.php");
+    header("Location:influ.php");
   }
   else  
     echo "ICI";

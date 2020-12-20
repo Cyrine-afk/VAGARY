@@ -266,8 +266,14 @@
         } // foreach
 
       } // récupère l'influenceur recherché de la base
-      
+      else {
+      ?>
 
+        <h1 class="hero-heading mb-4">Error 404</h1>
+        <p class="text-muted mb-5">Oops, looks like the influencer you're searching for doesn't exist.</p>
+        <p class="mb-6"> <img class="img-fluid" src="img/illustration/undraw_trip_dv9f.svg" alt="" style="width: 400px;"></p>
+    <?php
+      }
     }// isset              
     ?>
 

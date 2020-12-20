@@ -2,6 +2,7 @@
 
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
 
 $trip1= new TripInfC();
 $liste=$trip1->afficherTripInf();
@@ -199,10 +200,37 @@ $liste=$trip1->afficherTripInf();
                 </div>
               </div>
             </div>
+
             <div class="text-block">
               <h5 class="mb-4"><?php echo $trip['duree_voy']; ?> days in <?php echo $trip['destination_voy']; ?></h5>
-              
+              <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center mb-3 mb-md-0">
+                  <div class="date-tile mr-3">
+                    <div class="text-uppercase"> <span class="text-sm">
+                      <?php $yrdata = strtotime($trip['date_voy']); ?>
+                      <span class="month-and-time"><?php echo date('M', $yrdata); ?>
+                        </br>
+                        <strong class="text-lg"><span class="day"><?php echo date('d', $yrdata); ?></span></strong>
+                      </span>
+                    </div> 
+                  </div>
+                  <p class="text-sm mb-0"><?php echo date('D', $yrdata); ?> check-in <br>3PM - 7PM</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="date-tile mr-3">
+                    <div class="text-uppercase"> <span class="text-sm">
+                      <?php $yrdata2 = strtotime($trip['date_voy']. ' + '. $trip['duree_voy'] .' days');?>
+                      <span class="month-and-time"><?php echo date('M', $yrdata2); ?>
+                        </br>
+                        <strong class="text-lg"><span class="day"><?php echo date('d', $yrdata2); ?></span></strong>
+                      </span>
+                    </div>
+                  </div>
+                  <p class="text-sm mb-0"><?php echo date('D', $yrdata2); ?> check-out<br>11AM</p>
+                </div>
+              </div>
             </div>
+
             <div class="text-block">
               <h5 class="mb-4">Things to keep in mind</h5>
               <ul class="list-unstyled">
@@ -235,7 +263,7 @@ $liste=$trip1->afficherTripInf();
             <div class="row form-block flex-column flex-sm-row">
               <div class="col text-center text-sm-left">
               </div>
-              <div class="col text-center text-sm-right"><a class="btn btn-primary px-3" href="user-booking-2.html"> Next step<i class="fa-chevron-right fa ml-2"></i></a></div>
+              <div class="col text-center text-sm-right"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Book the trip <i class="fa-chevron-right fa ml-2"></i></a></div>
             </div>
           </div>
           <div class="col-lg-5 pl-xl-5">
@@ -244,17 +272,17 @@ $liste=$trip1->afficherTripInf();
                 <div class="text-block pb-3">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <h6> <a class="text-reset" href="detail-rooms.html"><?php echo $trip['destination_voy']; ?></a></h6>
+                      <h6> <a class="text-reset" href="Up_trip_profile.php?id_voy=<?php echo $trip['id_voy'] ?>"><?php echo $trip['destination_voy']; ?></a></h6>
                       
-                      <div class="mt-n1"><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-gray-200"></i>
+                      <div class="mt-n1">
                       </div>
-                    </div><a href="detail-rooms.html"><img class="ml-3 rounded" src="<?php echo $trip['img_voy']; ?>" alt="" width="100"></a>
+                    </div><a href="Up_trip_profile.php?id_voy=<?php echo $trip['id_voy'] ?>"><img class="ml-3 rounded" src="<?php echo $trip['img_voy']; ?>" alt="" width="100"></a>
                   </div>
                 </div>
                 <div class="text-block py-3">
                   <ul class="list-unstyled mb-0">
                     <li class="mb-3"><i class="fas fa-users fa-fw text-muted mr-2"></i><?php echo $trip['nbr_perso_voy']; ?> guests</li>
-                    <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?></li>
+                    <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?><i class="fas fa-arrow-right fa-fw text-muted mx-3"></i><?php echo date('yy-m-d', $yrdata2); ?></li>
                   </ul>
                 </div>
                 <div class="text-block pt-3 pb-0">

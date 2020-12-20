@@ -294,7 +294,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img_voy" id="img_voy" ></input>
+                                <input type="file" class="btn btn-primary"  name="img_voy" id="img_voy" ></input>
                               </div>
                             </div>
                           </div>

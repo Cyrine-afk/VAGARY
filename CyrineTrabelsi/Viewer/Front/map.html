@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Smart Health Map</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			background-color: #333;
+		}
+		.card {
+			display: none;
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			position: absolute;
+			top: 80px;
+			left: 80px;
+			width: 220px;
+			min-height: 15%;
+			background-color: white;
+			box-shadow: 4px 4px 4px black;
+			border-radius: 10px 10px 10px 10px;
+		}
+		.title { color:red; }
+		.img {
+			display: block;
+			position: relative;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 10px 10px 10px 10px;
+			width: 80%;
+			height: 20%;
+		}
+		.detail { font-style: italic; }
+		.close {
+			border-radius: 0px 0px 10px 10px;
+			position: relative;
+			width: 100%;
+			border: 0px;
+		}
+		.close:hover { background-color:silver; }
+		#map {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		.control {
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			margin: auto;
+			width: 100%;
+			height: 10%;
+			background: rgba(76, 75, 80, 0.3);
+		}
+		.control button {
+			color: white;
+			font-weight: bold;
+			border: 0px;
+			background-color: #e81f1f;
+			border-radius: 10px 10px 10px 10px;
+		}
+		.control button:hover { background-color:#e81f8f; }
+	</style>
+    </head>
+<body>
+    <div id="card0" class="card">
+        <h3 class="title">livreur1</h3>
+        <img class="img" src="livreur1.jpg">
+        <label class="detail"> 120 rue de liberte</label>
+        <button class="close" onclick="close()" >x</button>
+    </div>
+    <div id="card1" class="card">
+        <h3 class="title">livreur 2</h3>
+        <img class="img" src="livreur3.jpg">
+        <label class="detail"> 120 rue de palastine</label>
+        <button class="close" onclick="close()" >x</button>
+    </div>
+    <div id="card2" class="card">
+        <h3 class="title">livreur 3</h3>
+        <img class="img" src="livreur2.jpg">
+        <label class="detail"> rue tahar safar</label>
+        <button class="close" onclick="close()" >x</button>
+    </div>
+    <div id="card3" class="card">
+        <h3 class="title">livreur 4</h3>
+        <img class="img" src="livreur4.jpg">
+        <label class="detail"> 120 rue de l esprit</label>
+        <button class="close" onclick="close()" >x</button>
+    </div>
+
+    <div class="control">
+        <button id="one" onclick="assign(0)">livreur</button>
+        <button id="two" onclick="assign(1)" >livreur 1</button>
+        <button id="three" onclick="assign(2)" >livreur 2</button>
+        <button id="four" onclick="assign(3)" >livreur 3</button>
+    </div>
+
+    <div id='map'></div>
+
+    <script>
+        var map, marker;
+        var lat = [36.8423743, 36.8413555, 36.8424255, 36.8426746];
+        var lng = [10.1577991, 10.1589647, 10.1578985, 10.1586521];
+
+        var myLatLng = { lat: lat[2], lng: lng[2] };
+        var curr_lat = lat[2], curr_lng = lng[2];
+
+        function initMap()
+        {
+            map = new google.maps.Map(document.getElementById('map'), { zoom: 14, center: myLatLng });
+            marker = new google.maps.Marker({ position: myLatLng, map: map, title: 'Smart health' });
+        }
+		
+        function show_card()
+        {
+            for(var i = 0; i < lat.length; i++)
+                if((lat[i] == curr_lat) && (lng[i] == curr_lng))
+                {
+                    document.getElementById("card" + i.toString()).style.display = "block";
+                    myLatLng.lat = lat[i];
+                    myLatLng.lng = lng[i];
+                    marker = new google.maps.Marker({ position: myLatLng, map: map, title: 'Smart health' });
+                    initMap();
+                }
+                else document.getElementById("card" + i.toString()).style.display = "none";
+        }
+
+        function assign(row)
+        {
+            curr_lat = lat[row];
+            curr_lng = lng[row];
+            show_card();
+        }
+
+        function close()
+        {
+            for(var i = 0; i < lat.length; i++)
+                document.getElementById("card" + i.toString()).style.display = "none";
+        }
+    </script>
+    <script async defer
+        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCgkukfcc4tlHYc5p5Y-5C-0LEyBY9l4gs&callback=initMap'
+        >
+    </script>
+</body>
+</html>

@@ -1,18 +1,24 @@
-<?php 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
+<?php
 
-    $trip1= new TripInfC();
-    $liste=$trip1->afficherTripInf();
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ImgTripC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ImgTrip.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
+
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ImgTripC.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ImgTrip.php';
+
+
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
+
+$trip1= new TripInfC();
+$liste=$trip1->afficherTripInf();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Directory Theme by Bootstrapious</title>
@@ -44,7 +50,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body style="padding-top: 72px;">
-    <header class="header">
+  <header class="header">
       <!-- Navbar-->
       <nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
         <div class="container-fluid">
@@ -176,117 +182,194 @@
       </nav>
       <!-- /Navbar -->
     </header>
-    <section>
-      <!-- Slider main container-->
-      <div class="swiper-container detail-slider slider-gallery">
-        <!-- Additional required wrapper-->
-        <div class="swiper-wrapper">
-          <!-- Slides-->
-
-          <?php
-            if (isset($_GET['id_voy'])) {
-            $newimgs=new ImagesTripC();
-            $li=$newimgs->chercheridVoy($_GET['id_voy']); 
-          ?>
-
-          <div class="swiper-slide"><a href="<?php  echo $li['img1']?>" data-toggle="gallery-top" title="Our street"><img class="img-fluid" src="<?php  echo $li['img1']?>" alt="Our street"></a></div>
-          <div class="swiper-slide"><a href="<?php  echo $li['img2']?>" data-toggle="gallery-top" title="Outside"><img class="img-fluid" src="<?php  echo $li['img2']?>" alt="Outside"></a></div>
-          <div class="swiper-slide"><a href="<?php  echo $li['img3']?>" data-toggle="gallery-top" title="Rear entrance"><img class="img-fluid" src="<?php  echo $li['img3']?>" alt="Rear entrance"></a></div>
-          <div class="swiper-slide"><a href="<?php  echo $li['img4']?>" data-toggle="gallery-top" title="Kitchen"><img class="img-fluid" src="<?php  echo $li['img4']?>" alt="Kitchen"></a></div>
-          <div class="swiper-slide"><a href="<?php  echo $li['img5']?>" data-toggle="gallery-top" title="Bedroom"><img class="img-fluid" src="<?php  echo $li['img5']?>" alt="Bedroom"></a></div>
-          <div class="swiper-slide"><a href="<?php  echo $li['img6']?>" data-toggle="gallery-top" title="Bedroom"><img class="img-fluid" src="<?php  echo $li['img6']?>" alt="Bedroom"></a></div>
-        <?php
-            }
-        ?>
-
-        </div>
-        <div class="swiper-pagination swiper-pagination-white"></div>
-        <div class="swiper-button-prev swiper-button-white"></div>
-        <div class="swiper-button-next swiper-button-white"></div>
-      </div>
-    </section>
-    
+    <div class="container-fluid"> 
     <?php
       if (isset($_GET['id_voy'])) {
         $tripinf=new TripInfC();
-        $trip=$tripinf->chercherid($_GET['id_voy']); // récupère l'influenceur à afficher de la base
-        //foreach($liste as $i) {
-    ?>
-    <div class="container py-5">
+        $trip=$tripinf->chercherid($_GET['id_voy']); 
+    ?>              
       <div class="row">
-        <div class="col-lg-8"> 
+        <div class="col-lg-7 col-xl-5 px-4 pb-4 pl-xl-5 pr-xl-5">
+          <section class="mx-n4 mx-xl-n5 mb-4 mb-xl-5">
+            <!-- Slider main container-->
+            <div class="swiper-container booking-detail-slider">
+              <!-- Additional required wrapper-->
+              <div class="swiper-wrapper">
+                <!-- Slides-->
+                <?php
+                  if (isset($_GET['id_voy'])) {
+                  $newimgs=new ImagesTripC();
+                  $li=$newimgs->chercheridVoy($_GET['id_voy']); 
+                ?>
+  
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img1']?>" alt="Our street"></a></div>
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img2']?>" alt="Outside"></a></div>
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img3']?>" alt="Rear entrance"></a></div>
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img4']?>" alt="Kitchen"></a></div>
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img5']?>" alt="Bedroom"></a></div>
+                  <div class="swiper-slide"><img class="img-fluid" src="<?php  echo $li['img6']?>" alt="Bedroom"></a></div>
+                
+                <?php
+                    }
+                ?>
+              </div>
+              <div class="swiper-pagination swiper-pagination-white"></div>
+              <div class="swiper-button-prev swiper-button-white"></div>
+              <div class="swiper-button-next swiper-button-white">   </div>
+            </div>
+          </section>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb pl-0  justify-content-start">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="user-grid.html">Your trips</a></li>
+            <li class="breadcrumb-item active">Trip to <?php echo $trip['destination_voy'] ?>   </li>
+          </ol>
           <div class="text-block">
-            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1"></i> <?php echo $trip['destination_voy'] ?> </p>
-            
-            <h1>Upcoming trip to <?php echo $trip['destination_voy'] ?></h1>
-            <ul class="list-inline text-sm mb-4">
-              <li class="list-inline-item mr-3"><i class="fa fa-users mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy'] ?> guests</li>
-              <li class="list-inline-item mr-3"><i class="fa fa-door-open mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/2 ?> bedroom</li>
-              <li class="list-inline-item mr-3"><i class="fa fa-bed mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/4 ?> beds</li>
-              <li class="list-inline-item mr-3"><i class="fa fa-bath mr-1 text-secondary"></i> 1 bath</li>
+            <p class="subtitle">Monday Apr 17 - Tuesday Apr 18</p>
+            <h1 class="hero-heading mb-3"> <?php echo $trip['nom_voy'] ?>  </h1>
+          </div>
+          <div class="text-block">
+            <h6 class="mb-4"> <?php echo $trip['duree_voy'] ?> days in  <?php echo $trip['destination_voy'] ?>  </h6>
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center mb-3 mb-md-0">
+                  <div class="date-tile mr-3">
+                    <div class="text-uppercase"> <span class="text-sm">
+                      <?php $yrdata = strtotime($trip['date_voy']); ?>
+                      <span class="month-and-time"><?php echo date('M', $yrdata); ?>
+                        </br>
+                        <strong class="text-lg"><span class="day"><?php echo date('d', $yrdata); ?></span></strong>
+                      </span>
+                    </div> 
+                  </div>
+                  <p class="text-sm mb-0"><?php echo date('D', $yrdata); ?> check-in <br>3PM - 7PM</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="date-tile mr-3">
+                    <div class="text-uppercase"> <span class="text-sm">
+                      <?php $yrdata2 = strtotime($trip['date_voy']. ' + '. $trip['duree_voy'] .' days');?>
+                      <span class="month-and-time"><?php echo date('M', $yrdata2); ?>
+                        </br>
+                        <strong class="text-lg"><span class="day"><?php echo date('d', $yrdata2); ?></span></strong>
+                      </span>
+                    </div>
+                  </div>
+                  <p class="text-sm mb-0"><?php echo date('D', $yrdata2); ?> check-out<br>11AM</p>
+                </div>
+              </div>
+          </div>
+          <div class="text-block">
+            <div class="row">
+              <div class="col-sm">
+                <h6>Address</h6>
+                <p class="text-muted">Ap #867, 859 Sit Rd., <?php echo $trip['destination_voy'] ?></p>
+              </div>
+              <div class="col-sm">
+                <h6>Phone</h6>
+                <p class="text-muted">+421 454 897 545</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-block">
+              <?php
+                  $influenceur=new InfluC();
+                  $i=$influenceur->chercherid($trip['id_inf']);
+              ?>
+            <div class="media align-items-center mb-3">
+              <div class="media-body">
+                <h6><?php echo $trip['nom_type'] ?></h6>
+                <p class="text-muted mb-0">Hosted by <a href="user-profile.html" class="text-reset"><?php echo $i['nom_inf'] .' '. $i['prenom_inf'] ?></a></p>
+              </div><a href="user-profile.html"><img class="avatar avatar-lg avatar-border-white ml-4" src="<?php echo $i['img_inf'] ?>" ></a>
+            </div>
+          </div>
+          <div class="text-block">
+            <h6 class="mb-3">Who's coming</h6>
+            <div class="row mb-3">
+              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-0.jpg" alt="Ondrej"><br>Ondrej</div>
+              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-1.jpg" alt="Julie"><br>Julie</div>
+              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-2.jpg" alt="Barbora"><br>Barbora</div>
+            </div>
+          </div>
+          <div class="text-block">
+            <div class="row">
+              <div class="col">
+                <h6> Total cost</h6>
+                <p class="text-muted"><?php echo $trip['prix_voy'] ?> DT</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-block">
+            <h6 class="mb-4">Things to keep in mind</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"> 
+                <div class="media align-items-center mb-3">
+                  <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fas fa-child text-secondary fa-fw text-center"></i></div>
+                  <div class="media-body"><span class="text-sm">Not suitable for children and infants - The entrance staircase doesn't have handrails</span></div>
+                </div>
+              </li>
+              <li class="mb-2"> 
+                <div class="media align-items-center mb-3">
+                  <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fas fa-glass-cheers text-secondary fa-fw text-center"></i></div>
+                  <div class="media-body"><span class="text-sm">No parties or events</span></div>
+                </div>
+              </li>
+              <li class="mb-2"> 
+                <div class="media align-items-center mb-3">
+                  <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fa-smoking-ban text-secondary fa-fw text-center"></i></div>
+                  <div class="media-body"><span class="text-sm">No smoking</span></div>
+                </div>
+              </li>
+              <li class="mb-2"> 
+                <div class="media align-items-center mb-3">
+                  <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fa-cat text-secondary fa-fw text-center"></i></div>
+                  <div class="media-body"><span class="text-sm">No pets</span></div>
+                </div>
+              </li>
             </ul>
-            <p class="text-muted font-weight-light"><?php echo $trip['planning_voy'] ?></p>
-            
-            <h6 class="mb-3">Interaction with guests</h6>
-            <p class="text-muted font-weight-light">We live in the two floors above the garden apartment so we are usually available to answer questions. The garden apartment is separate from our living space. We are happy to provide advice on local attractions, restaurants and transportation around the city. If there's anything you need please don't hesitate to ask!</p>
-          </div>
-          <div class="text-block">
-            <h4 class="mb-4">Amenities</h4>
-            <div class="row"> 
-              <div class="col-md-6">
-                <ul class="list-unstyled text-muted">
-                  <li class="mb-2"> <i class="fa fa-wifi text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Wifi</span></li>
-                  <li class="mb-2"> <i class="fa fa-tv text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Cable TV</span></li>
-                  <li class="mb-2"> <i class="fa fa-snowflake text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Air conditioning</span></li>
-                  <li class="mb-2"> <i class="fa fa-thermometer-three-quarters text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Heating</span></li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <ul class="list-unstyled text-muted">
-                  <li class="mb-2"> <i class="fa fa-bath text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Toiletteries</span></li>
-                  <li class="mb-2"> <i class="fa fa-utensils text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Equipped Kitchen</span></li>
-                  <li class="mb-2"> <i class="fa fa-laptop text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Desk for work</span></li>
-                  <li class="mb-2"> <i class="fa fa-tshirt text-secondary w-1rem mr-3 text-center"></i><span class="text-sm">Washing machine</span></li>
-                </ul>
-              </div>
+            <div class="collapse" id="moreRules">
+              <ul class="list-unstyled">
+                <li class="mb-2"> 
+                  <div class="media align-items-center mb-3">
+                    <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fas fa-child text-secondary fa-fw text-center"></i></div>
+                    <div class="media-body"><span class="text-sm">Not suitable for children and infants - The entrance staircase doesn't have handrails</span></div>
+                  </div>
+                </li>
+                <li class="mb-2"> 
+                  <div class="media align-items-center mb-3">
+                    <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fas fa-glass-cheers text-secondary fa-fw text-center"></i></div>
+                    <div class="media-body"><span class="text-sm">No parties or events</span></div>
+                  </div>
+                </li>
+                <li class="mb-2"> 
+                  <div class="media align-items-center mb-3">
+                    <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fa-smoking-ban text-secondary fa-fw text-center"></i></div>
+                    <div class="media-body"><span class="text-sm">No smoking</span></div>
+                  </div>
+                </li>
+                <li class="mb-2"> 
+                  <div class="media align-items-center mb-3">
+                    <div class="icon-rounded icon-rounded-sm bg-secondary-light mr-4"><i class="fa fa-cat text-secondary fa-fw text-center"></i></div>
+                    <div class="media-body"><span class="text-sm">No pets</span></div>
+                  </div>
+                </li>
+              </ul>
             </div>
+            <button class="btn btn-link btn-collapse pl-0 text-muted" type="button" data-toggle="collapse" data-target="#moreRules" aria-expanded="false" aria-controls="moreRules" data-expanded-text="Show less" data-collapsed-text="Show more">Show more</button>
           </div>
-          
-          <div class="text-block">
-            <h5 class="mb-4">Location</h5>
-            <div class="map-wrapper-300 mb-3">
-            <div class="h-100" id="detailMap"></div>
-            </div>
+          <div class="text-block d-print-none">
+            <button class="btn btn-link pl-0" onclick="window.print()"><i class="fa fa-print mr-2"></i>Print </button>
           </div>
-          
-          
+          <div class="text-block ">
+            <a class="btn btn-primary px-3" href="user-grid.html" > View reservations </a>
+          </div>
         </div>
-        <div class="col-lg-4">
-          <div class="p-4 shadow ml-lg-4 rounded sticky-top" style="top: 100px;">
-            <p class="text-muted"><span class="text-primary h2"><?php echo $trip['prix_voy'].' '.'DT' ?></span></p>
-            <p class="text-success"><span class="text-success h5"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?> </span></p>
-            <hr class="my-4">
-            <form class="form" id="booking-form" method="POST" action="reservation.php" autocomplete="off">              
-              <div class="form-group">
-                <a href="reservation.php?id_voy=<?php echo $trip['id_voy']; ?>"> BOOK YOUR TRIP </a>
-              </div>
-            </form>
-            <p class="text-muted text-sm text-center">Enjoy your trip !</p>
-            <hr class="my-4">
-            <div class="text-center">
-              <p> <a class="text-secondary text-sm" href="#"> <i class="fa fa-heart"></i> Bookmark This Trip</a></p>
-              
-            </div>
-          </div>
+        <div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">
+          <div class="map-full shadow-left" id="detailSideMap"></div>
         </div>
       </div>
-    </div>
-
-    <?php
+      <?php
       }
-    ?>
-    
-    <!-- Footer-->
+      ?>
+    </div>
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
         <!-- Main block - menus, subscribe form-->
@@ -376,7 +459,6 @@
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-map/3.0-rc1/jquery.ui.map.js"></script>
     <script>var basePath = ''</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
@@ -384,23 +466,16 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
     <!-- Available tile layers-->
     <script src="js/map-layers.js"> </script>
-    <script src="js/map-detail.js"></script>
+    <script src="js/map-detail.js">                               </script>
     <script>
       createDetailMap({
-          mapId: 'detailMap',
-          mapZoom: 0,
+          mapId: 'detailSideMap',
+          mapZoom: 18,
           mapCenter: [40.732346, -74.0014247],
-          circleShow: true,
-          circlePosition: [40.732346, -74.0014247],
           markerShow: true,
-          markerPosition: [40.505, -0.09],
-          markerPath: 'img/marker.svg'
+          markerPosition: [40.732346, -74.0014247],
+          markerPath: 'img/marker.svg',
       })
-      
-      
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"> </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.19.0/jquery.daterangepicker.min.js"> </script>
-    <script src="js/datepicker-detail.js">   </script>
   </body>
 </html>
