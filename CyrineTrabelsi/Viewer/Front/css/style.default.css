@@ -14870,3 +14870,18 @@ STYLE SWITCHER FOR DEMO
   margin-right: 500px;
   width: 60%;
 }
+
+.theme {
+  background-color: lightgrey;
+  width: 300px;
+  border: 5px solid "green";
+  padding: 50px;
+  margin: 20px;
+}
+.listeintert {
+  background-color: lightgrey;
+  width: 300px;
+  border: 5px solid "green";
+  padding: 50px;
+  margin: 20px;
+}

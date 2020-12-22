@@ -15,6 +15,78 @@ if (!$result) {
 }
 
 
+include "D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/clientC.php";
+$D=date("n");
+$clientC=new clientC();
+$list=$clientC->afficherclient3($D);
+$c=0;
+foreach ($list as $row) {
+  $c=$c+1;
+}
+$jan=0;
+$fev=0;
+$mar=0;
+$avr=0;
+$mai=0;
+$jun=0;
+$jul=0;
+$aug=0;
+$sep=0;
+$oct=0;
+$nov=0;
+$dec=0; 
+$list=$clientC->afficherclient3(1);
+foreach ($list as $row ) {
+  $jan=$jan+1;
+}
+$list=$clientC->afficherclient3(2);
+foreach ($list as $row ) {
+  $fev=$fev+1;
+}
+$list=$clientC->afficherclient3(3);
+foreach ($list as $row ) {
+  $mar=$mar+1;
+}
+$list=$clientC->afficherclient3(4);
+foreach ($list as $row ) {
+  $avr=$avr+1;
+}
+$list=$clientC->afficherclient3(5);
+foreach ($list as $row ) {
+  $mai=$mai+1;
+}
+$list=$clientC->afficherclient3(6);
+foreach ($list as $row ) {
+  $jun=$jun+1;
+}
+$list=$clientC->afficherclient3(7);
+foreach ($list as $row ) {
+  $jul=$jul+1;
+}
+$list=$clientC->afficherclient3(8);
+foreach ($list as $row ) {
+  $aug=$aug+1;
+}
+$list=$clientC->afficherclient3(9);
+foreach ($list as $row ) {
+  $sep=$sep+1;
+}
+$list=$clientC->afficherclient3(10);
+foreach ($list as $row ) {
+  $oct=$oct+1;
+}
+$list=$clientC->afficherclient3(11);
+foreach ($list as $row ) {
+  $nov=$nov+1;
+}
+$list=$clientC->afficherclient3(12);
+foreach ($list as $row ) {
+  $dec=$dec+1;
+}
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +138,26 @@ if (!$result) {
                 <button type="submit" class="submit">Search</button>
               </div>
             </form>
+
+            <!-- aziz dates -->
+
+            <form>
+              <input type="hidden" name="jan" id="jan" <?php echo 'value="'.$jan.'"' ;?>>
+              <input type="hidden" name="fev" id="fev" <?php echo 'value="'.$fev.'"' ;?>>
+              <input type="hidden" name="mar" id="mar" <?php echo 'value="'.$mar.'"' ;?>>
+              <input type="hidden" name="avr" id="avr" <?php echo 'value="'.$avr.'"' ;?>>
+              <input type="hidden" name="mai" id="mai" <?php echo 'value="'.$mai.'"' ;?>>
+              <input type="hidden" name="jun" id="jun" <?php echo 'value="'.$jun.'"' ;?>>
+              <input type="hidden" name="jul" id="jul" <?php echo 'value="'.$jul.'"' ;?>>
+              <input type="hidden" name="aug" id="aug" <?php echo 'value="'.$aug.'"' ;?>>
+              <input type="hidden" name="sep" id="sep" <?php echo 'value="'.$sep.'"' ;?>>
+              <input type="hidden" name="oct" id="oct" <?php echo 'value="'.$oct.'"' ;?>>
+              <input type="hidden" name="nov" id="nov" <?php echo 'value="'.$nov.'"' ;?>>
+              <input type="hidden" name="dec" id="dec" <?php echo 'value="'.$dec.'"' ;?>>
+            </form>
+
+
+
           </div>
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -151,7 +243,7 @@ if (!$result) {
             </ul>
           </li>
 
-          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Trips' forms</a>
+          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Themes' forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="formType.php">Add a theme</a></li>
             </ul>
@@ -165,7 +257,8 @@ if (!$result) {
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
+              <li><a href="carte.php">Fidelité</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -181,13 +274,13 @@ if (!$result) {
         <section class="no-padding-top no-padding-bottom">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6">
                 <div class="statistic-block block">
                   <div class="progress-details d-flex align-items-end justify-content-between">
                     <div class="title">
-                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Influencers</strong>
+                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
                     </div>
-                    <div class="number dashtext-1"><?php echo $total_records ?></div>
+                    <div class="number dashtext-1"><?php echo $c ?></div>
                   </div>
                   <div class="progress progress-template">
                     <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
