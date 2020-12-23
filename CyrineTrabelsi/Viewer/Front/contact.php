@@ -1,15 +1,5 @@
 <?php
- include "../../Controller/clientC.php";
-// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
-session_start ();  
-
-
-// On récupère nos variables de session
-
-//définir la session une session est un tableau temporaire 
-//1 er point c quoi une session
-// 
-
+session_start (); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +20,8 @@ session_start ();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
     <!-- Magnigic Popup-->
     <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css">
+    <!-- Leaflet Maps-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
@@ -67,7 +59,7 @@ session_start ();
               </div>
             </form>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.html" >
+              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php" >
                    Home</a>
               </li>
               <!-- Megamenu-->
@@ -108,7 +100,7 @@ session_start ();
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -166,7 +158,8 @@ session_start ();
               <!-- /Megamenu end-->
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a>
               </li>
-               <?php
+              
+              <?php
               if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
 { 
  $clientC= new clientC();
@@ -192,101 +185,174 @@ else {
 }  
 
               ?>
-              
-             
             </ul>
           </div>
         </div>
       </nav>
       <!-- /Navbar -->
     </header>
-    <section class="py-5">
-      <div class="container">
+    <!-- Hero Section-->
+    <section class="hero py-6 py-lg-7 text-white dark-overlay"><img class="bg-image" src="img/photo/photo-1522143049013-2519756a52d4.jpg" alt="How can we help you today?">
+      <div class="container overlay-content">
         <!-- Breadcrumbs -->
-                    <?php
-              if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
-{ 
- $clientC= new clientC();
- $listc= $clientC->afficherclient1($_SESSION['e']);
-
-
-
-  ?>
-        <ol class="breadcrumb pl-0  justify-content-start">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="user-account.html">Account</a></li>
-          <li class="breadcrumb-item active">Personal info   </li>
+        <ol class="breadcrumb text-white justify-content-center no-border mb-0">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Contact                         </li>
         </ol>
-        <h1 class="hero-heading mb-0">Personal info</h1>
-        <p class="text-muted mb-5">Manage your Personal info and settings here.</p>
+        <h1 class="hero-heading">How can we help you today?</h1>
+      </div>
+    </section>
+    <section class="py-6">
+      <div class="container">       
         <div class="row">
-          <div class="col-lg-7">
-            <div class="text-block"> 
-              <div class="row mb-3">
-                <div class="col-sm-9">
-                  <h5>Personal Details</h5>
-                </div>
-                <div class="col-sm-3 text-right">
-                  <button class="btn btn-link pl-0 text-primary collapsed" type="button" data-toggle="collapse" data-target="#personalDetails" aria-expanded="false" aria-controls="personalDetails">Update</button>
-                </div>
-              </div>
-               < <?php
-                     foreach ($listc as $row ) {
-                       
-                     
+          <div class="col-md-4 text-center text-md-left mb-4 mb-md-0">
+            <div class="icon-rounded mb-4 bg-primary-light">
+              <svg class="svg-icon w-2rem h-2rem text-primary">
+                <use xlink:href="#map-location-1"> </use>
+              </svg>
+            </div>
+            <h3 class="h5">Address</h3>
+            <p class="text-muted">13/25 New Avenue<br>New Heaven, 45Y 73J<br>Tunis, <strong>Tunisia</strong></p>
+          </div>
+          <div class="col-md-4 text-center text-md-left mb-4 mb-md-0">
+            <div class="icon-rounded mb-4 bg-primary-light">
+              <svg class="svg-icon w-2rem h-2rem text-primary">
+                <use xlink:href="#landline-1"> </use>
+              </svg>
+            </div>
+            <h3 class="h5">Call center</h3>
+            <p class="text-muted">You can contact us at any time, we're available 24/7</p>
+            <p class="text-muted"><strong>+216 71 456 302</strong></p>
+          </div>
+          <div class="col-md-4 text-center text-md-left mb-4 mb-md-0">
+            <div class="icon-rounded mb-4 bg-primary-light">
+              <svg class="svg-icon w-2rem h-2rem text-primary">
+                <use xlink:href="#mail-1"> </use>
+              </svg>
+            </div>
+            <h3 class="h5">Electronic support</h3>
+            <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
+            <ul class="list-unstyled text-muted">
+              <li><strong>JD&Co@gmail.com</strong></li>
+              <li><strong>Vagary123@gmail.com</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                  ?>
-              <p class="text-sm text-muted"><i class="fa fa-id-card fa-fw mr-2"></i><?php echo $row['nom_client'].' '.$row['prenom_client'];?><br><i class="fa fa-birthday-cake fa-fw mr-2"></i><?php echo $row['date_nai_client'];?><br><i class="fa fa-envelope-open fa-fw mr-2"></i><?php echo $row['mail_client'];?><span class="mx-2"> | </span>  </p>
-              <div class="collapse" id="personalDetails">
-                <form action="modifierclient.php" method="POST">
-                
-                  <div class="row pt-4">
-                    <div class="form-group col-md-6">
-                      <label class="form-label" for="name">First Name</label>
-                      <input class="form-control" type="text" name="nom" id="name" value=<?php echo '"'.$row['nom_client'].'"';?>>
-                       <input class="form-control" type="hidden" name="id" id="name" value=<?php echo '"'.$row['id_client'].'"';?>>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label class="form-label" for="name">Last Name</label>
-                      <input class="form-control" type="text" name="prenom" id="name" value=<?php echo '"'.$row['prenom_client'].'"';?>>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label class="form-label" for="date">Date of birth</label>
-                      <input class="form-control" type="text" name="date" id="date" value=<?php echo '"'.$row['date_nai_client'].'"';?>>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label class="form-label" for="email">Email address</label>
-                      <input class="form-control" type="email" name="email" id="email" value=<?php echo '"'.$row['mail_client'].'"';?>>
-                    </div>
-                     
-                    
-                  </div>
-                
-                  <button class="btn btn-outline-primary mb-4" type="submit">Save your personal details</button>
-                </form>
+    <section class="pt-6 pb-4">
+      <div class="container center">
+        <h4 class="subtitle centertxt text-primary mb-5">Our team members</h4>
+        <div class="row mb-7 ">
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-0.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Meredith Goodwin</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">CEO &amp; Founder    </p>
               </div>
-            <?php }?>
             </div>
+          </div>
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Weeks Garrett</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Co-founder    </p>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Fisher Bauer</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">CTO    </p>
+              </div>
+            </div>
+          </div>
           
-          </div>
-          <div class="col-md-6 col-lg-4 ml-lg-auto">
-            <div class="card border-0 shadow">
-              <div class="card-header bg-primary-light py-4 border-0">
-                <div class="media align-items-center">
-                  <div class="media-body">
-                    <h4 class="h6 subtitle text-sm text-primary">What info is shared with others?</h4>
-                  </div>
-                  <svg class="svg-icon svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary">
-                    <use xlink:href="#identity-1"> </use>
-                  </svg>
-                </div>
-              </div>
-              <div class="card-body p-4">
-                <p class="text-muted text-sm card-text">Directory only releases contact information for hosts and guests <strong>after a reservation is confirmed</strong>.</p>
-                <p class="text-muted text-sm card-text">Amet nisi eiusmod minim commodo sit voluptate aute ut quis ea veniam sunt proident ex. <strong>Exercitation culpa laboris</strong> consequat fugiat non ipsum veniam Lorem aliqua deserunt tempor elit veniam.</p>
+        </div>
+        <div class="row mb-7 ">
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-3.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Aguilar Webb</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Community    </p>
               </div>
             </div>
           </div>
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Weeks Garrett</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Co-founder    </p>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3 ">
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
+                <div class="team-circle bg-secondary-light"></div></a>
+              <div class="card-body team-body text-center">
+                <h6 class="card-title">Fisher Bauer</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">CTO    </p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="py-6 bg-gray-100">
+      <div class="container">
+        <h2 class="h4 mb-5">Contact form</h2>
+        <div class="row">
+          <div class="col-md-7 mb-5 mb-md-0">
+            <form class="form" id="contact-form" method="post" action="contact.php">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="name">Your firstname *</label>
+                      <input class="form-control" type="text" name="name" id="name" placeholder="Enter your firstname" required="required">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label" for="surname">Your lastname *</label>
+                      <input class="form-control" type="text" name="surname" id="surname" placeholder="Enter your  lastname" required="required">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Your email *</label>
+                  <input class="form-control" type="email" name="email" id="email" placeholder="Enter your  email" required="required">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="message">Your message for us *</label>
+                  <textarea class="form-control" rows="4" name="message" id="message" placeholder="Enter your message" required="required"></textarea>
+                </div>
+                <button class="btn btn-outline-primary" type="submit">Send message</button>
+              </div>
+
+            </form>
+            <br>
+            <br>
+            <div class="social center">
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-vimeo"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -338,7 +404,6 @@ else {
             </div>
           </div>
         </div>
-      <?php }?>
       </div>
     </footer>
     <!-- JavaScript files-->
@@ -384,5 +449,19 @@ else {
     <script>var basePath = ''</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
+    <!-- Map-->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <!-- Available tile layers-->
+    <script src="js/map-layers.js"> </script>
+    <script src="js/map-detail.js"></script>
+    <script>
+      createDetailMap({
+          mapId: 'detailMap',
+          mapCenter: [40.732346, -74.0014247],
+          markerShow: true,
+          markerPosition: [40.732346, -74.0014247],
+          markerPath: 'img/marker.svg',
+      })
+    </script>
   </body>
 </html>

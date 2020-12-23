@@ -64,7 +64,7 @@ session_start ();
               </div>
             </form>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php">
                    Home</a>
               </li>
               <!-- Megamenu-->
@@ -314,7 +314,7 @@ session_start ();
               <ul class="list-unstyled">
                 <li><a class="text-muted" href="compare.html">Comparison                                   </a></li>
                 <li><a class="text-muted" href="team.html">Team                                   </a></li>
-                <li><a class="text-muted" href="contact.html">Contact                                   </a></li>
+                <li><a class="text-muted" href="contact.php">Contact                                   </a></li>
               </ul>
             </div>
             <div class="col-lg-4">

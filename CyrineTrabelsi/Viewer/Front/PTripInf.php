@@ -68,7 +68,7 @@ $liste=$trip1->afficherTripInf();
               </div>
             </form>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php" >
                    Home</a>
               </li>
               <!-- Megamenu-->
@@ -288,8 +288,8 @@ $liste=$trip1->afficherTripInf();
                 <h6 class="text-uppercase text-dark mb-3">Pages</h6>
                 <ul class="list-unstyled">
                   
-                  <li><a class="text-muted" href="contact.html">Team                                   </a></li>
-                  <li><a class="text-muted" href="contact.html">Contact                                   </a></li>
+                  <li><a class="text-muted" href="contact.php">Team                                   </a></li>
+                  <li><a class="text-muted" href="contact.php">Contact                                   </a></li>
                 </ul>
               </div>
               
