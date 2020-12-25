@@ -384,7 +384,10 @@ $liste=$trip1->afficherTripInf();
           </div>
         </div>
         <div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">
-          <div class="map-full shadow-left" id="detailSideMap"></div>
+          <br>
+          <br>
+        <iframe src="https://www.google.com/maps?q=<?php echo $trip["destination_voy"]; ?>&output=embed" width="865" height="620" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          
         </div>
       </div>
       <?php

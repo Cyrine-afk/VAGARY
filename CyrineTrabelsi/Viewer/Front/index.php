@@ -107,7 +107,7 @@ session_start ();
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -342,7 +342,7 @@ session_start ();
     <section class="py-7 position-relative dark-overlay"><img class="bg-image" src="img/photo/photo-1497436072909-60f360e1d4b1.jpg" alt="">
       <div class="container">
         <div class="overlay-content text-white py-lg-5">
-          <h3 class="display-3 font-weight-bold text-serif text-shadow mb-5">Ready for a new experience?</h3><a class="btn btn-light centertxt" href="comm.html">Communities</a> <br> <br> <a class="btn btn-light centertxt" href="influ.html">Influencers</a>
+          <h3 class="display-3 font-weight-bold text-serif text-shadow mb-5">Ready for a new experience?</h3><a class="btn btn-light centertxt" href="comm.html">Communities</a> <br> <br> <a class="btn btn-light centertxt" href="influ.php">Influencers</a>
         </div>
       </div>
     </section>

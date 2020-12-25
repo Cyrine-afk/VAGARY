@@ -199,7 +199,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Join date</label>
                         <div class="col-sm-9">
-                          <input type="date" name="dateAjout_inf" id="dateAjout_inf"  class="form-control" required onblur="document.queryselector('.line-name').innerHTML='verifierLaDate';"> <small class="help-block-none" required>Make sure to pick a recent date !</small>
+                          <input type="date" name="dateAjout_inf" id="dateAjout_inf" max="2020-01-01" min="2016-01-01"  class="form-control" required onblur="verifierLaDate()"> <small class="help-block-none" required>Make sure to pick a recent date !</small>
                         </div>
                       </div>
                       <div class="line"></div>

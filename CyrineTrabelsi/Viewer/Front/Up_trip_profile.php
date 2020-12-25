@@ -276,7 +276,8 @@ session_start();
           
           <div class="text-block">
             <h5 class="mb-4">Location</h5>
-            <div class="map-wrapper-300 mb-3">
+            <div>
+            <iframe src="https://www.google.com/maps?q=<?php echo $trip["destination_voy"]; ?>&output=embed" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             <div class="h-100" id="detailMap"></div>
             </div>
           </div>

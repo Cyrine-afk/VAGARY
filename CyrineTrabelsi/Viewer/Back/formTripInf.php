@@ -213,7 +213,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="nom_voy" id="nom_voy" placeholder="Trip's name" required>
+                          <input type="text" class="form-control" name="nom_voy" id="nom_voy" placeholder="Trip's name" pattern="[0-9a-zA-Z-\.]{3,100}" required>
                         </div>
                       </div>
 
@@ -221,7 +221,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Trip's date</label>
                         <div class="col-sm-9">
-                          <input type="date" class="form-control" name="date_voy" id="date_voy" required><small class="help-block-none text-primary">Make sure to pick an upcoming date !</small>
+                          <input type="date" class="form-control" name="date_voy" id="date_voy" min="2020-12-12" max="2022-01-01" required><small class="help-block-none text-primary">Make sure to pick an upcoming date !</small>
                         </div>
                       </div>
 

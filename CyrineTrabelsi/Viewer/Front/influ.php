@@ -114,7 +114,7 @@ session_start ();
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -256,13 +256,14 @@ session_start ();
         
         <div class="row mb-7">
           <?php
+            echo count($liste);
             foreach($liste as $i) {
           ?>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="profile_influ.php?id_inf=<?php echo $i['id_inf'] ?>"><img class="card-img-top team-img" src="<?php  echo $i['img_inf']?>" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title"> <?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h6>
+                <h6 class="card-title"> <?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?> </h6>
                 <p class="card-subtitle text-muted text-xs text-uppercase"><?php echo $i['nbr_ab_inf'] ?>K followers    </p>
               </div>
             </div>
@@ -297,42 +298,7 @@ session_start ();
                 </div>
               </div>
             </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
+            
             <div class="swiper-slide px-3">
               <div class="testimonial card rounded-lg shadow border-0">
                 <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
