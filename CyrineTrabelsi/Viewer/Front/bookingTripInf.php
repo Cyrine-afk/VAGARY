@@ -116,8 +116,8 @@ $liste=$trip1->afficherTripInf();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -282,7 +282,7 @@ $liste=$trip1->afficherTripInf();
             <div class="row">
               <div class="col-sm">
                 <h6>Address</h6>
-                <p class="text-muted">Ap #867, 859 Sit Rd., <?php echo $trip['destination_voy'] ?></p>
+                <p class="text-muted"><?php echo $trip['destination_voy'] ?></p>
               </div>
               <div class="col-sm">
                 <h6>Phone</h6>
@@ -380,7 +380,23 @@ $liste=$trip1->afficherTripInf();
             <button class="btn btn-link pl-0" onclick="window.print()"><i class="fa fa-print mr-2"></i>Print </button>
           </div>
           <div class="text-block ">
-            <a class="btn btn-primary px-3" href="user-grid.php" name="reserver" > View reservations </a>
+            <form method="POST">
+              <input type="submit" class="btn btn-primary px-3" name="reserver" href="user-grid.php" value="Confirm booking"></input>
+            </form>
+              <?php
+                if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+                { 
+                  if(isset($_POST['reserver'])){
+                    include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
+                    include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
+                    $date = date("Y/m/d");
+                    $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['e'],$trip['id_inf'],$date);
+                    $Res1C=new TripInfUserC();
+                    $Res1C->ajouterTripInfUser($Res1);
+                  }
+                }
+              ?>
+
           </div>
         </div>
         <div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">
@@ -503,26 +519,3 @@ $liste=$trip1->afficherTripInf();
     </script>
   </body>
 </html>
-
-<?php
-  if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
-  { 
-    if(isset($_POST['reserver'])){
-      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
-      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
-      $date = date('m/d/y', time());
-      $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['l'],16,$date);
-      $Res1C=new TripInfUserC();
-      if($Res1C->ajouterTripInfUser($Res1)){
-?>
-
-<script>
-    document.location.replace("user-grid.php") ;
-</script>
-
-<?php
-        }
-    }
-
-}
-?>

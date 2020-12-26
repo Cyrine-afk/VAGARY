@@ -113,7 +113,7 @@ session_start ();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>

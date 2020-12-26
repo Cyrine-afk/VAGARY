@@ -67,7 +67,7 @@ session_start ();
               </div>
             </form>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.html" >
+              <li class="nav-item dropdown"><a class="nav-link" id="homeDropdownMenuLink" href="index.php" >
                    Home</a>
               </li>
               <!-- Megamenu-->
@@ -107,7 +107,7 @@ session_start ();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
@@ -214,7 +214,7 @@ else {
   ?>
         <ol class="breadcrumb pl-0  justify-content-start">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="user-account.html">Account</a></li>
+          <li class="breadcrumb-item"><a href="user-account.php">Account</a></li>
           <li class="breadcrumb-item active">Personal info   </li>
         </ol>
         <h1 class="hero-heading mb-0">Personal info</h1>

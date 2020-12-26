@@ -204,24 +204,31 @@ session_start();
           <?php
           if  (isset($_SESSION['l']) && isset($_SESSION['p']) ) {
 
-            echo ' '.$_SESSION['e'];
+            //echo ' '.$_SESSION['e'];
 
             $Res1C=new TripInfUserC();
+
             $liste=$Res1C->afficherTripInfUserClient($_SESSION['e']);
+            
             foreach($liste as $row){
           ?>
           <!-- place item-->
           <div class="col-xl-3 col-md-4 col-sm-6 mb-5" data-marker-id="59c0c8e33b1527bfe2abaf92">
             <div class="card h-100 border-0 shadow">
-              <div class="card-img-top overflow-hidden"><a href="bookingTripInf.php"><img class="img-fluid" src="<?php echo $row['img_voy']; ?>" /></a></div>
+              <div class="card-img-top overflow-hidden"><a href="Up_trip_profile.php?id_voy=<?php echo $row['id_voy'] ?>"><img class="img-fluid" src="<?php echo $row['img_voy']; ?>" /></a></div>
               <div class="card-body d-flex align-items-center">
                 <div class="w-100">
-                  <p class="subtitle font-weight-normal text-sm mb-2">March 2019</p>
-                  <h6 class="card-title"><a class="text-decoration-none text-dark" href="user-booking-detail.html">Modern, Well-Appointed Room</a></h6>
+                  <?php $yrdata2 = strtotime($row['date_voy']. ' + '. $row['duree_voy'] .' days');?>
+                  <p class="subtitle font-weight-normal text-sm mb-2"><?php echo date('M', $yrdata2).' '.date('yy', $yrdata2); ?> </p>
+                     
+                  <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $row['id_voy'] ?>"><?php echo $row['nom_voy']?></a></h6>
+                  <h6 class="card-title"><i class="fa fa-plane w3-small"></i><?php  echo ' '.' '.$row['destination_voy']?></h6>
                   <div class="d-flex card-subtitle mb-3">
-                    <p class="flex-grow-1 mb-0 text-muted text-sm">Private room</p>
-                    <p class="flex-shrink-1 mb-0 card-stars text-xs text-right"><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i>
+                    <p class="flex-grow-1 mb-0 text-muted text-sm"> With  <a href="profile_influ.php?id_inf=<?php echo $row['id_inf']?> "> <?php echo $row['nom_inf'].' '.$row['prenom_inf'] ?> </a> </p>
                     </p>
+                  </div>
+                  <div class="w-100">
+                    <p class="card-text text-muted"><span class="h4 text-primary"><?php  echo $row['prix_voy'].' '.'DT'?></span></p>
                   </div>
                 </div>
               </div>
@@ -401,7 +408,7 @@ session_start();
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script>var basePath = ''</script>
+    <script>var basePath = '';</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
   </body>

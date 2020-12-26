@@ -111,8 +111,8 @@ session_start();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -238,9 +238,9 @@ session_start();
       <div class="row">
         <div class="col-lg-8"> 
           <div class="text-block">
-            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1"></i> <?php echo $trip['destination_voy'] ?> </p>
             
-            <h1>Upcoming trip to <?php echo $trip['destination_voy'] ?></h1>
+            <h2><?php echo $trip['nom_voy'] ?></h2>
+            <p class="text-primary h4"><i class="fa-map-marker-alt fa mr-1"></i> <?php echo $trip['destination_voy'] ?> </p>
             <ul class="list-inline text-sm mb-4">
               <li class="list-inline-item mr-3"><i class="fa fa-users mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy'] ?> guests</li>
               <li class="list-inline-item mr-3"><i class="fa fa-door-open mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/2 ?> bedroom</li>
@@ -286,7 +286,7 @@ session_start();
         </div>
         <div class="col-lg-4">
           <div class="p-4 shadow ml-lg-4 rounded sticky-top" style="top: 100px;">
-            <p class="text-muted"><span class="text-primary h2"><?php echo $trip['prix_voy'].' '.'DT' ?></span></p>
+            <p class="text-muted"><span class="text-primary h3"><?php echo $trip['prix_voy'].' '.'DT' ?></span></p>
             <p class="text-success"><span class="text-success h5"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?> </span></p>
             <hr class="my-4">
             <form class="form" id="booking-form" method="POST" action="reservation.php" autocomplete="off">              

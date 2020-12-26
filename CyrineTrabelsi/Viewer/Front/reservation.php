@@ -110,8 +110,8 @@ $liste=$trip1->afficherTripInf();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -287,7 +287,7 @@ $liste=$trip1->afficherTripInf();
               <form method="POST">
                 <div class="col text-center text-sm-left">
                 </div>
-                <div class="col text-center text-sm-right" name="ViewRes"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Book the trip <i class="fa-chevron-right fa ml-2"></i></a></div>
+                <div class="col text-center text-sm-right" name="ViewRes"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Proceed to booking <i class="fa-chevron-right fa ml-2"></i></a></div>
               </form>
             </div>
 

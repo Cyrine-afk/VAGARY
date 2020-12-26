@@ -22,6 +22,7 @@ class TripInfUserC {
         tripinf.duree_voy,
         tripinf.nom_voy,
         tripinf.prix_voy,
+        influenceur.id_inf,
         influenceur.nom_inf,
         influenceur.prenom_inf,
         influenceur.img_inf,
