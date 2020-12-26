@@ -5,9 +5,14 @@ $page_result = mysqli_query($connect, $page_query);
 $total_records = mysqli_num_rows($page_result);
 
 
-$query="SELECT * FROM influenceur WHERE nbr_ab_inf=(SELECT max(nbr_ab_inf) FROM influenceur)";
+$query="SELECT * FROM influenceur ORDER BY nbr_ab_inf LIMIT 3";
 $result=mysqli_query($connect, $query);
-$row =  mysqli_fetch_array($result);
+if ($row =  mysqli_fetch_array($result)) {
+  $total_records1 = mysqli_num_rows($result);
+  echo $total_records1;
+}
+
+
 
 if (!$result) {
   printf("Error: %s\n", mysqli_error($connect));

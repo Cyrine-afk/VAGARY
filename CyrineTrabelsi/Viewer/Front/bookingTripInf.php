@@ -202,13 +202,13 @@ $liste=$trip1->afficherTripInf();
         </div>
       </nav>
       <!-- /Navbar -->
-    </header>
+  </header>
     <div class="container-fluid"> 
-    <?php
-      if (isset($_GET['id_voy'])) {
-        $tripinf=new TripInfC();
-        $trip=$tripinf->chercherid($_GET['id_voy']); 
-    ?>              
+      <?php
+        if (isset($_GET['id_voy'])) {
+          $tripinf=new TripInfC();
+          $trip=$tripinf->chercherid($_GET['id_voy']); 
+      ?>              
       <div class="row">
         <div class="col-lg-7 col-xl-5 px-4 pb-4 pl-xl-5 pr-xl-5">
           <section class="mx-n4 mx-xl-n5 mb-4 mb-xl-5">
@@ -380,13 +380,13 @@ $liste=$trip1->afficherTripInf();
             <button class="btn btn-link pl-0" onclick="window.print()"><i class="fa fa-print mr-2"></i>Print </button>
           </div>
           <div class="text-block ">
-            <a class="btn btn-primary px-3" href="user-grid.php" > View reservations </a>
+            <a class="btn btn-primary px-3" href="user-grid.php" name="reserver" > View reservations </a>
           </div>
         </div>
         <div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">
           <br>
           <br>
-        <iframe src="https://www.google.com/maps?q=<?php echo $trip["destination_voy"]; ?>&output=embed" width="865" height="620" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          <iframe src="https://www.google.com/maps?q=<?php echo $trip["destination_voy"]; ?>&output=embed" width="865" height="590" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           
         </div>
       </div>
@@ -483,7 +483,7 @@ $liste=$trip1->afficherTripInf();
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script>var basePath = ''</script>
+    <script>var basePath = '' ;</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
     <!-- Map-->
@@ -503,3 +503,26 @@ $liste=$trip1->afficherTripInf();
     </script>
   </body>
 </html>
+
+<?php
+  if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+  { 
+    if(isset($_POST['reserver'])){
+      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
+      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
+      $date = date('m/d/y', time());
+      $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['l'],16,$date);
+      $Res1C=new TripInfUserC();
+      if($Res1C->ajouterTripInfUser($Res1)){
+?>
+
+<script>
+    document.location.replace("user-grid.php") ;
+</script>
+
+<?php
+        }
+    }
+
+}
+?>

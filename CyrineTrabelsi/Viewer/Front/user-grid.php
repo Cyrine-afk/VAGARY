@@ -3,8 +3,9 @@ include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/Trip
 include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
 session_start();
 
-$Res1C=new TripInfUserC();
-$liste=$Res1C->afficherTripInfUserClient($_SESSION['id_client']);
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -201,6 +202,12 @@ $liste=$Res1C->afficherTripInfUserClient($_SESSION['id_client']);
 
         <div class="row">
           <?php
+          if  (isset($_SESSION['l']) && isset($_SESSION['p']) ) {
+
+            echo ' '.$_SESSION['e'];
+
+            $Res1C=new TripInfUserC();
+            $liste=$Res1C->afficherTripInfUserClient($_SESSION['e']);
             foreach($liste as $row){
           ?>
           <!-- place item-->
@@ -223,6 +230,9 @@ $liste=$Res1C->afficherTripInfUserClient($_SESSION['id_client']);
 
           <?php
             }
+          }
+          else 
+            echo "error";
           ?>
           
         </div>

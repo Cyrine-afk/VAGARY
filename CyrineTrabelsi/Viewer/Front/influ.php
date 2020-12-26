@@ -256,7 +256,6 @@ session_start ();
         
         <div class="row mb-7">
           <?php
-            echo count($liste);
             foreach($liste as $i) {
           ?>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">

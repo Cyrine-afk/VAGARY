@@ -68,6 +68,38 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+        <style>
+
+          .form-control {
+           height: calc(2.4rem + 2px);
+           border: 1px solid #444951;
+           background: transparent;
+           border-radius: 0;
+           color: #979a9f;
+           padding: 0.45rem 0.75rem;
+          }
+
+          input.form-control:valid {
+            border:1px solid #0a0;
+          }
+          input.form-control:invalid {
+            border:1px solid #a00;
+          }
+          input.form-control:valid + span:before  {
+            content: "\f00c";
+            font-family: "FontAwesome";
+            color:#0a0;
+            font-size: 1.5em;
+          }	
+          input.form-control:invalid + span:before  {
+            content: "\f00d";
+            font-family: "FontAwesome";
+            color:#a00;
+            font-size: 1.5em;
+          }
+        </style>
+
   </head>
   <body>
     <header class="header">   
@@ -180,7 +212,7 @@
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -235,21 +267,21 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="nom_voy" id="nom_voy" value="<?= $i['nom_voy'] ?>">
+                          <input type="text" class="form-control" name="nom_voy" id="nom_voy" value="<?= $i['nom_voy'] ?>" pattern="[0-9a-zA-Z-\.]{3,100}">
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Trip's date</label>
                         <div class="col-sm-9">
-                          <input type="date" class="form-control" name="date_voy" id="date_voy" value="<?= $i['date_voy'] ?>"><small class="help-block-none text-primary">Make sure to pick an upcoming date !</small>
+                          <input type="date" class="form-control" name="date_voy" id="date_voy" value="<?= $i['date_voy'] ?>" min="2020-12-12" max="2022-01-01"><small class="help-block-none text-primary">Make sure to pick an upcoming date !</small>
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Maximum number of participants</label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" name="nbr_perso_voy" id="nbr_perso_voy" value="<?= $i['nbr_perso_voy'] ?>">
+                          <input type="number" class="form-control" name="nbr_perso_voy" id="nbr_perso_voy" value="<?= $i['nbr_perso_voy'] ?>" min="3">
                         </div>
                       </div>
 
@@ -257,7 +289,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Destination</label>
                         <div class="col-sm-9">
-                          <input type="text" name="destination_voy" id="destination_voy" value="<?= $i['destination_voy'] ?>" class="form-control" >
+                          <input type="text" name="destination_voy" id="destination_voy" value="<?= $i['destination_voy'] ?>" class="form-control" pattern="[0-9a-zA-Z-\.]{3,100}">
                         </div>
                       </div>
 
@@ -265,7 +297,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Duration</label>
                         <div class="col-sm-9">
-                          <input type="number" name="duree_voy" id="duree_voy" value="<?= $i['duree_voy'] ?>" class="form-control">
+                          <input type="number" name="duree_voy" id="duree_voy" value="<?= $i['duree_voy'] ?>" class="form-control" min="2" max="10">
                         </div>
                       </div>
 
@@ -273,7 +305,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Planning</label>
                         <div class="col-sm-9">
-                          <input type="text" name="planning_voy" id="planning_voy" value="<?= $i['planning_voy'] ?>" class="form-control" cols="30" rows="10" > </input>
+                          <input type="text" name="planning_voy" id="planning_voy" value="<?= $i['planning_voy'] ?>" class="form-control"  > </input>
                         </div>
                       </div>
 
@@ -281,7 +313,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label ">Price</label>
                         <div class="col-sm-9 input-group-prepend"><span class="input-group-text">$</span>
-                          <input type="number" name="prix_voy" id="prix_voy" value="<?= $i['prix_voy'] ?>" class="form-control" >
+                          <input type="number" name="prix_voy" id="prix_voy" value="<?= $i['prix_voy'] ?>" class="form-control" min="100">
                         </div>
                       </div>
 
@@ -294,7 +326,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary"  name="img_voy" id="img_voy" ></input>
+                                <input type="file" class="btn btn-primary"  name="img_voy" id="img_voy" required></input>
                               </div>
                             </div>
                           </div>
@@ -306,7 +338,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Pick a new theme for the trip</label>
                         <div class="col-sm-9">
-                          <select name="nom_type" id="nom_type" class="form-control mb-3 mb-3">
+                          <select name="nom_type" id="nom_type" class="form-control mb-3 mb-3" required>
                             <option> Select </option>
                             <?php
                               foreach($liste2 as $t) {

@@ -2,11 +2,20 @@
 
 session_start (); 
 
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
+
+  $inf1= new InfluC();
+  $liste=$inf1->afficherInfluenceur();
+
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
 
   $tp1= new TypeC();
   $listetp=$tp1->afficherType();
+
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
+  require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
 
 ?>
 
@@ -207,13 +216,13 @@ session_start ();
           <div class="col-xl-10">
             <div class="text-center text-lg-left">
               <h4 class="subtitle letter-spacing-4 mb-2 text-secondary text-shadow">"The essence of true discovery"</h4>
-              <h2 class="display-3 font-weight-bold text-shadow">Ready for a new adventure?</h2>
+              <h2 class="display-3 font-weight-bold text-serif text-shadow mb-5">Ready for a new adventure?</h2>
             </div>
             <div class="search-bar mt-5 p-3 p-lg-1 pl-lg-4">
-              <form action="#">
+              <form action="ResRecherche.php" method="POST">
                 <div class="row">
                   <div class="col-lg-4 d-flex align-items-center form-group">
-                    <input class="form-control border-0 shadow-0" type="text" name="search" placeholder="What are you searching for?">
+                    <input class="form-control border-0 shadow-0" type="text" name="searchInf" placeholder="Search for a trip's name">
                   </div>
                   <div class="col-lg-3 d-flex align-items-center form-group">
                     <div class="input-label-absolute input-label-absolute-right w-100">
@@ -222,17 +231,19 @@ session_start ();
                     </div>
                   </div>
                   <div class="col-lg-3 d-flex align-items-center form-group no-divider">
-                  <select class="selectpicker" title="Trip categories" data-style="btn-form-control">
+                    <select class="selectpicker" title="Trip themes" name="nom_type" id="nom_type" >
 
-                    <?php
-                      foreach($listetp as $t) {
-                    ?>
+                      <?php
+                        foreach($listetp as $t) {
+                      ?>
 
-                    <option value="small">  <?php echo $t['nom_type'] ?>  </option>
-                    <?php
-                      }
-                    ?>
-                  </select>
+                      <option >  <?php echo $t['nom_type'] ?>  </option>
+
+                      <?php
+                        }
+                      ?>
+                    
+                    </select>
                   </div>
                   <div class="col-lg-2">
                     <button class="btn btn-primary btn-block rounded-xl h-100" type="submit">Search </button>

@@ -288,8 +288,6 @@ $liste=$trip1->afficherTripInf();
                 <div class="col text-center text-sm-left">
                 </div>
                 <div class="col text-center text-sm-right" name="ViewRes"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Book the trip <i class="fa-chevron-right fa ml-2"></i></a></div>
-                </br>
-                <div class="col text-center text-sm-right" name="reserver"><a class="btn btn-primary px-3" > View reservations <i class="fa-chevron-right fa ml-2"></i></a></div>
               </form>
             </div>
 
@@ -339,6 +337,7 @@ $liste=$trip1->afficherTripInf();
       </div>
       <?php
       }
+    }
       ?>
     </section>
     <!-- Footer-->
@@ -436,23 +435,3 @@ $liste=$trip1->afficherTripInf();
   </body>
 </html>
 
-<?php
-    $_SESSION['id_client']=1;
-    if(isset($_POST['reserver'])){
-      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
-      include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
-      $date = date('m/d/y', time());
-      $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['id_client'],16,$date);
-      $Res1C=new TripInfUserC();
-      if($Res1C->ajouterTripInfUser($Res1)){
-?>
-            <script>
-                document.location.replace("user-grid.php") ;
-            </script>
-
-<?php
-        }
-    }
-
-}
-?>

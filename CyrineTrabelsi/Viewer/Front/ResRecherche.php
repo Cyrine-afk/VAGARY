@@ -219,7 +219,7 @@ session_start();
                 <div class="col-lg-3 d-flex align-items-center form-group no-divider">
                 <select class="selectpicker" title="Trip categories" name="nom_type" id="nom_type" >
 
-                  <?php
+                  <?php 
                     foreach($listetp as $t) {
                   ?>
                   
@@ -344,6 +344,57 @@ session_start();
       } // récupère l'influenceur recherché de la base
       
 
+    }// isset              
+    ?>
+
+    <?php
+      if (isset($_POST['location'])) {
+        //var_dump($_POST['searchInf']);
+        $inf2=new TripInfC();
+        if ($liste2=$inf2->chercherLocalisation($_POST['location'])) {
+        //echo "done";
+   ?>
+
+    <?php
+      foreach ($liste2 as $elt) {
+    ?>
+        <div class="row">
+
+         
+          
+<div class="col-sm-6 col-lg-4 mb-30px hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
+        <div class="card h-100 border-0 shadow">
+          <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?php  echo $elt['img_voy']?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="Up_trip_profile.php?id_voy=<?php echo $ti['id_voy'] ?>"></a>
+            
+          </div>
+          <div class="card-body d-flex align-items-center">
+            <div class="w-100">
+              <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $elt['id_voy'] ?>"><?php  echo $elt['destination_voy']?></a></h6>
+              <div class="d-flex card-subtitle mb-3">
+                <p class="flex-grow-1 mb-0 text-muted text-sm"><?php  echo $elt['nom_type']?> </p>
+                
+              </div>
+              <p class="card-text text-muted"><span class="h4 text-primary"><?php  echo $elt['prix_voy'].' '.'DT'?></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+
+</div>
+        <?php
+        } // foreach
+
+      } // récupère l'influenceur recherché de la base
+      else {
+      ?>
+
+        <h1 class="hero-heading mb-4">Error 404</h1>
+        <p class="text-muted mb-5">Oops, looks like the influencer you're searching for doesn't exist.</p>
+        <p class="mb-6"> <img class="img-fluid" src="img/illustration/undraw_trip_dv9f.svg" alt="" style="width: 400px;"></p>
+    <?php
+      }
     }// isset              
     ?>
         

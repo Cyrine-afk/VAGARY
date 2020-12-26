@@ -67,6 +67,38 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+        <style>
+
+          .form-control {
+           height: calc(2.4rem + 2px);
+           border: 1px solid #444951;
+           background: transparent;
+           border-radius: 0;
+           color: #979a9f;
+           padding: 0.45rem 0.75rem;
+          }
+
+          input.form-control:valid {
+            border:1px solid #0a0;
+          }
+          input.form-control:invalid {
+            border:1px solid #a00;
+          }
+          input.form-control:valid + span:before  {
+            content: "\f00c";
+            font-family: "FontAwesome";
+            color:#0a0;
+            font-size: 1.5em;
+          }	
+          input.form-control:invalid + span:before  {
+            content: "\f00d";
+            font-family: "FontAwesome";
+            color:#a00;
+            font-size: 1.5em;
+          }
+        </style>
+
   </head>
   <body>
   <header class="header">   
@@ -179,7 +211,7 @@
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -229,7 +261,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Maximum number of participants</label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" name="nbr_perso_voy" id="nbr_perso_voy" placeholder="Max number" required>
+                          <input type="number" class="form-control" name="nbr_perso_voy" id="nbr_perso_voy" min="3" placeholder="Max number" required>
                         </div>
                       </div>
 
@@ -237,7 +269,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Destination</label>
                         <div class="col-sm-9">
-                          <input type="text" name="destination_voy" id="destination_voy" placeholder="Trip's destination" class="form-control" required>
+                          <input type="text" name="destination_voy" id="destination_voy" placeholder="Trip's destination" class="form-control" pattern="[0-9a-zA-Z-\.]{3,100}" required>
                         </div>
                       </div>
 
@@ -245,7 +277,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Duration</label>
                         <div class="col-sm-9">
-                          <input type="number" name="duree_voy" id="duree_voy" placeholder="Trip's duration" class="form-control" required>
+                          <input type="number" name="duree_voy" id="duree_voy" placeholder="Trip's duration" min="2" max="10" class="form-control" required>
                         </div>
                       </div>
 
@@ -261,7 +293,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label ">Price</label>
                         <div class="col-sm-9 input-group-prepend"><span class="input-group-text">$</span>
-                          <input type="number" name="prix_voy" id="prix_voy" placeholder="Trip's price" class="form-control" required>
+                          <input type="number" name="prix_voy" id="prix_voy" placeholder="Trip's price" min="100" class="form-control" required>
                         </div>
                       </div>
 
@@ -286,7 +318,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Pick a theme for the trip</label>
                         <div class="col-sm-9">
-                          <select name="nom_type" id="nom_type" class="form-control mb-3 mb-3">
+                          <select name="nom_type" id="nom_type" class="form-control mb-3 mb-3" required>
                             <option> Select </option>
                             <?php
                               foreach($liste as $t) {

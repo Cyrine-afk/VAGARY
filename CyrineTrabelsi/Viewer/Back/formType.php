@@ -40,6 +40,38 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+        <style>
+
+          .form-control {
+           height: calc(2.4rem + 2px);
+           border: 1px solid #444951;
+           background: transparent;
+           border-radius: 0;
+           color: #979a9f;
+           padding: 0.45rem 0.75rem;
+          }
+
+          input.form-control:valid {
+            border:1px solid #0a0;
+          }
+          input.form-control:invalid {
+            border:1px solid #a00;
+          }
+          input.form-control:valid + span:before  {
+            content: "\f00c";
+            font-family: "FontAwesome";
+            color:#0a0;
+            font-size: 1.5em;
+          }	
+          input.form-control:invalid + span:before  {
+            content: "\f00d";
+            font-family: "FontAwesome";
+            color:#a00;
+            font-size: 1.5em;
+          }
+        </style>
+
   </head>
   <body>
   <header class="header">   
@@ -152,7 +184,7 @@
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -186,7 +218,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Theme's name</label>
                         <div class="col-sm-9">
-                          <input type="text" name="nom_type" id="nom_type" placeholder="Travel theme" class="form-control form-control-success" ><small class="form-text">Set free your imagination !</small>
+                          <input type="text" name="nom_type" id="nom_type" placeholder="Travel theme" class="form-control form-control-success" pattern="[0-9a-zA-Z-\.]{3,100}" required><small class="form-text">Set free your imagination !</small>
                         </div>
                       </div>
 
@@ -196,7 +228,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
+                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" required></input>
                               </div>
                             </div>
                           </div>

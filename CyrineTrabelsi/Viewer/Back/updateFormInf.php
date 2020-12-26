@@ -49,6 +49,38 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+        <style>
+
+          .form-control {
+           height: calc(2.4rem + 2px);
+           border: 1px solid #444951;
+           background: transparent;
+           border-radius: 0;
+           color: #979a9f;
+           padding: 0.45rem 0.75rem;
+          }
+
+          input.form-control:valid {
+            border:1px solid #0a0;
+          }
+          input.form-control:invalid {
+            border:1px solid #a00;
+          }
+          input.form-control:valid + span:before  {
+            content: "\f00c";
+            font-family: "FontAwesome";
+            color:#0a0;
+            font-size: 1.5em;
+          }	
+          input.form-control:invalid + span:before  {
+            content: "\f00d";
+            font-family: "FontAwesome";
+            color:#a00;
+            font-size: 1.5em;
+          }
+        </style>
+
   </head>
   <body>
     <header class="header">   
@@ -161,7 +193,7 @@
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -209,21 +241,21 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name_inf" id="name_inf" value="<?= $i['nom_inf'] ?>">
+                          <input type="text" class="form-control" name="name_inf" id="name_inf" value="<?= $i['nom_inf'] ?>" pattern="[0-9a-zA-Z-\.]{3,100}">
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Last name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="lastName_inf" id="lastName_inf" value="<?= $i['prenom_inf'] ?>">
+                          <input type="text" class="form-control" name="lastName_inf" id="lastName_inf" value="<?= $i['prenom_inf'] ?>" pattern="[0-9a-zA-Z-\.]{3,100}">
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Join date</label>
                         <div class="col-sm-9">
-                          <input type="date" name="dateAjout_inf" id="dateAjout_inf"  class="form-control" value="<?= $i['date_ajout_inf'] ?>"> <small class="help-block-none">Make sure to pick a recent date !</small>
+                          <input type="date" name="dateAjout_inf" id="dateAjout_inf"  class="form-control" value="<?= $i['date_ajout_inf'] ?>" max="2020-01-01" min="2016-01-01"> <small class="help-block-none">Make sure to pick a recent date !</small>
                         </div>
                       </div>
                       <div class="line"></div>
@@ -246,21 +278,21 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Number of followers</label>
                         <div class="col-sm-9">
-                          <input type="number" name="nbrFollowers_inf" id="nbrFollowers_inf" value="<?= $i['nbr_ab_inf'] ?>" class="form-control">
+                          <input type="number" name="nbrFollowers_inf" id="nbrFollowers_inf" value="<?= $i['nbr_ab_inf'] ?>" class="form-control" min="0" max="999">
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Facebook page link</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="fb_inf" id="fb_inf" value="<?= $i['fb_inf'] ?>">
+                          <input type="text" class="form-control" name="fb_inf" id="fb_inf" value="<?= $i['fb_inf'] ?>" pattern="[0-9a-zA-Z-\.]{3,200}">
                         </div>
                       </div>
                       <div class="line"></div>
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Instagram page link</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="insta_inf" id="insta_inf"  value="<?= $i['insta_inf'] ?>">
+                          <input type="text" class="form-control" name="insta_inf" id="insta_inf"  value="<?= $i['insta_inf'] ?>" pattern="[0-9a-zA-Z-\.]{3,200}">
                         </div>
                       </div>
 
@@ -271,7 +303,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf" ></input>
+                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf" required></input>
                               </div>
                             </div>
                           </div>

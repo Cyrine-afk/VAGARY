@@ -19,7 +19,7 @@
     <tr>
     <th scope="row">  <?php echo $t['id__type'] ?>  </th>
     <td>  <?php echo $t['nom_type'] ?>  </td>
-    <td><img src="<?php  echo $i['img_type']?>" ></td>
+    <td><img src="<?php  echo $t['img_type']?>" ></td>
     <td>
       <a href="updateFormType.php?id__type=<?php echo $t['id__type'] ?>"> Update </a>
     </td>

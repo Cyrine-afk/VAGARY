@@ -39,7 +39,7 @@ session_start ();
       <!-- Navbar-->
       <nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
         <div class="container-fluid">
-          <div class="d-flex align-items-center"><a class="navbar-brand py-1" href="index.html"><img src="img/v2.png" alt="Directory logo"></a>
+          <div class="d-flex align-items-center"><a class="navbar-brand py-1" href="index.php"><img src="img/v2.png" alt="Directory logo"></a>
             <form class="form-inline d-none d-sm-flex" action="#" id="search">
               <div class="input-label-absolute input-label-absolute-left input-reset input-expand ml-lg-2 ml-xl-3"> 
                 <label class="label-absolute" for="search_search"><i class="fa fa-search"></i><span class="sr-only">What are you looking for?</span></label>
@@ -233,8 +233,7 @@ else {
             <h3 class="h5">Electronic support</h3>
             <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
             <ul class="list-unstyled text-muted">
-              <li><strong>JD&Co@gmail.com</strong></li>
-              <li><strong>Vagary123@gmail.com</strong></li>
+              <li><strong>vagarytn@gmail.com</strong></li>
             </ul>
           </div>
         </div>
@@ -246,11 +245,11 @@ else {
         <h4 class="subtitle centertxt text-primary mb-5">Our team members</h4>
         <div class="row mb-7 ">
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-0.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/cyrine.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Meredith Goodwin</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">CEO &amp; Founder    </p>
+                <h6 class="card-title">Cyrine Trabelsi</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Influencers <!--&amp; Founder -->   </p>
               </div>
             </div>
           </div>
@@ -258,8 +257,8 @@ else {
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Weeks Garrett</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">Co-founder    </p>
+                <h6 class="card-title">Aziz Khemira</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Clients </p>
               </div>
             </div>
           </div>
@@ -267,8 +266,8 @@ else {
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Fisher Bauer</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">CTO    </p>
+                <h6 class="card-title">Hichem Hammami</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Community </p>
               </div>
             </div>
           </div>
@@ -279,8 +278,8 @@ else {
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-3.png" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Aguilar Webb</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">Community    </p>
+                <h6 class="card-title">Ghassen Bedduihech</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Commands </p>
               </div>
             </div>
           </div>
@@ -288,8 +287,8 @@ else {
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Weeks Garrett</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">Co-founder    </p>
+                <h6 class="card-title">Meriem Nour Ghozzi</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Travels    </p>
               </div>
             </div>
           </div>
@@ -297,8 +296,8 @@ else {
             <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
-                <h6 class="card-title">Fisher Bauer</h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase">CTO    </p>
+                <h6 class="card-title">Aziza Ben Halima</h6>
+                <p class="card-subtitle text-muted text-xs text-uppercase">Shop </p>
               </div>
             </div>
           </div>

@@ -155,7 +155,7 @@
               <li><a href="trips.html">Trips</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
-              <li><a href="users.html">Users</a></li>
+              <li><a href="users.php">Users</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
@@ -206,7 +206,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img1" id="img1" ></input>
+                                <input type="file" class="btn btn-primary" name="img1" id="img1" required></input>
                               </div>
                             </div>
                           </div>
@@ -219,7 +219,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img2" id="img2" ></input>
+                                <input type="file" class="btn btn-primary" name="img2" id="img2" required></input>
                               </div>
                             </div>
                           </div>
@@ -233,7 +233,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img3" id="img3" ></input>
+                                <input type="file" class="btn btn-primary" name="img3" id="img3" required></input>
                               </div>
                             </div>
                           </div>
@@ -247,7 +247,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img4" id="img4" ></input>
+                                <input type="file" class="btn btn-primary" name="img4" id="img4" required></input>
                               </div>
                             </div>
                           </div>
@@ -261,7 +261,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img5" id="img5" ></input>
+                                <input type="file" class="btn btn-primary" name="img5" id="img5" required></input>
                               </div>
                             </div>
                           </div>
@@ -274,7 +274,7 @@
                         <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img6" id="img6" ></input>
+                                <input type="file" class="btn btn-primary" name="img6" id="img6" required></input>
                               </div>
                             </div>
                           </div>

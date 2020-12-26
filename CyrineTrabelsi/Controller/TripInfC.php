@@ -30,6 +30,19 @@ class TripInfC {
     }
 
 
+    public function chercherLocalisation($loc) {
+        $sql="SELECT * FROM tripinf where destination_voy='$loc'";
+        $db=Config::getConnexion();
+        try{
+        $liste = $db->query($sql);
+        return $liste;
+        } 
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+    } 
+
+
     public function chercheridInf($id) {
         $sql="SELECT * FROM tripinf where id_inf=:id2";
         $db=Config::getConnexion();
