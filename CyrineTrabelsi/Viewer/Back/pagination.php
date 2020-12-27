@@ -28,7 +28,7 @@ require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php
         exit();
     }
 
-    $output .="
+    $output .=" 
     <table class='table table-responsive table-fluid' > 
         <thead>
           <tr>
