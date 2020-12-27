@@ -2,7 +2,7 @@
 
 //Definition et structure d'un objet Trip Influenceur
 
-class Type {
+class Type { 
     private $id__type ;
     private string $nom_type;
     private string $img_type;

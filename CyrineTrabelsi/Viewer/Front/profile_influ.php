@@ -1,5 +1,7 @@
 <?php 
 
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/config.php';
+
 session_start (); 
 
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
@@ -213,26 +215,42 @@ session_start ();
               
               <div class="card-header bg-gray-100 py-4 border-0 text-center"><a class="d-inline-block" href="#"><img class="d-block avatar avatar-xxl p-2 mb-2" src="<?php  echo $i['img_inf']?>" alt=""></a>
                 <h5><?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h5>
-                <button class="btn btn-primary like_button rounded-xl h-100" name="like_bttuon" type="button" data-content_id="7" > Follow </button>
 
-                <script> 
-                  $(document).on('click', '.like_button', function(){
-                    var id_inf = $(this).attr("id_inf");
-                    $(this).attr('disabled', 'disabled');
-                    $.ajax({
-                      url:"follow_section.php",
-                      method:"POST",
-                      data:{id_inf:id_inf},
-                      success:function(data)
-                      {
-                        if (data == 'done')
-                        {
-                          load_stuff();
+                <form method="POST">
+                <!--<button class="btn btn-primary like_button rounded-xl h-100" name="like_button" type="button" data-content_id="7" > Follow </button>-->
+                <button type="submit" class="btn btn-primary rounded-xl h-100" name="follow_button" href="#" value="Follow" id="myBtn" onclick="disableBtn();">Follow</button>
+                </form>
+
+                  <?php
+                    if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+                    { 
+                     if(isset($_POST["follow_button"]) && (!empty($_POST['follow_button']))){
+                       echo "work";
+                       include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ClientFollowInfC.php';
+                       include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ClientFollowInf.php';
+                       $date = date("Y/m/d");
+                       $Res1=new ClientFollowInf($_SESSION['e'],$_GET['id_inf'],$date);
+                       $Res1C=new ClientFollowInfC();
+                       $Res1C->ajouterUserFollowInf($Res1);
+
+                       try {
+                        $sql = "UPDATE influenceur SET nbr_ab_inf = nbr_ab_inf + 1 WHERE id_inf=".$_GET['id_inf'] ;
+                        $db = config::getConnexion();
+                        $query = $db->query($sql);
+                        echo $query->rowCount() . " records UPDATED successfully <br>";
                         }
-                      }
-                    });
-                  });
-                </script>
+                        catch (PDOException $e) {
+                            $e->getMessage();
+                        }
+                     }
+                    }
+                  ?>
+
+                  <script>
+                    function disableBtn() {
+                      document.getElementById("myBtn").disabled = true;
+                    }
+                  </script>
 
               </div>
               <div class="card-body p-4">
@@ -274,7 +292,7 @@ session_start ();
               <p class="text-muted"><?php echo $i['bio_inf'] ?> </p>
             </div>
             <div class="text-block">
-              <h4 class="mb-5"><?php echo $i['nom_inf'] ?>'s Upcoming Trips</h4>
+              <h4 class="mb-5"><?php echo $i['nom_inf'] ?>'s upcoming trips</h4>
               <div class="row">
                 <!-- place item-->
 
