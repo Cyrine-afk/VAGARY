@@ -25,10 +25,10 @@ $sql->execute();
 ?>
 <!DOCTYPE html>
 <html>
-  <head> 
+<head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin by Bootstrapious.com</title>
+    <title>Influencers' Tables</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -45,7 +45,7 @@ $sql->execute();
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/JD&Co3.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -158,7 +158,8 @@ $sql->execute();
               <li><a href="themes.php">Themes</a></li>
               <li><a href="comm.html">Communities</a></li>
               <li><a href="trips.html">Trips</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>              
+              <li><a href="avis.php">Reviews</a></li>
               <li><a href="carts.html">Carts</a></li>
               <li><a href="users.php">Users</a></li>
             </ul>

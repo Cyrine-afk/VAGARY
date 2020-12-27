@@ -89,7 +89,7 @@ session_start ();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Shop</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="products.html"> Products   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="shop.php"> Products   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="cart.html"> Cart   </a></li>
                           
                           </ul>
@@ -445,7 +445,7 @@ else {
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script>var basePath = ''</script>
+    <script>var basePath = '';</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
     <!-- Map-->

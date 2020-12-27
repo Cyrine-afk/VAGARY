@@ -122,7 +122,7 @@
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Shop</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="products.html"> Products   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="shop.php"> Products   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="cart.html"> Cart   </a></li>
                           
                           </ul>
