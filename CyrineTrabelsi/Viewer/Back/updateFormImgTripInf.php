@@ -165,17 +165,15 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-          <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
-
-          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Influencers' forms</a>
+          <li class="active"><a href="index.php"> <i class="icon-home"></i>Home </a></li>
+          
+          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Forms</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="formInf.php">Add an influencer</a></li>
-            </ul>
-          </li>
-
-          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Trips' forms</a>
-            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="formType.php">Add a theme</a></li>
+              <li><a href="ajouterP.php">Add a product</a></li>
+              <li><a href="ajouterP.php">Add a trip</a></li>
+              <li><a href="ajouterP.php">Add a community</a></li>
             </ul>
           </li>
 
@@ -188,6 +186,7 @@
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
               <li><a href="users.php">Users</a></li>
+              <li><a href="carte.php">Fidelité</a></li>
             </ul>
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>

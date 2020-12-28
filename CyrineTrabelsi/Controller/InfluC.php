@@ -23,7 +23,7 @@ class InfluC {
             $liste = $db->query($sql);
             return $liste;
         }
-        catch (Exception $e){
+        catch (Exception $e){ 
             die('Erreur: '.$e->getMessage());
         }	
     }

@@ -29,6 +29,20 @@ class TripInfC {
         }
     }
 
+    public function chercheridInf($id) {
+        $sql="SELECT * FROM tripinf where id_inf=:id";
+        $db=Config::getConnexion();
+        try{
+            $query=$db->prepare($sql);
+        $query->execute(['id' =>$id ]);
+        $liste=$query->fetch();
+        return $liste;
+        } 
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
 
     public function chercherLocalisation($loc) {
         $sql="SELECT * FROM tripinf where destination_voy='$loc'";
@@ -37,25 +51,10 @@ class TripInfC {
         $liste = $db->query($sql);
         return $liste;
         } 
-        catch (PDOException $e) {
+        catch (PDOException $e) { 
             $e->getMessage();
         }
     } 
-
-
-    public function chercheridInf($id) {
-        $sql="SELECT * FROM tripinf where id_inf=:id2";
-        $db=Config::getConnexion();
-        try{
-            $query=$db->prepare($sql);
-        $query->execute(['id2' =>$id ]);
-        $liste=$query->fetch();
-        return $liste;
-        } 
-        catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
 
 
      public function ajouterTripInf($tripinf,$id_inf) {
