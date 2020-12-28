@@ -21,6 +21,7 @@ $prod= new productsC;
 
 
     }
+    $date = date("Y/m/d"); 
 ?>
 
 
@@ -57,6 +58,14 @@ $prod= new productsC;
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
+
+  <?php 
+//include "../config.php";
+	
+
+
+
+?>
   <body style="padding-top: 72px;">
     <header class="header">
       <!-- Navbar-->
@@ -252,7 +261,8 @@ $prod= new productsC;
                     <h6 class="label-heading">Product's category</h6>
                     <p class="text-sm font-weight-bold"><?PHP echo $product->categorie_prod; ?></p>
                     <h6 class="label-heading">Quantity </h6>
-                    <input  type="text">
+                    <form method="POST">
+                    <input  type="number" name="quantity">
                     
                   </div>
                   <div class="col-6 col-md-4 col-lg-3 py-3">
@@ -274,6 +284,8 @@ $prod= new productsC;
                 <br>  </br>
               </div>
               <?php endforeach   ?>
+              <input type="submit" name="btn" value="Confirm"  >
+              </form>
          <!-- Pagination -->
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-template d-flex justify-content-center">
@@ -292,9 +304,32 @@ $prod= new productsC;
             <p class="mb-3 mb-lg-0"> <strong> Total = <?= number_format($commande->total(),2,',',' '); ?> DT </strong> </p>
           </div>
           <div class="text-center">
-           <a class="btn btn-outline-secondary" href="paiment.php"><i class="fa fa-download mr-2"></i>Proceed to checkout</a>
+           <a class="btn btn-outline-secondary" ><i class="fa fa-download mr-2"></i>Proceed to checkout</a>
           </div>
         </div>
+
+
+        <?php
+             if(isset($_POST['quantity'])){
+               $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity) values (:id_prod,:date_achat_comd,:prix_total,:quantity)" ;
+               try{
+               $db = config::getConnexion();
+               $query = $db->prepare($sql);
+               $query->execute([
+                   'id_prod' => $ids,
+                   'date_achat_comd'=>$date,
+                   'prix_total'=> $commande->total(),
+                   'quantity'=>$_POST['btn']
+                   
+                   
+               ]);
+               }
+               catch (PDOException $e) {
+                   $e->getMessage();
+               }
+              }
+
+      ?>
     </section>
    
     

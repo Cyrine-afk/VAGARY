@@ -19,6 +19,8 @@ $prod= new productsC;
 
 
     }
+
+    $date = date("Y/m/d"); 
 ?>
 
 
@@ -203,9 +205,12 @@ $prod= new productsC;
            {
            $products = $DB->query ('SELECT  * FROM produit WHERE id_prod IN ('.implode(',',$ids) .')')  ; 
           }
+           
+          //echo '<pre>'; print_r($products['id']); echo '</pre>';
 
+          
+            
         
-         
          ?>
          
         
@@ -213,6 +218,7 @@ $prod= new productsC;
       <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <section class="py-5">
+    <form action="insertcart.php" method="POST">
     <?php 
               foreach($products as $product)  : 
       ?>
@@ -224,7 +230,8 @@ $prod= new productsC;
                 <div class="text-block pb-3">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <h6> <a class="text-reset" href="#"><?PHP echo $product->nom_prod; ?></a></h6>
+                    <h6> <a class="text-reset" href="#" ><?PHP echo $product->nom_prod; ?></a></h6> 
+                      
                       
                       
                       <p class="text-muted text-sm mb-0"></p>
@@ -236,7 +243,7 @@ $prod= new productsC;
                 <div class="text-block py-3">
                   <ul class="list-unstyled mb-0">
                     <li class="mb-3"><i class="fas fa-users fa-fw text-muted mr-2"></i>Product's category : </li>
-                    <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?PHP echo $product->categorie_prod; ?> </li>
+                    <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2" ></i><?PHP echo $product->categorie_prod; ?> </li>
                   </ul>
                 </div>
                 <div class="text-block pt-3 pb-0">
@@ -280,11 +287,33 @@ $prod= new productsC;
           </div>
         </div>
       </div>
-     
+      
+   
+      </form>
+      
     </section>
     <?php endforeach   ?>
     
-   
+    <?php
+            /*  $sql = "insert into commande (nameprod) values (:nameprod)" ;
+               try{
+               $db = config::getConnexion();
+               $query = $db->prepare($sql);
+               $query->execute([
+                   'nameprod'=> $product->nom_prod,
+                   'date_achat_comd'=>$date,
+                   
+                   
+                   
+                   
+               ]);
+               }
+               catch (PDOException $e) {
+                   $e->getMessage();
+               }
+               */
+
+      ?>
     
     
     
