@@ -1,11 +1,12 @@
 <?PHP
 include "config.php";
 
+
 class productsC
 {
 	function ajouterproducts($products)
 	{
-		include 'config.php';
+		include "config.php";
 		require_once('product.php');
 		 $sql = "INSERT INTO produit (nom_prod,prix_prod,img_prod,categorie_prod) values (:nom_prod, :prix_prod, :img_prod,categorie_prod) ";
         $db = config::getConnexion();
@@ -47,7 +48,7 @@ class productsC
 
 	function supprimerproducts($nom_prod)
 	{
-		include "../config.php";
+		include "config.php";
 		$sql = "DELETE FROM produit where nom_prod= :nom_prod";
 		$db = config::getConnexion();
 		$req = $db->prepare($sql);

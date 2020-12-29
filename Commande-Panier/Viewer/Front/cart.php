@@ -1,15 +1,26 @@
-<?php 
-/*
- require_once('./config.php') ;
-$db= new operations() ; 
-$result=$db->view_record() ; 
-*/
-require_once 'db.class.php' ;
-require_once ('./config.php') ;
-require_once('./operations.php') ;
-$db = new operations () ; 
-$result=$db->view_record() ; 
+<?php
+include '../../Controller/productsC.php' ; 
+include '../../Model/panier.class.php' ; 
+include '../../Model/db.class.php' ;
+$prod= new productsC;
 
+    if (isset($_GET['search'])) {
+        $listP = $prod->rechercheproducts($_GET['search']);
+    } else {
+        $listP = $prod->afficherproducts();
+    }
+    $panier  = new Panier () ; 
+    //var_dump($_SESSION) ; 
+    ?>
+    <?php
+    if(isset($_GET['del'])) 
+    {
+          $panier->del($_GET['del']) ; 
+
+
+    }
+
+    $date = date("Y/m/d"); 
 ?>
 
 
@@ -50,7 +61,7 @@ $result=$db->view_record() ;
       <!-- Navbar-->
       <nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
         <div class="container-fluid">
-          <div class="d-flex align-items-center"><a class="navbar-brand py-1" href="index.html"><img src="img/v2.png" alt="Directory logo"></a>
+          <div class="d-flex align-items-center"><a class="navbar-brand py-1" href="index.html"><img src="img/Vagary1.png" alt="Directory logo"></a>
             <form class="form-inline d-none d-sm-flex" action="#" id="search">
               <div class="input-label-absolute input-label-absolute-left input-reset input-expand ml-lg-2 ml-xl-3"> 
                 <label class="label-absolute" for="search_search"><i class="fa fa-search"></i><span class="sr-only">What are you looking for?</span></label>
@@ -100,8 +111,9 @@ $result=$db->view_record() ;
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Shop</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="products.html"> Products   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="cart.html"> Cart   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="index.php"> Products   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="cart.php"> Cart   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="books.php"> Your orders   </a></li>
                           
                           </ul>
                           
@@ -181,87 +193,130 @@ $result=$db->view_record() ;
       </nav>
        <!-- /Navbar -->
     </header>
-    <!-- payment step-->
-    <div class="progress rounded-0 sticky-top" style="height: 8px; top: 71px;">
-      <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <p class="subtitle text-primary">Book your holiday home</p>
-            <h1 class="h2 mb-5"> Confirm and pay <span class="text-muted float-right">Step 2</span>      </h1>
-            <div class="text-block">
-              <div class="alert alert-warning text-sm mb-3">
-                <div class="media align-items-center">
-                  <svg class="svg-icon svg-icon svg-icon-light w-2rem h-2rem mr-3 text-reset">
-                    <use xlink:href="#heart-1"> </use>
-                  </svg>
-                  <div class="media-body"><strong>This trip is on people’s minds.</strong> It’s been viewed 43 times in the past week.</div>
-                </div>
-              </div>
-            </div>
-            <div class="text-block">
+    <?php 
+
+            $DB = new DB() ;
+           $ids =  array_keys ($_SESSION['panier'] )  ; 
+           if (empty($ids))
+          {
+              $products = array() ; 
+          }
+          else
+           {
+           $products = $DB->query ('SELECT  * FROM produit WHERE id_prod IN ('.implode(',',$ids) .')')  ; 
+          }
            
-              <form method="POST">
-              <?php
-            $db->Store_Record() ; 
-            ?>
-                <div class="d-flex justify-content-between align-items-end mb-4">
-                  <h5 class="mb-0">Pay with your card</h5>
-                  <div class="text-muted"><i class="fab fa-cc-amex fa-2x mr-2"> </i><i class="fab fa-cc-visa fa-2x mr-2"> </i><i class="fab fa-cc-mastercard fa-2x"></i></div>
-                </div>
-                <select class="selectpicker form-control mb-3" name="payment" id="form_payment" data-style="btn-selectpicker">
-                  <option value="">Visa •••• 5687</option>
-                  <option value="">Mastercard •••• 4569</option>
-                </select>
-                <button class="btn btn-link btn-collapse pl-0 text-muted" type="button" data-toggle="collapse" data-target="#addNewCard" aria-expanded="false" aria-controls="addNewCard" data-expanded-text="Close" data-collapsed-text="Add a new card">Add a new card</button>
-                <div class="row collapse" id="addNewCard">
-                  <div class="form-group col-md-6">
-                    <label class="form-label" for="card-name">Name on Card</label>
-                    <input class="form-control" type="text" name="NameOnCard" placeholder="Name on card" id="card-name">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="form-label" for="card-number">Card Number</label>
-                    <input class="form-control" type="text" name="CardNumber" placeholder="Card number" id="card-number">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="form-label" for="expiry-date">Expiry Date</label>
-                    <input class="form-control" type="date" name="ExpiryDate" placeholder="MM/YY" id="expiry-date">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="form-label" for="cvv">CVC/CVV</label>
-                    <input class="form-control" type="password" name="CVV" placeholder="123" id="cvv">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="form-label" for="zip">ZIP</label>
-                    <input class="form-control" type="text" name="ZIP" placeholder="123" id="zip">
-                  </div>
-                </div>
-                
-                <button class="btn btn-primary px-3 " name="btn_save">PAY </button>
-                </a>
-              </form>
-            </div>
-            <div class="text-block">
-              <h6>Cancellation policy</h6>
-              <p class="text-sm text-muted">Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of .</p>
-              <p class="text-sm text-muted">He must have tried it a hundred times, shut his eyes so that he wouldn't have to look at the flounde.</p>
-            </div>
-            <div class="row form-block flex-column flex-sm-row">
-              <div class="col text-center text-sm-left"><a class="btn btn-link text-muted" href="user-booking-2.html"> <i class="fa-chevron-left fa mr-2"></i>Back</a>
-              </div>
-              
-              
-            
-          </div>
+          //echo '<pre>'; print_r($products['id']); echo '</pre>';
 
           
+            
+        
+         ?>
+         
+        
+    <div class="progress rounded-0 sticky-top" style="height: 8px; top: 71px;">
+      <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <section class="py-5">
+    <form action="insertcart.php" method="POST">
+    <?php 
+              foreach($products as $product)  : 
+      ?>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 pl-xl-5">
+            <div class="card border-0 shadow">
+              <div class="card-body p-4">
+                <div class="text-block pb-3">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                    <h6> <a class="text-reset" href="#" ><?PHP echo $product->nom_prod; ?></a></h6> 
+                      
+                      
+                      
+                      <p class="text-muted text-sm mb-0"></p>
+                      <div class="mt-n1"><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-primary"></i><i class="fa fa-xs fa-star text-gray-200"></i>
+                      </div>
+                    </div><a href="detail-rooms.html"><img class="ml-3 rounded" src="img/photo/photo-1512917774080-9991f1c4c750.jpg" alt="" width="100"></a>
+                  </div>
+                </div>
+                <div class="text-block py-3">
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-3"><i class="fas fa-users fa-fw text-muted mr-2"></i>Product's category : </li>
+                    <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2" ></i><?PHP echo $product->categorie_prod; ?> </li>
+                  </ul>
+                </div>
+                <div class="text-block pt-3 pb-0">
+                  <table class="w-100">
+                    <tbody>
+                      <tr>
+                        <th class="font-weight-normal py-2">Product's price: </th>  
+                       
+                          <td class="text-right py-2"><?PHP echo number_format($product->prix_prod,2,',',' '); ?> DT</td>
+                        
+                      </tr>
+                      <tr>
+                        <th class="font-weight-normal pt-2 pb-3">Service fee</th>
+                        <td class="text-right pt-2 pb-3"><?PHP echo number_format($product->prix_prod *  0.22,2,',',' '); ?> TD</td>
+                      </tr>
+                    </tbody>
+                    
+                    <tfoot>
+                      <tr class="border-top">
+                        <th class="pt-3">Total</th>
+                        <td class="font-weight-bold text-right pt-3"><?PHP echo number_format($product->prix_prod *  1.22,2,',',' '); ?> TD</td>
+                         </tr> 
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <a href="cart.php?del=<?= $product->id_prod ; ?> "  class="btn btn-primary px-3">Remove from cart </a> 
+              <br> </br>
+              <a href="../../Controller/addcommande.php?id_prod= <?= $product->id_prod ; ?> "  class="btn btn-primary px-3">Order this product </a> 
+              
+              
+              <div class="card-footer bg-primary-light py-4 border-0">
+                <div class="media align-items-center">
+                  <div class="media-body">
+                    <h6 class="text-primary">Flexible – free cancellation</h6>
+                    <p class="text-sm text-primary opacity-8 mb-0">Cancel within 48 hours of booking to get a full refund. <a href="#" class="text-reset ml-3">More details</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-
-
+      
+   
+      </form>
+      
     </section>
+    <?php endforeach   ?>
+    
+    <?php
+            /*  $sql = "insert into commande (nameprod) values (:nameprod)" ;
+               try{
+               $db = config::getConnexion();
+               $query = $db->prepare($sql);
+               $query->execute([
+                   'nameprod'=> $product->nom_prod,
+                   'date_achat_comd'=>$date,
+                   
+                   
+                   
+                   
+               ]);
+               }
+               catch (PDOException $e) {
+                   $e->getMessage();
+               }
+               */
+
+      ?>
+    
+    
+    
      <!-- payment step-->
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">

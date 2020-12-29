@@ -1,9 +1,9 @@
 <?php 
 //require_once('config.php') ; 
-require_once 'db.class.php' ;
+require_once '../Model/db.class.php' ;
 require_once 'productsC.php' ; 
-require_once 'panier.class.php' ;
-require_once 'commande.class.php' ;
+require_once '../Model/panier.class.php' ;
+require_once '../Model/commande.class.php' ;
 
 
 

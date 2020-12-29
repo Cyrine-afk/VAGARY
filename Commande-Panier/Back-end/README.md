@@ -1,2 +1,0 @@
-# VAGARY
-Travel Website

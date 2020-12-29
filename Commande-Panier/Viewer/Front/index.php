@@ -1,6 +1,6 @@
 <?php
-include 'productsC.php' ; 
-include 'panier.class.php' ; 
+require_once '../../Controller/productsC.php' ; 
+require_once '../../Model/panier.class.php' ; 
 $prod=new productsC;
 
     if (isset($_GET['search'])) {
@@ -338,7 +338,7 @@ $prod=new productsC;
             <!-- Slides-->
 			  <?PHP $total=0; ?>
 				<?PHP 
-			  require_once 'db.class.php' ;
+			  require_once '../../Model/db.class.php' ;
 			  $DB = new DB() ;
 			  
 			  $products = $DB->query('SELECT * FROM produit') ;  ?>
@@ -347,7 +347,7 @@ $prod=new productsC;
               <!-- place item-->
               <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                 <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/produit/<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
+                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/produit/<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="../../Controller/addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
                     
                     <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
                         <svg class="svg-icon text-white">
