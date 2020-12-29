@@ -1,10 +1,8 @@
 <?php 
 //require_once('config.php') ; 
-require_once 'db.class.php' ;
-require_once 'productsC.php' ; 
-require_once 'panier.class.php' ;
-require_once 'commande.class.php' ;
-
+require_once '../Model/db.class.php' ;
+require_once '../Controller/productsC.php' ; 
+require_once '../Model/panier.class.php' ;
 
 
 $prod=new productsC;
@@ -16,7 +14,7 @@ $DB = new DB() ;
         $listP = $prod->afficherproducts();
     }
     */
-    $commande  = new Commande () ; 
+    $panier  = new Panier () ; 
 
 
 if (isset($_GET['id_prod'])) 
@@ -27,15 +25,15 @@ if (isset($_GET['id_prod']))
     {
     die ("Ce produit n'esxite pas" ) ; 
     }
-    $commande->add ($prod[0]->id_prod) ; 
-    die ('Order Added to your order list <a href="javascript:history.back()">return to your Cart </a>') ; 
+    $panier->add ($prod[0]->id_prod) ; 
+    die ('Product  Added to your Cart list <a href="javascript:history.back()">return to shop </a>') ; 
 
 
 
     }
 else
 {
-    die ("Error adding order " ) ; 
+    die ("Vous n'avez pas selectionne le produit ajouter au panier " ) ; 
 
 }
 
@@ -44,3 +42,5 @@ else
 
 
 ?>
+
+
