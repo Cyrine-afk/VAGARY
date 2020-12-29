@@ -290,16 +290,10 @@ session_start();
             <p class="text-success"><span class="text-success h5"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?> </span></p>
             <hr class="my-4">
             <form class="form" id="booking-form" method="POST" action="reservation.php" autocomplete="off">              
-              <div class="form-group">
-                <a href="reservation.php?id_voy=<?php echo $trip['id_voy']; ?>"> BOOK YOUR TRIP </a>
+              <div class="text-center">
+                <a class="text-secondary text-sm" href="reservation.php?id_voy=<?php echo $trip['id_voy']; ?>"> <i class="fa fa-heart"></i>  More details about this trip </a>
               </div>
             </form>
-            <p class="text-muted text-sm text-center">Enjoy your trip !</p>
-            <hr class="my-4">
-            <div class="text-center">
-              <p> <a class="text-secondary text-sm" href="#"> <i class="fa fa-heart"></i> Bookmark This Trip</a></p>
-              
-            </div>
           </div>
         </div>
       </div>

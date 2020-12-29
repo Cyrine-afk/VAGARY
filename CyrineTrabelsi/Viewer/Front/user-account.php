@@ -261,8 +261,8 @@ session_start ();
                     <use xlink:href="#diary-1"> </use>
                   </svg>
                 </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="user-grid.php">Reservations &amp; trips</a></h5>
-                <p class="text-muted card-text text-sm">Review your reservations, upcoming trips and even old ones</p>
+                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="user-grid.php">Reservations &amp; influencers</a></h5>
+                <p class="text-muted card-text text-sm">Review your reservations, upcoming trips and which influencers you're following</p>
               </div>
             </div>
           </div>

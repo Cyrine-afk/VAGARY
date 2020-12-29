@@ -208,8 +208,7 @@
           </ul>
         </div>
         <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
+          <div class="container">
 
 
             <?php
@@ -219,7 +218,6 @@
             ?>
               
               <!-- Horizontal Form-->
-              <div class="col-lg-6">
                 <div class="block">
                   <div class="title"><strong class="d-block">Edit images</strong><span class="d-block">Fill in this form to add a new travel theme to your website</span></div>
                   <div class="block-body">
@@ -238,7 +236,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img1" id="img1" required></input>
+                              <img src="<?php echo $li["img1"] ?>">
+                                <input type="file" class="btn btn-primary" name="img1" id="img1" value="<?= $li['img1'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -251,7 +250,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img2" id="img2" required></input>
+                              <img src="<?php echo $li["img2"] ?>">
+                                <input type="file" class="btn btn-primary" name="img2" id="img2" value="<?= $li['img2'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -264,7 +264,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img3" id="img3" required></input>
+                              <img src="<?php echo $li["img3"] ?>">
+                                <input type="file" class="btn btn-primary" name="img3" id="img3" value="<?= $li['img3'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -277,7 +278,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img4" id="img4" required></input>
+                              <img src="<?php echo $li["img4"] ?>">
+                                <input type="file" class="btn btn-primary" name="img4" id="img4" value="<?= $li['img4'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -290,7 +292,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img5" id="img5" required></input>
+                              <img src="<?php echo $li["img5"] ?>">
+                                <input type="file" class="btn btn-primary" name="img5" id="img5" value="<?= $li['img5'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -303,7 +306,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img6" id="img6" required></input>
+                              <img src="<?php echo $li["img6"] ?>">
+                                <input type="file" class="btn btn-primary" name="img6" id="img6" value="<?= $li['img6'] ?>" required></input>
                               </div>
                             </div>
                           </div>
@@ -346,7 +350,6 @@
                     </form>
                   </div>
                 </div>
-              </div>
 
               <?php }
                 /*else { // Si l'utilisateur essaye d'accéder directement à la page sans passer par showAlbums
@@ -354,7 +357,6 @@
                 }*/
               ?>
               
-            </div>
           </div>
         </section>
         <footer class="footer">

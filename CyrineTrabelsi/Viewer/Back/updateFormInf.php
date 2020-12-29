@@ -302,7 +302,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf" required></input>
+                                <img src="<?php echo $i["img_inf"] ?>"> 
+                                <input type="file" class="btn btn-primary" name="profilePic_inf" id="profilePic_inf" value="<?php echo $i["img_inf"] ?>" required></input>
                               </div>
                             </div>
                           </div>

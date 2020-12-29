@@ -216,14 +216,18 @@ session_start ();
               <div class="card-header bg-gray-100 py-4 border-0 text-center"><a class="d-inline-block" href="#"><img class="d-block avatar avatar-xxl p-2 mb-2" src="<?php  echo $i['img_inf']?>" alt=""></a>
                 <h5><?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?></h5>
 
-                <form method="POST">
-                <!--<button class="btn btn-primary like_button rounded-xl h-100" name="like_button" type="button" data-content_id="7" > Follow </button>-->
-                <button type="submit" class="btn btn-primary rounded-xl h-100" name="follow_button"  value="Follow" >Follow</button>
-                </form>
+                <?php
+                
+                if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+                { 
 
+                ?>
+
+                <form method="POST">
+                  <!--<button class="btn btn-primary like_button rounded-xl h-100" name="like_button" type="button" data-content_id="7" > Follow </button>-->
+                  <button type="submit" class="btn btn-primary rounded-xl h-100" name="follow_button"  value="Follow" >Follow</button>
+                </form>
                   <?php
-                    if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
-                    { 
                      if(isset($_POST["follow_button"]) && (!empty($_POST['follow_button']))){
                        //echo "work";
                        include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ClientFollowInfC.php';
@@ -233,13 +237,7 @@ session_start ();
                        $Res1C=new ClientFollowInfC();
                        $Res1C->ajouterUserFollowInf($Res1);
 
-                  ?>
-
-                  <br>
-                  <a type="submit" class="btn btn-primary rounded-xl h-100" href="followers.php?id_inf=<?php echo $i["id_inf"] ?>" > Followers </a>
-
-                  <?php     
-                  try {
+                      try {
                         $sql = "UPDATE influenceur SET nbr_ab_inf = nbr_ab_inf + 1 WHERE id_inf=".$_GET['id_inf'] ;
                         $db = config::getConnexion();
                         $query = $db->query($sql);
@@ -248,9 +246,12 @@ session_start ();
                         catch (PDOException $e) {
                             $e->getMessage();
                         }
-                     }
                     }
+                  }
                   ?>
+
+                  <br>
+                  <a type="submit" class="btn btn-primary rounded-xl h-100" href="followers.php?id_inf=<?php echo $i["id_inf"] ?>" > Followers </a>
 
                   <script>
                     function disableBtn() {
@@ -269,7 +270,7 @@ session_start ();
                   </div>
                   
                   <div class="media-body">
-                    <p class="mb-0"><?php echo $i['nbr_ab_inf'] ?> K followers</p>
+                    <p class="mb-0"><?php echo $i['nbr_ab_inf'] ?> K Visitors</p>
                   </div>
                 </div>
                 <div class="media align-items-center mb-3">

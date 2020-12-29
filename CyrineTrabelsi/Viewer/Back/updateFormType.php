@@ -208,8 +208,7 @@
           </ul>
         </div>
         <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
+          <div class="container">
 
 
             <?php
@@ -219,7 +218,6 @@
             ?>
               
               <!-- Horizontal Form-->
-              <div class="col-lg-6">
                 <div class="block">
                   <div class="title"><strong class="d-block">Update a theme</strong><span class="d-block">Fill in this form to add a new travel theme to your website</span></div>
                   <div class="block-body">
@@ -246,7 +244,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary" name="img_type" id="img_type" ></input>
+                                <img src="<?php echo $i['img_type'] ?>">
+                                <input type="file" class="btn btn-primary" name="img_type" value="<?php echo $i["img_type"] ?>" id="img_type" ></input>
                               </div>
                             </div>
                           </div>
@@ -289,7 +288,6 @@
                     </form>
                   </div>
                 </div>
-              </div>
 
               <?php }
                 /*else { // Si l'utilisateur essaye d'accéder directement à la page sans passer par showAlbums
@@ -297,7 +295,6 @@
                 }*/
               ?>
               
-            </div>
           </div>
         </section>
         <footer class="footer">

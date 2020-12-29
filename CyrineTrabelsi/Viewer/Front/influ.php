@@ -8,6 +8,9 @@ session_start ();
   $inf1= new InfluC();
   $liste=$inf1->afficherInfluenceur();
 
+  $inf2= new InfluC();
+  $liste2=$inf2->afficherInfluenceur();
+
   
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TypeC.php';
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Type.php';
@@ -263,7 +266,7 @@ session_start ();
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title"> <?php echo $i['nom_inf'] ?> <?php echo $i['prenom_inf'] ?> </h6>
-                <p class="card-subtitle text-muted text-xs text-uppercase"><?php echo $i['nbr_ab_inf'] ?>K followers    </p>
+                <p class="card-subtitle text-muted text-xs text-uppercase"><?php echo $i['nbr_ab_inf'] ?> K Visitors    </p>
               </div>
             </div>
           </div>
@@ -288,6 +291,10 @@ session_start ();
           <!-- Additional required wrapper-->
           <div class="swiper-wrapper pt-2 pb-5">
             <!-- Slides-->
+            <?php
+            foreach($liste2 as $i) { 
+              //echo $i['feedback_inf'];
+            ?>
             <div class="swiper-slide px-3">
               <div class="testimonial card rounded-lg shadow border-0">
                 <div class="testimonial-avatar"><img class="img-fluid" src="<?php  echo $i['img_inf']?>" alt="..."></div>
@@ -297,16 +304,9 @@ session_start ();
                 </div>
               </div>
             </div>
-            
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
+            <?php
+            }
+            ?>
 
           </div>
           <div class="swiper-pagination">     </div>
