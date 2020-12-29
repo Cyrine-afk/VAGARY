@@ -15,7 +15,7 @@ class ClientFollowInfC {
         }	
     }
 
-    public function afficherUserFollowInfClient($id_client) {
+    public function afficherUserFollowInfClient($id_inf) {
         $sql='SELECT client.id_client, 
         client.nom_client,
         client.prenom_client,
@@ -25,7 +25,36 @@ class ClientFollowInfC {
         influenceur.nom_inf,
         influenceur.prenom_inf,
         influenceur.img_inf,
-        influenceur.nbr_ab_inf
+        influenceur.nbr_ab_inf,
+        client_follow_inf.date_follow
+        FROM  client_follow_inf 
+        inner join client on client_follow_inf.id_client=client.id_client 
+        inner join influenceur on client_follow_inf.id_inf=influenceur.id_inf 
+        where client_follow_inf.id_inf='.$id_inf;
+        $db=Config::getConnexion();
+        try{
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+    }
+
+    public function afficherUserFollowInfClient2($id_client) {
+        $sql='SELECT client.id_client, 
+        client.nom_client,
+        client.prenom_client,
+        client.login_client,
+        client.img_client,
+        influenceur.id_inf,
+        influenceur.nom_inf,
+        influenceur.prenom_inf,
+        influenceur.img_inf,
+        influenceur.nbr_ab_inf,
+        influenceur.date_ajout_inf,
+        client_follow_inf.date_follow,
+        client_follow_inf.id_follow
         FROM  client_follow_inf 
         inner join client on client_follow_inf.id_client=client.id_client 
         inner join influenceur on client_follow_inf.id_inf=influenceur.id_inf 
@@ -39,6 +68,7 @@ class ClientFollowInfC {
             die('Erreur: '.$e->getMessage());
         }	
     }
+    
 
     public function chercherid($id) {
         $sql="SELECT * FROM client_follow_inf where id_follow=:id";

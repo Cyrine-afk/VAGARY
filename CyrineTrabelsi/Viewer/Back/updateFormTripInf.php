@@ -325,7 +325,8 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-prepend">
-                                <input type="file" class="btn btn-primary"  name="img_voy" id="img_voy" required></input>
+                                <img src="<?php echo $i["img_voy"] ?>">
+                                <input type="file" class="btn btn-primary" value="<?php echo $i["img_voy"] ?>" name="img_voy" id="img_voy" required></input>
                               </div>
                             </div>
                           </div>

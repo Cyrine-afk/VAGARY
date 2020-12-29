@@ -26,11 +26,43 @@ class TripInfUserC {
         influenceur.nom_inf,
         influenceur.prenom_inf,
         influenceur.img_inf,
-        tripinf.img_voy 
+        tripinf.img_voy,
+        tripinfuser.id_res 
         FROM tripinfuser 
         inner join tripinf on tripinfuser.id_voy=tripinf.id_voy 
         inner join influenceur on tripinfuser.id_inf=influenceur.id_inf 
         where tripinfuser.id_client='.$id_client;
+        $db=Config::getConnexion();
+        try{
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+    }
+
+
+    public function afficherTripInfUserTrip($id_voy) {
+        $sql='SELECT tripinf.id_voy, 
+        tripinf.destination_voy,
+        tripinf.date_voy,
+        tripinf.duree_voy,
+        tripinf.nom_voy,
+        tripinf.prix_voy,
+        client.img_client,
+        client.nom_client,
+        client.prenom_client,
+        influenceur.id_inf,
+        influenceur.nom_inf,
+        influenceur.prenom_inf,
+        influenceur.img_inf,
+        tripinf.img_voy
+        FROM tripinfuser 
+        inner join tripinf on tripinfuser.id_voy=tripinf.id_voy 
+        inner join influenceur on tripinfuser.id_inf=influenceur.id_inf 
+        inner join client on tripinfuser.id_client=client.id_client
+        where tripinfuser.id_voy='.$id_voy;
         $db=Config::getConnexion();
         try{
             $liste = $db->query($sql);

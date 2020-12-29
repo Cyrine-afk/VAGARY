@@ -1,11 +1,11 @@
 <?php
 include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
 include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
+
 session_start();
 
-
-
-
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ClientFollowInfC.php';
+require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ClientFollowInf.php';
 
 ?>
 <!DOCTYPE html>
@@ -104,8 +104,8 @@ session_start();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">User</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user_profile.html">Profile   </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="signin.html">Sign in   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="user-account.php">Profile   </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="login.html">Sign in   </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="signup.html">Sign up   </a></li></ul>
                         </div>
                       </div>
@@ -221,7 +221,7 @@ session_start();
                   <?php $yrdata2 = strtotime($row['date_voy']. ' + '. $row['duree_voy'] .' days');?>
                   <p class="subtitle font-weight-normal text-sm mb-2"><?php echo date('M', $yrdata2).' '.date('yy', $yrdata2); ?> </p>
                      
-                  <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $row['id_voy'] ?>"><?php echo $row['nom_voy']?></a></h6>
+                  <h6 class="card-title"><a class="text-decoration-none text-dark" href="Up_trip_profile.php?id_voy=<?php echo $row['id_voy'] ?>"></a></h6>
                   <h6 class="card-title"><i class="fa fa-plane w3-small"></i><?php  echo ' '.' '.$row['destination_voy']?></h6>
                   <div class="d-flex card-subtitle mb-3">
                     <p class="flex-grow-1 mb-0 text-muted text-sm"> With  <a href="profile_influ.php?id_inf=<?php echo $row['id_inf']?> "> <?php echo $row['nom_inf'].' '.$row['prenom_inf'] ?> </a> </p>
@@ -230,6 +230,16 @@ session_start();
                   <div class="w-100">
                     <p class="card-text text-muted"><span class="h4 text-primary"><?php  echo $row['prix_voy'].' '.'DT'?></span></p>
                   </div>
+                  <br>
+                  <form method="POST">
+                    <input type="submit" class="btn btn-primary px-3 " name="supprimer" value="Delete"></input>
+                  </form>
+                  <?php
+                    if (isset($_POST["supprimer"])) {
+                      $Res1C->supprimerTripInfUser($row['id_res']);
+                    }
+                  ?>
+                  <br>
                 </div>
               </div>
             </div>
@@ -245,6 +255,43 @@ session_start();
         </div>
         
     </section>
+
+    <section class="py-5">
+
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+          <h1 class="hero-heading mb-0">Followed influencers </h1> 
+        </div>
+
+        <div class="text-block">
+            <div class="row mb-3">
+
+                <?php
+                  if (isset($_SESSION['l']) && isset($_SESSION['p'])) {
+
+                    $client1= new ClientFollowInfC();
+                    $liste2=$client1->afficherUserFollowInfClient2($_SESSION["e"]);
+
+                    foreach($liste2 as $l2) {
+                ?>
+
+              <div class="col-auto text-center text-sm">
+                <img class="avatar avatar-border-white avatar-xxl mb-1" src="<?php echo $l2["img_inf"] ?>">
+                <br>
+                <h5><?php echo $l2["nom_inf"].' '.$l2["prenom_inf"] ?></h5>
+                <p class="text-muted text-sm "> <?php echo $l2["nbr_ab_inf"].' '.'k Visitors' ?> </p>
+                <span class="badge badge-pill p-2 badge-secondary-light"> <?php echo 'Followed since: <br><br>'.$l2["date_follow"] ?> </span>
+                
+              </div>
+                <?php
+                    }
+                  }
+                ?>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
         <!-- Main block - menus, subscribe form-->

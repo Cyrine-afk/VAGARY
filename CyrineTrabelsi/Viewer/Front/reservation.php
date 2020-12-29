@@ -284,11 +284,30 @@ $liste=$trip1->afficherTripInf();
             </div>
 
             <div class="row form-block flex-column flex-sm-row">
+
+            <?php
+              if ($trip["nbr_perso_voy"]>0){
+            ?>
               <form method="POST">
                 <div class="col text-center text-sm-left">
                 </div>
                 <div class="col text-center text-sm-right" name="ViewRes"><a class="btn btn-primary px-3" href="bookingTripInf.php?id_voy=<?php echo $trip['id_voy'] ?>"> Proceed to booking <i class="fa-chevron-right fa ml-2"></i></a></div>
               </form>
+            <?php
+              }
+              else {
+            ?>
+            <h3> We're sorry, this trip is full </h3>
+            <form method="POST">
+              <div class="col text-center text-sm-left">
+              </div>
+              <div class="col text-center text-sm-right" name="BackIflu"><a class="btn btn-primary px-3" href="influ.php"> Try again <i class="fa-chevron-right fa ml-2"></i></a></div>
+            </form>
+            <?php
+              }
+            ?>
+
+
             </div>
 
           </div>
@@ -307,7 +326,14 @@ $liste=$trip1->afficherTripInf();
                 </div>
                 <div class="text-block py-3">
                   <ul class="list-unstyled mb-0">
+                  <?php
+                    if ($trip["nbr_perso_voy"]>0){
+                  ?>
                     <li class="mb-3"><i class="fas fa-users fa-fw text-muted mr-2"></i><?php echo $trip['nbr_perso_voy']; ?> guests</li>
+                  <?php
+                    }
+                    echo '<li class="mb-3"><i class="fas fa-users fa-fw text-muted mr-2"></i>No more guests allowed</li>';
+                  ?>
                     <li class="mb-0"><i class="far fa-calendar fa-fw text-muted mr-2"></i><?php echo $trip['date_voy']; ?><i class="fas fa-arrow-right fa-fw text-muted mx-3"></i><?php echo date('yy-m-d', $yrdata2); ?></li>
                   </ul>
                 </div>

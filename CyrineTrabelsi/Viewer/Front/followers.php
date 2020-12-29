@@ -9,14 +9,6 @@
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ClientFollowInfC.php';
     require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ClientFollowInf.php';
 
-    /*$inf1= new InfluC();
-    $liste=$inf1->afficherInfluenceur();*/
-
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfC.php';
-    require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInf.php';
-
-    $trip1= new TripInfC();
-    $liste=$trip1->afficherTripInf();
 
 ?>
 
@@ -220,6 +212,15 @@
       <!-- /Navbar -->
     </header>
     <section class="py-5">
+
+    <?php
+    
+    if (isset($_SESSION['l']) && isset($_SESSION['p'])) {
+      if (isset($_GET['id_inf'])) {
+        $influenceur=new InfluC();
+        $i=$influenceur->chercherid($_GET['id_inf']);
+    ?>
+
       <div class="container">
         <!-- Breadcrumbs -->
         <ol class="breadcrumb pl-0  justify-content-start">
@@ -228,36 +229,43 @@
           <li class="breadcrumb-item active">Followers</li>
         </ol>
         <div class="d-flex justify-content-between align-items-center mb-5">
-          <h1 class="hero-heading mb-0">Who's following <?php /*echo nom influenceur*/ ?> ?</h1>
+          <h1 class="hero-heading mb-0"><?php echo $i["nom_inf"].' '.$i["prenom_inf"]."'s followers <br> " ?> </h1>
         </div>
-
+    
         <div class="text-block">
             <div class="row mb-3">
+
+              <?php
+                 $client1= new ClientFollowInfC();
+                 $liste2=$client1->afficherUserFollowInfClient($_GET["id_inf"]);
+                
+                 foreach($liste2 as $l2) {
+              ?>
+
               <div class="col-auto text-center text-sm">
-                <img class="avatar avatar-border-white avatar-xxl mb-1" src="img/avatar/avatar-0.jpg">
+                <img class="avatar avatar-border-white avatar-xxl mb-1" src="<?php echo $l2["img_client"] ?>">
                 <br>
-                <h5>Ondrej</h5>
-                <p class="text-muted text-sm ">Los Angeles, CA  </p>
-                <span class="badge badge-pill p-2 badge-secondary-light">February 16, 2019</span>
+                <h5><?php echo $l2["nom_client"].' '.$l2["prenom_client"] ?></h5>
+                <p class="text-muted text-sm "> <?php echo '@'.$l2["login_client"] ?> </p>
+                <span class="badge badge-pill p-2 badge-secondary-light"> <?php echo 'Following since: <br><br>'.$l2["date_follow"] ?> </span>
               </div>
-              <div class="col-auto text-center text-sm">
-                <img class="avatar avatar-border-white avatar-xxl mb-1" src="img/avatar/avatar-1.jpg">
-                <br>
-                <h5>Julie</h5>
-                <p class="text-muted text-sm ">Los Angeles, CA  </p>
-                <span class="badge badge-pill p-2 badge-secondary-light">February 16, 2019</span>
-              </div>
-              <div class="col-auto text-center text-sm">
-                <img class="avatar avatar-border-white avatar-xxl mb-1" src="img/avatar/avatar-2.jpg">
-                <br>
-                <h5>Barbora</h5>
-                <p class="text-muted text-sm ">Los Angeles, CA  </p>
-                <span class="badge badge-pill p-2 badge-secondary-light">February 16, 2019</span>
-              </div>
+              
+              <?php
+                    }
+                }
+              }
+              else {
+                echo '<br> <br> <h3 > Please login or sign up to view this section </h3>
+                  <br>
+                  <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="./login.html"">Sign in</a></li>
+                  <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="signup.html">Sign up</a></li>';
+                }
+              ?>
+
             </div>
-          </div>
-          
-      </div>
+
+
+        </div>
     </section>
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
@@ -348,7 +356,7 @@
     <script src="vendor/object-fit-images/ofi.min.js"></script>
     <!-- Swiper Carousel                       -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
-    <script>var basePath = ''</script>
+    <script>var basePath = '';</script>
     <!-- Main Theme JS file    -->
     <script src="js/theme.js"></script>
   </body>

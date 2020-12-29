@@ -9,7 +9,7 @@ $query="SELECT * FROM influenceur ORDER BY nbr_ab_inf LIMIT 3";
 $result=mysqli_query($connect, $query);
 if ($row =  mysqli_fetch_array($result)) {
   $total_records1 = mysqli_num_rows($result);
-  echo $total_records1;
+  //echo $total_records1;
 }
 
 

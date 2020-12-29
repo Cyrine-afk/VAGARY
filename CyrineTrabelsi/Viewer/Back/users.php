@@ -177,11 +177,7 @@ if (isset($_POST['tri'])) {
           </ul>
         </div>
         <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
-              
-              <div class="col-lg-12">
-                <div class="block margin-bottom-sm">
+          <div class="container">
                   <div class="title"><strong>Les comptes clients </strong></div>
                   <div class="table-responsive"> 
                     <form action="" method="POST">
@@ -273,13 +269,7 @@ if (isset($_POST['tri'])) {
                 ?>
                     </table>
                   </div>
-                </div>
-              </div>
               
-           
-           
-            </div>
-          </div>
         </section>
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">

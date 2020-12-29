@@ -14,6 +14,15 @@ require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ImgT
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
 require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
 
+
+include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
+include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
+
+
+include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/ClientFollowInfC.php';
+include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/ClientFollowInf.php';
+
+
 $trip1= new TripInfC();
 $liste=$trip1->afficherTripInf();
 
@@ -246,7 +255,6 @@ $liste=$trip1->afficherTripInf();
             <li class="breadcrumb-item active">Trip to <?php echo $trip['destination_voy'] ?>   </li>
           </ol>
           <div class="text-block">
-            <p class="subtitle">Monday Apr 17 - Tuesday Apr 18</p>
             <h1 class="hero-heading mb-3"> <?php echo $trip['nom_voy'] ?>  </h1>
           </div>
           <div class="text-block">
@@ -305,9 +313,20 @@ $liste=$trip1->afficherTripInf();
           <div class="text-block">
             <h6 class="mb-3">Who's coming</h6>
             <div class="row mb-3">
-              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-0.jpg" alt="Ondrej"><br>Ondrej</div>
-              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-1.jpg" alt="Julie"><br>Julie</div>
-              <div class="col-auto text-center text-sm"><img class="avatar avatar-border-white mb-1" src="img/avatar/avatar-2.jpg" alt="Barbora"><br>Barbora</div>
+              <?php
+                 $client1= new TripInfUserC();
+                 $liste2=$client1->afficherTripInfUserTrip($_GET["id_voy"]);
+                
+                 foreach($liste2 as $l2) {
+              ?>
+              <div class="col-auto text-center text-sm">
+                <img class="avatar avatar-border-white mb-1" src="<?php echo $l2["img_client"] ?>" >
+                <br>
+                <?php echo $l2["nom_client"].' '.$l2["prenom_client"] ?>
+              </div>
+              <?php
+                }
+              ?>
             </div>
           </div>
           <div class="text-block">
@@ -380,6 +399,7 @@ $liste=$trip1->afficherTripInf();
             <button class="btn btn-link pl-0" onclick="window.print()"><i class="fa fa-print mr-2"></i>Print </button>
           </div>
           <div class="text-block ">
+
             <form method="POST">
               <input type="submit" class="btn btn-primary px-3" name="reserver" href="user-grid.php" value="Confirm booking"></input>
             </form>
@@ -387,14 +407,30 @@ $liste=$trip1->afficherTripInf();
                 if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
                 { 
                   if(isset($_POST['reserver'])){
-                    include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/TripInfUserC.php';
-                    include 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/TripInfUser.php';
                     $date = date("Y/m/d");
                     $Res1=new TripInfUser($_GET["id_voy"],$_SESSION['e'],$trip['id_inf'],$date);
                     $Res1C=new TripInfUserC();
                     $Res1C->ajouterTripInfUser($Res1);
+
+                    try {
+                      $sql = "UPDATE tripinf SET nbr_perso_voy = nbr_perso_voy - 1 WHERE id_voy=".$_GET['id_voy'] ;
+                      $db = config::getConnexion();
+                      $query = $db->query($sql);
+                      //echo $query->rowCount() . " records UPDATED successfully <br>";
+                      }
+                      catch (PDOException $e) {
+                          $e->getMessage();
+                      }
+
                   }
                 }
+                
+                else {
+                  echo '<br> <br> <h3 > Please login or sign up to view this section </h3>
+                    <br>
+                    <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="./login.html"">Sign in</a></li>
+                    <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="signup.html">Sign up</a></li>';
+                  }
               ?>
 
           </div>
