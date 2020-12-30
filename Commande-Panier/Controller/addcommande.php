@@ -28,7 +28,8 @@ if (isset($_GET['id_prod']))
     die ("Ce produit n'esxite pas" ) ; 
     }
     $commande->add ($prod[0]->id_prod) ; 
-    die ('Order Added to your order list <a href="javascript:history.back()">return to your Cart </a>') ; 
+   // die ('Order Added to your order list <a href="javascript:history.back()">return to your Cart </a>') ; 
+   
 
 
 
@@ -38,9 +39,17 @@ else
     die ("Error adding order " ) ; 
 
 }
-
-
-
-
-
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagary</title>
+</head>
+<body>
+<p>order added, one moment...</p>
+
+<meta http-equiv="refresh" content="1;URL='<?php echo $_SERVER['HTTP_REFERER']; ?>'" />
+</body>
+</html>

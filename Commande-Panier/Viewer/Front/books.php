@@ -21,6 +21,7 @@ $prod= new productsC;
 
 
     }
+    $paiment = "non paye" ; 
     $date = date("Y/m/d"); 
 ?>
 
@@ -313,7 +314,7 @@ $prod= new productsC;
         $_POST['quantity'][0] = 1  ; 
          
              if(isset($_POST['btn'])){
-               $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity) values (:id_prod,:date_achat_comd,:prix_total,:quantity)" ;
+               $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity,paiment) values (:id_prod,:date_achat_comd,:prix_total,:quantity,:paiment)" ;
                try{
                $db = config::getConnexion();
                $query = $db->prepare($sql);
@@ -322,6 +323,7 @@ $prod= new productsC;
                    'date_achat_comd'=>$date,
                    'prix_total'=> $commande->total(),
                    'quantity'=>$_POST['quantity'][0],
+                   'paiment'=>$paiment
                  
                    
                    
@@ -331,7 +333,7 @@ $prod= new productsC;
                    $e->getMessage();
                }
               }
-              $ids[0] =  0 ; 
+              
       ?>
     </section>
    
