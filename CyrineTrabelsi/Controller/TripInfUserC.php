@@ -28,7 +28,7 @@ class TripInfUserC {
         influenceur.img_inf,
         tripinf.img_voy,
         tripinfuser.id_res 
-        FROM tripinfuser 
+        FROM tripinfuser  
         inner join tripinf on tripinfuser.id_voy=tripinf.id_voy 
         inner join influenceur on tripinfuser.id_inf=influenceur.id_inf 
         where tripinfuser.id_client='.$id_client;
