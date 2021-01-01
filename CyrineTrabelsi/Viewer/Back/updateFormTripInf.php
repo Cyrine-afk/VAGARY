@@ -197,7 +197,8 @@
               <li><a href="formInf.php">Add an influencer</a></li>
               <li><a href="formType.php">Add a theme</a></li>
               <li><a href="ajouterP.php">Add a product</a></li>
-              <li><a href="ajouterP.php">Add a trip</a></li>
+              <li><a href="AjouterHotel.php">Add a hotel</a></li>
+              <li><a href="AjouterVol.php">Add a flight</a></li>
               <li><a href="ajouterP.php">Add a community</a></li>
             </ul>
           </li>
@@ -207,7 +208,10 @@
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
               <li><a href="comm.html">Communities</a></li>
-              <li><a href="trips.html">Trips</a></li>
+              <li><a href="AfficherHotel.php">Hotels</a></li>
+              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
+              <li><a href="AfficherVol.php">Flights</a></li>
+              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
               <li><a href="products.html">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
               <li><a href="users.php">Users</a></li>
