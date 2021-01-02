@@ -1,6 +1,6 @@
 <?php
 
-session_start (); 
+session_start ();  
 
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/InfluC.php';
   require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/Influ.php';
@@ -96,8 +96,8 @@ session_start ();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Trips</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="nat_trip.html">National Trips  </a></li>
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="inter_trips.html">International Trips / Vans <span class="badge badge-info-light ml-1">New</span> </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="AfficherHotel.php">Hotels  </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="AfficherVol.php">Flights </a></li>
                             
                           </ul>
                         </div>
