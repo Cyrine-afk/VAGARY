@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+
 class CommandeC
 {
     
@@ -10,20 +10,6 @@ class CommandeC
         $db = config::getConnexion();
         $req=$db->prepare($sql);
         $req->bindValue(':id_comd',$id_client);
-        try{
-            $req->execute();
-           
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
-    }
-
-    function supprimerPaiment($id_client){
-        $sql="DELETE FROM paiment where id=:id";
-        $db = config::getConnexion();
-        $req=$db->prepare($sql);
-        $req->bindValue(':id',$id_client);
         try{
             $req->execute();
            
@@ -49,32 +35,6 @@ class CommandeC
             die('Erreur: '.$e->getMessage());
         }
     }
-
-     function mask_credit_card ($number)
-
-    {
-            return str_repeat("*",12) . substr($number,-4) ; 
-    }
-
-
-    function afficherPaiment()
-    {
-
-        $sql='SELECT * FROM paiment';
-
-        $db = config::getConnexion();
-        try
-        {
-            $list=$db->query($sql);
-            return $list;
-        }
-        catch (Exception $e)
-        {
-            die('Erreur: '.$e->getMessage());
-        }
-    }
-
-
   function afficherClient1($id)
     {
 
@@ -169,10 +129,11 @@ function modifierClient($id_comd,$date_achat_comd,$quantity,$paiment)
         }
     }
 
-    function afficherpaimentsearch($search)
+
+    function affichercommandedate($id)
     {
 
-        $sql="select * from paiment where id='$search' OR NameOnCard='$search' ";
+        $sql="select * from vagary.commande where id_prod='$id' ";
 
         $db = config::getConnexion();
         try
@@ -185,5 +146,6 @@ function modifierClient($id_comd,$date_achat_comd,$quantity,$paiment)
             die('Erreur: '.$e->getMessage());
         }
     }
+    
 }
 ?>    

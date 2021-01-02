@@ -3,10 +3,11 @@
 include "ComC.php";
 $tri="";
 $commande=new CommandeC();
-$listc=$commande->afficherCommande()  ;
+$listc=$commande->afficherPaiment() ;
 if (isset($_POST['search'])) {
-  $listc=$commande->affichercommandesearch($_POST['search']);
+  $listc=$commande->afficherpaimentsearch($_POST['search']);
 }
+
 /*if (isset($_POST['tri'])) {
   if ($_POST['tri']=="age") {
     $tri="date_nai_client";
@@ -136,14 +137,16 @@ if (isset($_POST['search'])) {
         <ul class="list-unstyled">
           <li class="active"><a href="index.php"> <i class="icon-home"></i>Home </a></li>
           
+          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Forms</a>
+            
+          </li>
+
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Tables</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="tableP.php">Tableau des commandes</a></li> 
               <li><a href="TablePaiment.php">Tableau des paiment</a></li> 
+             
             </ul>
-          </li>
-
-    
           </li>
           <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
         </ul>
@@ -165,18 +168,18 @@ if (isset($_POST['search'])) {
         </div>
         <section class="no-padding-top">
           <div class="container">
-                  <div class="title"><strong>Les commandes </strong></div>
+                  <div class="title"><strong>Les paiments </strong></div>
                   <div class="table-responsive"> 
                   <form action="" method="POST">
                       <table>
                         <tr>
-                     <td><input type="text" id="search" name="search"  class="mr-sm-25 form-control" placeholder="Search Date,payment status or ID"></td>
+                     <td><input type="text" id="search" name="search"  class="mr-sm-25 form-control" placeholder="Search Name or ID"></td>
                     <td><input type="submit" value="Rechercher" class="btn btn-primary" ></td>
                     <form action="" method="POST">
-                      
+                       
                         <td> <input type="submit" value="Refresh" class="btn btn-primary" style="position: relative;left: 680px"></td>
                          </form>
-                    <td>  <form action="imprimerC.php">
+                    <td>  <form action="imprimerP.php">
                       <input type="submit" value="Imprimer" class="btn btn-primary" style="position: relative; left: 750px ">
                     </form></td>
                         </tr>
@@ -186,20 +189,19 @@ if (isset($_POST['search'])) {
 
 
 
-
-
                     <table class="table">
                       <tr>
                        
 
-                      <td>ID_Commande</td>
-                      <td>ID_Produit</td>
-                      <td>Prix_Total</td>
-                      <td>Quantite</td>
-                      <td>Date</td>
-                      <td>Paiment</td>
+                      <td>ID</td>
+                      <td>CardNumber</td>
+                      <td>NameOnCard</td>
+                      <td>ExpiryDate</td>
+                      <td>CVV</td>
+                      <td>ZIP</td>
+                    
                         
-                         <td>Edit</td>
+                     
                         <td>Delete</td>
                 
                     </tr>
@@ -209,33 +211,26 @@ if (isset($_POST['search'])) {
                 {
                     echo '
                         <tr>
+                            <td>'.$row["id"].'</td>
+                            <td>'.$row=$commande->mask_credit_card($row["CardNumber"]) .'</td>
+                            <td>'.$row["NameOnCard"].'</td>
+                            <td>'.$row["ExpiryDate"].'</td>
+                            <td>'.$row["CVV"].'</td>
+                             <td>'.$row["ZIP"].'</td>
                            
-                            <td>'.$row["id_comd"].'</td>
-                            <td>'.$row["id_prod"].'</td>
-                            <td>'.$row["prix_total"].'</td>
-                            <td>'.$row["quantity"].'</td>
-                             <td>'.$row["date_achat_comd"].'</td>
-                             <td>'.$row["paiment"].'</td>
                             
-                            <td>
-                                <form action="modifierC.php" method="get">
-                                    <input type="hidden" id="id_comd" name="id_comd" value="'.$row["id_comd"].'">
-                                    <input type="hidden" id="prix" name="prix_total" value="'.$row["prix_total"].'">
-                                    <input type="hidden" id="quantity" name="quantity" value="'.$row["quantity"].'">
-                                    <input type="hidden" id="date_achat_comd" name="date_achat_comd" value="'.$row["date_achat_comd"].'">
-                                    <input type="hidden" id="paiment" name="paiment" value="'.$row["paiment"].'">
-                                    
-                                    
-                                    <input type="submit" name="edit" value="edit"  #d63031">
+                            
+                            <td><form  action="suppPaiment.php" method="POST">
+                            <input type="hidden" id="id" name="id" value="'.$row["id"].'">
+                               <input type="submit" name="delete" value="delete"#d63031">
                                 </form>
                 
-                            </td>
+                            
                 
                 
                 
-                            <td><form  action="suppCommande.php" method="POST">
-                            <input type="hidden" id="id_comd"" name="id_comd"" value="'.$row["id_comd"].'">
-                    <input type="submit" name="delete" value="delete"  #d63031">
+                           
+                          
                      
                     </form>
                     </td>

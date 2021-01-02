@@ -1,32 +1,59 @@
-<?php
+<?php 
+
 include '../../Controller/productsC.php' ; 
 include '../../Model/panier.class.php' ; 
 require_once '../../Model/db.class.php' ;
-require_once '../../Model/commande.class.php';
+require_once '../../Model/commande.class.php' ;
+require_once '../../Controller/ComC.php' ;
 $prod= new productsC;
 
-    if (isset($_GET['search'])) {
-        $listP = $prod->rechercheproducts($_GET['search']);
-    } else {
-        $listP = $prod->afficherproducts();
-    }
-    $panier  = new Panier () ; 
-    $commande  = new Commande () ; 
-    //var_dump($_SESSION) ; 
-    ?>
-    <?php
-    if(isset($_GET['del'])) 
+if (isset($_GET['search'])) {
+    $listP = $prod->rechercheproducts($_GET['search']);
+} else {
+    $listP = $prod->afficherproducts();
+}
+$panier  = new Panier () ; 
+$commande  = new Commande () ; 
+//var_dump($_SESSION) ; 
+$paiment = "non paye" ; 
+$date = date("Y/m/d"); 
+$DB = new DB() ;
+$ids =  array_keys ($_SESSION['commande'] )  ; 
+if (empty($ids))
+{
+$products = array() ; 
+}
+  else
     {
-          $commande->del($_GET['del']) ; 
-
-
+  $products = $DB->query ('SELECT  * FROM produit WHERE id_prod IN ('.implode(',',$ids) .')')  ; 
     }
-    $paiment = "non paye" ; 
-    $date = date("Y/m/d"); 
-
-
     
+if(isset($_POST['btn'])){
+  $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity,paiment) values (:id_prod,:date_achat_comd,:prix_total,:quantity,:paiment)" ;
+  try{
+  $db = config::getConnexion();
+  $query = $db->prepare($sql);
+  $query->execute([
+      'id_prod' => $ids[0],
+      'date_achat_comd'=>$date,
+      'prix_total'=> $commande->total(),
+      'quantity'=>$_POST['quantity'],
+      'paiment'=>$paiment
+    
+      
+      
+  ]);
+  }
+  catch (PDOException $e) {
+      $e->getMessage();
+  }
+ }
+ 
 ?>
+
+
+
+
 
 
 
@@ -207,144 +234,114 @@ $prod= new productsC;
       </nav>
        <!-- /Navbar -->
     </header>
-    <?php 
-
-      $DB = new DB() ;
-      $ids =  array_keys ($_SESSION['commande'] )  ; 
-      if (empty($ids))
-      {
-      $products = array() ; 
-      }
-        else
-          {
-        $products = $DB->query ('SELECT  * FROM produit WHERE id_prod IN ('.implode(',',$ids) .')')  ; 
-          }
-        ?>
-
-        <section class="py-5">
-      
+    <!-- payment step-->
+    <div class="progress rounded-0 sticky-top" style="height: 8px; top: 71px;">
+      <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <section class="py-5">
       <div class="container">
-        <!-- Breadcrumbs -->
-        <ol class="breadcrumb pl-0  justify-content-start">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Host view   </li>
-        </ol>
-        <div class="d-flex justify-content-between align-items-end mb-5">
-          <h1 class="hero-heading mb-0">Your orders </h1><a class="btn btn-link text-muted" href="#">Past bookings</a>
-        </div>
-        <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row mb-5">
-          <div class="mr-3">
-            <p class="mb-3 mb-lg-0">You have <strong>2 orders</strong></p>
-          </div>
-          <div class="text-center">
-            <label class="form-label mr-2" for="form_sort">Sort by</label>
-            <select class="selectpicker mr-3 mb-3 mb-lg-0" name="sort" id="form_sort" data-style="btn-selectpicker" title="">
-              <option value="sortBy_0">Newest   </option>
-              <option value="sortBy_1">Oldest   </option>
-              <option value="sortBy_2">Paid   </option>
-            </select>
-          </div>
-        </div>
-            
-            <div class="row">
-            
-            <?php 
-              foreach($products as $product)  : 
-            ?>
-            
-              <div class="col-lg-4 align-self-center mb-4 mb-lg-0">
-              
-                <div class="d-flex align-items-center mb-3">
-                  <h2 class="h5 mb-0"  ><?PHP echo $product->nom_prod; ?></h2>  
+        <div class="row">
+          <div class="col-lg-7">
+            <p class="subtitle text-primary">Book your holiday home</p>
+            <h1 class="h2 mb-5"> Confirm and pay <span class="text-muted float-right">Step 2</span>      </h1>
+            <div class="text-block">
+              <div class="alert alert-warning text-sm mb-3">
+                <div class="media align-items-center">
+                  <svg class="svg-icon svg-icon svg-icon-light w-2rem h-2rem mr-3 text-reset">
+                    <use xlink:href="#heart-1"> </use>
+                  </svg>
+                  <div class="media-body"><strong>This product is on people’s minds.</strong> It’s been viewed 43 times in the past week.</div>
                 </div>
-                <p class="text-sm text-muted"></p><span class="badge badge-pill p-2 badge-secondary-light"></span>
               </div>
-              <div class="col-lg-8">
-                <div class="row">
-                  <div class="col-6 col-md-4 col-lg-3 py-3 mb-3 mb-lg-0">
-                    <h6 class="label-heading">Product's category</h6>
-                    <p class="text-sm font-weight-bold"><?PHP echo $product->categorie_prod; ?></p>
-                    <h6 class="label-heading">Quantity </h6>
-                    <form method="POST" action="paiment.php" >
-              
-                    <input  type="number" name="quantity">
-                    
+            </div>
+            <div class="text-block">
+           
+              <form method="POST" action="confirmpage.php">
+            
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                  <h5 class="mb-0">Pay with your card</h5>
+                  <div class="text-muted"><i class="fab fa-cc-amex fa-2x mr-2"> </i><i class="fab fa-cc-visa fa-2x mr-2"> </i><i class="fab fa-cc-mastercard fa-2x"></i></div>
+                </div>
+                <select class="selectpicker form-control mb-3" name="payment" id="form_payment" data-style="btn-selectpicker">
+                  <option value="">Visa •••• 5687</option>
+                  <option value="">Mastercard •••• 4569</option>
+                </select>
+                <button class="btn btn-link btn-collapse pl-0 text-muted" type="button" data-toggle="collapse" data-target="#addNewCard" aria-expanded="false" aria-controls="addNewCard" data-expanded-text="Close" data-collapsed-text="Add a new card">Add a new card</button>
+                <div class="row collapse" id="addNewCard">
+                  <div class="form-group col-md-6">
+                    <label class="form-label" for="card-name">Name on Card</label>
+                    <input class="form-control" type="text" name="NameOnCard" placeholder="Name on card" id="card-name">
                   </div>
-                  <div class="col-6 col-md-4 col-lg-3 py-3">
-                    <h6 class="label-heading">Charge</h6>
-                    <p class="text-sm font-weight-bold"><?PHP echo number_format($product->prix_prod,2,',',' '); ?> DT</p>
-                    
+                  <div class="form-group col-md-6">
+                    <label class="form-label" for="card-number">Card Number</label>
+                    <input class="form-control" type="text" name="CardNumber" placeholder="Card number" id="card-number">
                   </div>
-                  <div class="col-6 col-md-4 col-lg-3 py-3">
-                    <h6 class="label-heading">Booked Date</h6>
-                    <p class="text-sm font-weight-bold">December 15, 2020                                        </p>
-                    <h6 class="label-heading">Arrival Time</h6>
-                    <p class="text-sm font-weight-bold mb-0">Around 4 PM</p>
+                  <div class="form-group col-md-4">
+                    <label class="form-label" for="expiry-date">Expiry Date</label>
+                    <input class="form-control" type="date" name="ExpiryDate" placeholder="MM/YY" id="expiry-date">
                   </div>
-                  <div class="col-12 col-lg-3 align-self-center"><span class="text-primary text-sm text-uppercase mr-4 mr-lg-0"><i class="fa fa-check fa-fw mr-2"> </i>Confirmed</span><br class="d-none d-lg-block"><span class="text-muted text-sm text-uppercase"><i class="fa fa-times fa-fw mr-2"> </i>Booking paid</span>
-                  <br></br>
-                  <a href="books.php?del=<?= $product->id_prod ; ?> "  class="btn btn-primary px-3">Remove  </a> 
+                  <div class="form-group col-md-4">
+                    <label class="form-label" for="cvv">CVC/CVV</label>
+                    <input class="form-control" type="password" name="CVV" placeholder="123" id="cvv">
                   </div>
-                   </div>
-                <br>  </br>
-              </div>
-              <?php endforeach   ?>
-              
-         <!-- Pagination -->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-template d-flex justify-content-center">
-            <li class="page-item"><a class="page-link" href="#"> <i class="fa fa-angle-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#"> <i class="fa fa-angle-right"></i></a></li>
-          </ul>
-        </nav>
-       
-        
-      </div>
-      <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row mb-5">
-          <div class="mr-3">
-            <p class="mb-3 mb-lg-0"> <strong> Total = <?= number_format($commande->total(),2,',',' '); ?> DT </strong> </p>
-          </div>
-          <div class="text-center">
-          <a href="paiment.php"> <input type="submit" name="btn"></a>
-
-          
+                  <div class="form-group col-md-4">
+                    <label class="form-label" for="zip">ZIP</label>
+                    <input class="form-control" type="text" name="ZIP" placeholder="123" id="zip">
+                  </div>
+                </div>
+                
+                <button class="btn btn-primary px-3 " name="btn_save">PAY </button>
+                </a>
               </form>
-          </div>
-        </div>
+            </div>
+            <div class="text-block">
+              <h6>Cancellation policy</h6>
+              <p class="text-sm text-muted">Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of .</p>
+              <p class="text-sm text-muted">He must have tried it a hundred times, shut his eyes so that he wouldn't have to look at the flounde.</p>
+            </div>
+            <div class="row form-block flex-column flex-sm-row">
+              <div class="col text-center text-sm-left"><a class="btn btn-link text-muted" href="user-booking-2.html"> <i class="fa-chevron-left fa mr-2"></i>Back</a>
+              </div>
+              </div>
+ </div>
+ <?php 
+ 
+ 
+ /* $NameOnCard	=$_POST ["NameOnCard"]  ; 
+ $CardNumber = $_POST ['CardNumber'] ; 
+ $ExpiryDate = $_POST ['ExpiryDate'] ; 
+ $CVV = $_POST ['CVV'] ; 
+ $ZIP = $_POST ['ZIP'] ; 
+ 
+  
+ 
+  
+ if(isset($_POST['btn_save'])){
+   $sql = "insert into  paiment (NameOnCard,CardNumber,ExpiryDate,CVV,ZIP) values (:NameOnCard,:CardNumber,:ExpiryDate,:CVV,:ZIP)" ;
+   try{
+   $db = config::getConnexion();
+   $query = $db->prepare($sql);
+   $query->execute([
+       'NameOnCard' => $NameOnCard,
+       'CardNumber'=>$CardNumber,
+       'ExpiryDate'=> $ExpiryDate,
+       'CVV'=>$CVV,
+       'ZIP'=>$ZIP
+     
+       
+       
+   ]);
+   }
+   catch (PDOException $e) {
+       $e->getMessage();
+   }
+  }
+  */
+?>
+ </section>
 
 
-        <?php
-             // $_POST['quantity'] 
-         /*
-             if(isset($_POST['btn'])){
-               $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity,paiment) values (:id_prod,:date_achat_comd,:prix_total,:quantity,:paiment)" ;
-               try{
-               $db = config::getConnexion();
-               $query = $db->prepare($sql);
-               $query->execute([
-                   'id_prod' => $ids[0],
-                   'date_achat_comd'=>$date,
-                   'prix_total'=> $commande->total(),
-                   'quantity'=>$_POST['quantity'],
-                   'paiment'=>$paiment
-                 
-                   
-                   
-               ]);
-               }
-               catch (PDOException $e) {
-                   $e->getMessage();
-               }
-              }
-              */
-              
-      ?>
-    </section>
-   
-    
+     <!-- payment step-->
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
       <!-- Main block - menus, subscribe form-->

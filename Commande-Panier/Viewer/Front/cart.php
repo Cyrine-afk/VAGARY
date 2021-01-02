@@ -2,6 +2,7 @@
 include '../../Controller/productsC.php' ; 
 include '../../Model/panier.class.php' ; 
 include '../../Model/db.class.php' ;
+session_start (); 
 $prod= new productsC;
 
     if (isset($_GET['search'])) {
@@ -22,7 +23,6 @@ $prod= new productsC;
 
     $date = date("Y/m/d"); 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -56,6 +56,14 @@ $prod= new productsC;
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
+
+  <?php 
+//include "../config.php";
+	
+
+
+
+?>
   <body style="padding-top: 72px;">
     <header class="header">
       <!-- Navbar-->
