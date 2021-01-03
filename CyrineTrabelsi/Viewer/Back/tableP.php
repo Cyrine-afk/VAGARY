@@ -1,16 +1,30 @@
 <?php
 
-include "../../controller/carteC.php";
+include "ComC.php";
+$tri="";
+$commande=new CommandeC();
+$listc=$commande->afficherCommande()  ;
+if (isset($_POST['search'])) {
+  $listc=$commande->affichercommandesearch($_POST['search']);
+}
+/*if (isset($_POST['tri'])) {
+  if ($_POST['tri']=="age") {
+    $tri="date_nai_client";
+  }
+  else
+    $tri="date_ajout_client" ;
+  $listclient=$clientC->afficherclienttri($tri); */
 
-$carteC=new carteC();
-$listcarte=$carteC->afficherCarte();
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
   <head> 
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Acceuil Admin</title>
+    <title>Orders' table</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -48,7 +62,7 @@ $listcarte=$carteC->afficherCarte();
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -163,45 +177,82 @@ $listcarte=$carteC->afficherCarte();
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Tables        </li>
           </ul>
         </div>
         <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="block margin-bottom-sm">
-                  <div class="title"><strong>Les cartes fidélités </strong></div>
+          <div class="container">
+                  <div class="title"><strong>Les commandes </strong></div>
                   <div class="table-responsive"> 
+                  <form action="" method="POST">
+                      <table>
+                        <tr>
+                     <td><input type="text" id="search" name="search"  class="mr-sm-25 form-control" placeholder="Search Date,payment status or ID"></td>
+                    <td><input type="submit" value="Rechercher" class="btn btn-primary" ></td>
+                     
+                        </tr>
+                      </table> 
+                      </form>
+                      <br>
+                      <br>
+                      <form action="imprimerC.php">
+                      <input type="submit" value="Imprimer" class="btn btn-primary " >
+                    </form> 
+                </br>
+
+
+
+
+
                     <table class="table">
                       <tr>
-                        +
-                        <td>Id_Fidelité</td>
+                       
 
-                        <td>Id_Client</td>
-                        <td>Points</td>
+                      <td>ID_Commande</td>
+                      <td>ID_Produit</td>
+                      <td>Prix_Total</td>
+                      <td>Quantite</td>
+                      <td>Date</td>
+                      <td>Paiment</td>
                         
-                          <td>delete</td>
+                         <td>Edit</td>
+                        <td>Delete</td>
                 
                     </tr>
                 <?php
                 
-                foreach ($listcarte as $row)
+                foreach ($listc as $row)
                 {
                     echo '
                         <tr>
-                             <td>'.$row["id_fidelite"].'</td>
-                            <td>'.$row["id_client"].'</td>
-                          
-                            <td>'.$row["point"].'</td>
                            
+                            <td>'.$row["id_comd"].'</td>
+                            <td>'.$row["id_prod"].'</td>
+                            <td>'.$row["prix_total"].'</td>
+                            <td>'.$row["quantity"].'</td>
+                             <td>'.$row["date_achat_comd"].'</td>
+                             <td>'.$row["paiment"].'</td>
+                            
+                            <td>
+                                <form action="ModifierCom.php" method="get">
+                                    <input type="hidden" id="id_comd" name="id_comd" value="'.$row["id_comd"].'">
+                                    <input type="hidden" id="prix" name="prix_total" value="'.$row["prix_total"].'">
+                                    <input type="hidden" id="quantity" name="quantity" value="'.$row["quantity"].'">
+                                    <input type="hidden" id="date_achat_comd" name="date_achat_comd" value="'.$row["date_achat_comd"].'">
+                                    <input type="hidden" id="paiment" name="paiment" value="'.$row["paiment"].'">
+                                    
+                                    
+                                    <input type="submit" name="edit" value="edit"  #d63031">
+                                </form>
+                
+                            </td>
                 
                 
                 
-                            <td><form  action="suppfidelite.php" method="POST">
-                            <input type="hidden" id="id_client" name="id_client" value="'.$row["id_client"].'">
-                    <input type="submit" name="delete" value="delete" style="background-color: #d63031">
+                            <td><form  action="suppCommande.php" method="POST">
+                            <input type="hidden" id="id_comd"" name="id_comd"" value="'.$row["id_comd"].'">
+                    <input type="submit" name="delete" value="delete"  #d63031">
                      
                     </form>
                     </td>
@@ -212,19 +263,13 @@ $listcarte=$carteC->afficherCarte();
                 ?>
                     </table>
                   </div>
-                </div>
-              </div>
               
-           
-           
-            </div>
-          </div>
         </section>
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

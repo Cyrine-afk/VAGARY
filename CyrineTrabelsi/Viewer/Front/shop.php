@@ -6,6 +6,7 @@ $prod=new productsC;
     } else {
         $listP = $prod->afficherproducts();
     }
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -215,12 +216,12 @@ $prod=new productsC;
               <!-- place item-->
               <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                 <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="detail-rooms.html"></a>
+                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link"  href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
                     
                   </div>
                   <div class="card-body d-flex align-items-center">
                     <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html"><?PHP echo $product->nom_prod; ?></a></h6>
+                      <h6 class="card-title"><a class="text-decoration-none text-dark"  href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"><?PHP echo $product->nom_prod; ?></a></h6>
                       <div class="d-flex card-subtitle mb-3">
                         <p class="flex-grow-1 mb-0 text-muted text-sm"><?PHP echo $product->categorie_prod; ?></p>
                         </p>

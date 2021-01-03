@@ -1,9 +1,13 @@
 <?php
 
-include "../../controller/carteC.php";
+    $id_comd=$_GET["id_comd"];
+    $prix_total=$_GET["prix_total"];
+    $quantity=$_GET["quantity"];
+    $date_achat_comd=$_GET["date_achat_comd"];
+    $paiment=$_GET["paiment"];
+    
+    
 
-$carteC=new carteC();
-$listcarte=$carteC->afficherCarte();
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,8 +105,9 @@ $listcarte=$carteC->afficherCarte();
               </div>
             </div>
             <!-- Tasks end-->
+            
             <!-- Log out               -->
-            <div class="list-inline-item logout">          <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
+            <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
           </div>
         </div>
       </nav>
@@ -130,7 +135,7 @@ $listcarte=$carteC->afficherCarte();
               <li><a href="AjouterHotel.php">Add a hotel</a></li>
               <li><a href="AjouterVol.php">Add a flight</a></li>
               <li><a href="ajouterP.php">Add a community</a></li>
-            </ul>
+            </ul> 
           </li>
 
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Tables</a>
@@ -157,66 +162,85 @@ $listcarte=$carteC->afficherCarte();
         <!-- Page Header-->
         <div class="page-header no-margin-bottom">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Tables</h2>
+            <h2 class="h5 no-margin-bottom">Basic forms</h2>
           </div>
         </div>
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tables        </li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active">Basic forms        </li>
           </ul>
         </div>
-        <section class="no-padding-top">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="block margin-bottom-sm">
-                  <div class="title"><strong>Les cartes fidélités </strong></div>
-                  <div class="table-responsive"> 
-                    <table class="table">
-                      <tr>
-                        +
-                        <td>Id_Fidelité</td>
+  <section class="no-padding-top">
+   <div class="container-fluid">
+      <div class="row text-center">
+              <!-- Basic Form-->
+        <div class="col-lg-12 text-center">
+               <div class="block text-center">
+                  <div class="title"><strong class="d-block">Modifier Commande</strong><span class="d-block">Veuillez saisir les données à modifier</span></div>
+                  <div class="block-body text-center">
+                   <center> <form  action="modCom.php" method="post" class="text-center align-items-center justify-content-center">
+                    <center>   <table class="text-center">
+        <tr>
+          <div class="form-group">
+            <td><label for="id">ID</label></td>
+            <td><input type="text"  id="id_comd" name="id_comd" value="<?php echo $id_comd ?>" disabled  class="mr-sm-11 form-control"></td>
+            <td><input type="hidden" id="id_comd" name="id_comd" value="<?php echo $id_comd ?>" class="mr-sm-11 form-control"></td>
+          </div>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+           <div class="form-group">
+            <td><label for="nom">Date</label></td>
+            <td><input type="text" id="date_achat_comd" name="date_achat_comd" value="<?php echo $date_achat_comd ?>" class="mr-sm-11 form-control"></td>
+          </div>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+            <td><label for="prenom">Quantite</label></td>
+            <td><input type="text" id="quantity" name="quantity" value="<?php echo $quantity ?>" class="mr-sm-11 form-control"></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+            <td><label for="age">Paiment</label></td>
+            <td><input type="text" id="paiment" name="paiment" value="<?php echo $paiment ?>" class="mr-sm-11 form-control"></td>
+        </tr>
 
-                        <td>Id_Client</td>
-                        <td>Points</td>
-                        
-                          <td>delete</td>
-                
-                    </tr>
-                <?php
-                
-                foreach ($listcarte as $row)
-                {
-                    echo '
-                        <tr>
-                             <td>'.$row["id_fidelite"].'</td>
-                            <td>'.$row["id_client"].'</td>
-                          
-                            <td>'.$row["point"].'</td>
-                           
-                
-                
-                
-                            <td><form  action="suppfidelite.php" method="POST">
-                            <input type="hidden" id="id_client" name="id_client" value="'.$row["id_client"].'">
-                    <input type="submit" name="delete" value="delete" style="background-color: #d63031">
-                     
-                    </form>
-                    </td>
-                
-                        </tr>
-                    ';
-                }
-                ?>
-                    </table>
+<tr>
+          <td></br></td>
+        </tr>
+         <tr>
+            <td><label for="login">Prix Total</label></td>
+            <td><input type="text" id="prix_total" name="prix_total" value="<?php echo $prix_total ?>" class="mr-sm-11 form-control"></td>
+        </tr>
+        <tr>
+      
+      <td></br></td>
+        </tr>
+         
+        
+
+
+<tr></tr>
+        <tr>
+          <td></td>
+            <td><input type="submit" value="Modifier" class="btn btn-primary"></td>
+        </tr>
+    </table></center>
+                      
+                    </form></center>
                   </div>
                 </div>
               </div>
-              
-           
-           
+            
+
             </div>
           </div>
         </section>
@@ -224,7 +248,7 @@ $listcarte=$carteC->afficherCarte();
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

@@ -1,19 +1,37 @@
 <?php
-// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
-session_start ();  
- 
-// On récupère nos variables de session
+include '../../Controller/productsC.php' ; 
+include '../../Model/panier.class.php' ; 
+include '../../Model/db.class.php' ;
+session_start (); 
+$prod= new productsC;
 
-//définir la session une session est un tableau temporaire 
-//1 er point c quoi une session
-// 
+    if (isset($_GET['search'])) {
+        $listP = $prod->rechercheproducts($_GET['search']);
+    } else {
+        $listP = $prod->afficherproducts();
+    }
+    $panier  = new Panier () ; 
+    //var_dump($_SESSION) ; 
+    ?>
+    <?php
+    if(isset($_GET['del'])) 
+    {
+          $panier->del($_GET['del']) ; 
+
+ 
+    }
+
+    $date = date("Y/m/d"); 
+    
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Directory Theme by Bootstrapious</title>
+    <title>Vagary </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -39,6 +57,14 @@ session_start ();
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
+
+  <?php 
+//include "../config.php";
+	
+
+
+
+?>
   <body style="padding-top: 72px;">
   <header class="header">
       <!-- Navbar-->
@@ -191,146 +217,177 @@ session_start ();
       </nav>
       <!-- /Navbar -->
     </header>
+    <?php 
+
+            $DB = new DB() ;
+           $ids =  array_keys ($_SESSION['panier'] )  ; 
+           if (empty($ids))
+          {
+              $products = array() ; 
+          }
+          else
+           {
+           $products = $DB->query ('SELECT  * FROM produit WHERE id_prod IN ('.implode(',',$ids) .')')  ; 
+          }
+           
+          //echo '<pre>'; print_r($products['id']); echo '</pre>';
+
+          
+            
+        
+         ?>
+         
+        
     <section class="py-5">
+    <form action="insertcart.php" method="POST">
+    <?php 
+              foreach($products as $product)  : 
+      ?>
       <div class="container">
-        <!-- Breadcrumbs -->
-        <ol class="breadcrumb #{breadcrumbClass}">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Your account   </li>
-        </ol>
-        <h1 class="hero-heading mb-0">Your account</h1>
-        <p class="text-muted mb-5">Manage your account and settings here.</p>
         <div class="row">
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#identity-1"> </use>
-                  </svg>
+          <div class="col-lg-5 pl-xl-5">
+            <div class="card border-0 shadow">
+              <div class="card-body p-4">
+                <div class="text-block pb-3">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                    <h6> <a class="text-reset" href="#" ><?PHP echo $product->nom_prod; ?></a></h6> 
+                      
+                      
+                      
+                      <p class="text-muted text-sm mb-0"></p>
+                      <div class="mt-n1">
+                      </div>
+                    </div><a href="detail-rooms.html"><img class="ml-3 rounded" src="img/<?PHP echo $product->img_prod; ?> " alt="" width="100"></a>
+                  </div>
                 </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="user-personal.php">Personal info</a></h5>
-                <p class="text-muted card-text text-sm">Provide personal details and how we can reach you</p>
+                <div class="text-block py-3">
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-3"><svg width="30" height="30" class="theme-line-1 mr-2"><use xlink:href="#stack-1"></use></svg>Product's category : </li>
+                    <li class="mb-0"><svg width="30" height="30" class="theme-line-43 mr-2"><use xlink:href="#cart-1"></use></svg></i><?PHP echo $product->categorie_prod; ?> </li>
+                  </ul>
+                </div>
+                <div class="text-block pt-3 pb-0">
+                  <table class="w-100">
+                    <tbody>
+                      <tr>
+                        <th class="font-weight-normal py-2">Product's price: </th>  
+                       
+                          <td class="text-right py-2"><?PHP echo number_format($product->prix_prod,2,',',' '); ?> DT</td>
+                        
+                      </tr>
+                      <tr>
+                        <th class="font-weight-normal pt-2 pb-3">Service fee</th>
+                        <td class="text-right pt-2 pb-3"><?PHP echo number_format($product->prix_prod *  0.22,2,',',' '); ?> TD</td>
+                      </tr>
+                    </tbody>
+                    
+                    <tfoot>
+                      <tr class="border-top">
+                        <th class="pt-3">Total</th>
+                        <td class="font-weight-bold text-right pt-3"><?PHP echo number_format($product->prix_prod *  1.22,2,',',' '); ?> TD</td>
+                         </tr> 
+                    </tfoot>
+                  </table>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#password-1"> </use>
-                  </svg>
+              <a href="cart.php?del=<?= $product->id_prod ; ?> "  class="btn btn-primary px-3">Remove from cart </a> 
+              <br> </br>
+              <a href="../../Controller/addcommande.php?id_prod= <?= $product->id_prod ; ?> "  class="btn btn-primary px-3">Order this product </a> 
+              
+              
+              <div class="card-footer bg-primary-light py-4 border-0">
+                <div class="media align-items-center">
+                  <div class="media-body">
+                    <h6 class="text-primary">Flexible – free cancellation</h6>
+                    <p class="text-sm text-primary opacity-8 mb-0">Cancel within 48 hours of booking to get a full refund. <a href="#" class="text-reset ml-3">More details</a></p>
+                  </div>
                 </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="user-security.html">Login &amp; security</a></h5>
-                <p class="text-muted card-text text-sm">Update your password and secure your account</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#pay-by-card-1"> </use>
-                  </svg>
-                </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="books.php">Payments &amp; payouts</a></h5>
-                <p class="text-muted card-text text-sm">Review payments and gift cards</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#chat-app-1"> </use>
-                  </svg>
-                </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="#">Notifications</a></h5>
-                <p class="text-muted card-text text-sm">Choose notification preferences and how you want to be contacted</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#diary-1"> </use>
-                  </svg>
-                </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="user-grid.php">Reservations &amp; influencers</a></h5>
-                <p class="text-muted card-text text-sm">Review your reservations, upcoming trips and which influencers you're following</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 mb-30px">
-            <div class="card h-100 border-0 shadow hover-animate">
-              <div class="card-body">
-                <div class="icon-rounded bg-secondary-light mb-3">
-                  <svg class="svg-icon text-secondary w-2rem h-2rem">
-                    <use xlink:href="#mix-1"> </use>
-                  </svg>
-                </div>
-                <h5 class="card-title mb-3"><a class="text-decoration-none text-dark stretched-link" href="#">Global preferences</a></h5>
-                <p class="text-muted card-text text-sm">Set your default language, currency, and timezone</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+   
+      </form>
+      
     </section>
+    <?php endforeach   ?>
+    
+    <?php
+            /*  $sql = "insert into commande (nameprod) values (:nameprod)" ;
+               try{
+               $db = config::getConnexion();
+               $query = $db->prepare($sql);
+               $query->execute([
+                   'nameprod'=> $product->nom_prod,
+                   'date_achat_comd'=>$date,
+                   
+                   
+                   
+                   
+               ]);
+               }
+               catch (PDOException $e) {
+                   $e->getMessage();
+               }
+               */
+
+      ?>
+    
+    
+    
+     <!-- payment step-->
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
-        <!-- Main block - menus, subscribe form-->
-        <div class="py-6 bg-gray-200 text-muted"> 
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 mb-5 mb-lg-0">
-                <div class="font-weight-bold text-uppercase text-dark mb-3">Directory</div>
-                <p>Welcome to our page Vagary</p>
-                <ul class="list-inline">
-                  <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a></li>
-                  <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="facebook"><i class="fab fa-facebook"></i></a></li>
-                  <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
-                  <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="pinterest"><i class="fab fa-pinterest"></i></a></li>
-                  <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="vimeo"><i class="fab fa-vimeo"></i></a></li>
-                </ul>
-              </div>
-              
-              <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
-                <h6 class="text-uppercase text-dark mb-3">Pages</h6>
-                <ul class="list-unstyled">
-                  
-                  <li><a class="text-muted" href="contact.php">Team                                   </a></li>
-                  <li><a class="text-muted" href="contact.php">Contact                                   </a></li>
-                </ul>
-              </div>
-              
+      <!-- Main block - menus, subscribe form-->
+      <div class="py-6 bg-gray-200 text-muted"> 
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+              <div class="font-weight-bold text-uppercase text-dark mb-3">Directory</div>
+              <p>Welcome to our page Vagary</p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="facebook"><i class="fab fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="pinterest"><i class="fab fa-pinterest"></i></a></li>
+                <li class="list-inline-item"><a class="text-muted text-hover-primary" href="#" target="_blank" title="vimeo"><i class="fab fa-vimeo"></i></a></li>
+              </ul>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+              <h6 class="text-uppercase text-dark mb-3">Pages</h6>
+              <ul class="list-unstyled">
+                
+                <li><a class="text-muted" href="contact.html">Team                                   </a></li>
+                <li><a class="text-muted" href="contact.html">Contact                                   </a></li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Copyright section of the footer-->
+      <div class="py-4 font-weight-light bg-gray-800 text-gray-300">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left">
+              <p class="text-sm mb-md-0">&copy; 2020, Vagary.  All rights reserved.</p>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
+                <li class="list-inline-item"><img class="w-2rem" src="img/visa.svg" alt="..."></li>
+                <li class="list-inline-item"><img class="w-2rem" src="img/mastercard.svg" alt="..."></li>
+                <li class="list-inline-item"><img class="w-2rem" src="img/paypal.svg" alt="..."></li>
+                <li class="list-inline-item"><img class="w-2rem" src="img/western-union.svg" alt="..."></li>
+              </ul>
             </div>
           </div>
         </div>
-        <!-- Copyright section of the footer-->
-        <div class="py-4 font-weight-light bg-gray-800 text-gray-300">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-md-6 text-center text-md-left">
-                <p class="text-sm mb-md-0">&copy; 2020, Your company.  All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
-                  <li class="list-inline-item"><img class="w-2rem" src="img/visa.svg" alt="..."></li>
-                  <li class="list-inline-item"><img class="w-2rem" src="img/mastercard.svg" alt="..."></li>
-                  <li class="list-inline-item"><img class="w-2rem" src="img/paypal.svg" alt="..."></li>
-                  <li class="list-inline-item"><img class="w-2rem" src="img/western-union.svg" alt="..."></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
+    </footer>
     <!-- JavaScript files-->
     <script>
       // ------------------------------------------------------- //

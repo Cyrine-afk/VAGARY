@@ -188,8 +188,8 @@
             <p>By JD&Co</p>
           </div>
         </div>
-        <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
-        <ul class="list-unstyled">
+       <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+       <ul class="list-unstyled">
           <li class="active"><a href="index.php"> <i class="icon-home"></i>Home </a></li>
           
           <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Forms</a>
@@ -213,7 +213,8 @@
               <li><a href="AfficherVol.php">Flights</a></li>
               <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
               <li><a href="products.html">Products</a></li>
-              <li><a href="carts.html">Carts</a></li>
+              <li><a href="tableP.php">Orders</a></li>              
+              <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
               <li><a href="carte.php">Fidelité</a></li>
             </ul>
