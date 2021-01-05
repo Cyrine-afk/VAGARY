@@ -98,7 +98,7 @@ $liste=$trip1->afficherTripInf();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Interactive Travelling</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="comm.html">Travel in communities  <span class="badge badge-info-light ml-1">New</span> </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="comm.php">Travel in communities  <span class="badge badge-info-light ml-1">New</span> </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="influ.php">Travel with influencers <span class="badge badge-info-light ml-1">New</span>  </a></li>
                           </ul>
                         </div>
@@ -403,6 +403,21 @@ $liste=$trip1->afficherTripInf();
             <form method="POST">
               <input type="submit" class="btn btn-primary px-3" name="reserver" href="user-grid.php" value="Confirm booking"></input>
             </form>
+
+            <?php
+              
+              if(isset($_POST["reserver"]) ){
+                try { 
+                  $sql1 = "UPDATE fidelite SET  points=points+10 where id_client=".$_SESSION["e"];
+                  $db1 = config::getConnexion();
+                  $query1 = $db1->query($sql1);
+                  }
+                  catch (PDOException $e1) {
+                      $e1->getMessage();
+                  }
+              }
+            ?>
+
               <?php
                 if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
                 { 
@@ -422,6 +437,7 @@ $liste=$trip1->afficherTripInf();
                           $e->getMessage();
                       }
 
+
                   }
                 }
                 
@@ -431,6 +447,8 @@ $liste=$trip1->afficherTripInf();
                     <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="./login.html"">Sign in</a></li>
                     <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary" href="signup.html">Sign up</a></li>';
                   }
+
+                  
               ?>
 
           </div>

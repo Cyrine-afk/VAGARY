@@ -88,7 +88,7 @@ session_start ();
                           <!-- Megamenu list-->
                           <h6 class="text-uppercase">Interactive Travelling</h6>
                           <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="comm.html">Travel in communities  <span class="badge badge-info-light ml-1">New</span> </a></li>
+                            <li class="megamenu-list-item"><a class="megamenu-list-link" href="comm.php">Travel in communities  <span class="badge badge-info-light ml-1">New</span> </a></li>
                             <li class="megamenu-list-item"><a class="megamenu-list-link" href="influ.php">Travel with influencers <span class="badge badge-info-light ml-1">New</span>  </a></li>
                           </ul>
                         </div>
@@ -353,7 +353,7 @@ session_start ();
     <section class="py-7 position-relative dark-overlay"><img class="bg-image" src="img/photo/photo-1497436072909-60f360e1d4b1.jpg" alt="">
       <div class="container">
         <div class="overlay-content text-white py-lg-5">
-          <h3 class="display-3 font-weight-bold text-serif text-shadow mb-5">Ready for a new experience?</h3><a class="btn btn-light centertxt" href="comm.html">Communities</a> <br> <br> <a class="btn btn-light centertxt" href="influ.php">Influencers</a>
+          <h3 class="display-3 font-weight-bold text-serif text-shadow mb-5">Ready for a new experience?</h3><a class="btn btn-light centertxt" href="comm.php">Communities</a> <br> <br> <a class="btn btn-light centertxt" href="influ.php">Influencers</a>
         </div>
       </div>
     </section>

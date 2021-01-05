@@ -5,6 +5,7 @@
     $quantity=$_GET["quantity"];
     $date_achat_comd=$_GET["date_achat_comd"];
     $paiment=$_GET["paiment"];
+    $id_client=$_GET["id_client"];
     
     
 
@@ -187,6 +188,13 @@
             <td><label for="id">ID</label></td>
             <td><input type="text"  id="id_comd" name="id_comd" value="<?php echo $id_comd ?>" disabled  class="mr-sm-11 form-control"></td>
             <td><input type="hidden" id="id_comd" name="id_comd" value="<?php echo $id_comd ?>" class="mr-sm-11 form-control"></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><label for="id">ID_Client</label></td>
+            <td><input type="text"  id="id_client" name="id_client" value="<?php echo $id_client ?>" disabled  class="mr-sm-11 form-control"></td>
+            <td><input type="hidden" id="id_client" name="id_client" value="<?php echo $id_client ?>" class="mr-sm-11 form-control"></td>
           </div>
         </tr>
         <tr>

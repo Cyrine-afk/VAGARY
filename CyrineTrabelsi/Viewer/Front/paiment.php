@@ -6,6 +6,7 @@ require_once '../../Model/db.class.php' ;
 require_once '../../Model/commande.class.php' ;
 require_once '../../Controller/ComC.php' ;
 $prod= new productsC;
+session_start();
 
 if (isset($_GET['search'])) {
     $listP = $prod->rechercheproducts($_GET['search']);
@@ -29,7 +30,7 @@ $products = array() ;
     }
     
 if(isset($_POST['btn'])){
-  $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity,paiment) values (:id_prod,:date_achat_comd,:prix_total,:quantity,:paiment)" ;
+  $sql = "insert into commande (id_prod,date_achat_comd,prix_total,quantity,paiment,id_client) values (:id_prod,:date_achat_comd,:prix_total,:quantity,:paiment,:id_client)" ;
   try{
   $db = config::getConnexion();
   $query = $db->prepare($sql);
@@ -38,7 +39,8 @@ if(isset($_POST['btn'])){
       'date_achat_comd'=>$date,
       'prix_total'=> $commande->total(),
       'quantity'=>$_POST['quantity'],
-      'paiment'=>$paiment
+      'paiment'=>$paiment,
+      'id_client'=>$_SESSION['e']
     
       
       
@@ -49,7 +51,7 @@ if(isset($_POST['btn'])){
   }
  }
 
- session_start();
+ 
  
 ?>
 
@@ -234,7 +236,7 @@ if(isset($_POST['btn'])){
                       <div class="dropdown-divider"></div><a class="dropdown-item" href="./logout.php"><i class="fas fa-sign-out-alt mr-2 text-muted"></i> Sign out</a>
                     </div>
                   </li>
-                  
+                   
                 <?php
                 }
 
@@ -273,7 +275,7 @@ if(isset($_POST['btn'])){
             </div>
             <div class="text-block">
            
-              <form method="POST" action="confirmpage.php">
+              <form method="POST" > <!-- action="confirmpage.php" -->
             
                 <div class="d-flex justify-content-between align-items-end mb-4">
                   <h5 class="mb-0">Pay with your card</h5>
@@ -307,9 +309,23 @@ if(isset($_POST['btn'])){
                   </div>
                 </div>
                 
-                <button class="btn btn-primary px-3 " name="btn_save">PAY </button>
+                <button class="btn btn-primary px-3 " name="pay">PAY </button>
                 </a>
-              </form>
+              </form> 
+
+              <?php 
+                     if(isset($_POST["pay"]) ){
+                      try { 
+                        $sql = "UPDATE fidelite SET  points=points+10 where id_client=".$_SESSION["e"];
+                        $db = config::getConnexion();
+                        $query = $db->query($sql);
+                        }
+                        catch (PDOException $e) {
+                            $e->getMessage();
+                        }
+                    }
+                  ?>
+
             </div>
             <div class="text-block">
               <h6>Cancellation policy</h6>
@@ -323,37 +339,6 @@ if(isset($_POST['btn'])){
  </div>
  <?php 
  
- 
- /* $NameOnCard	=$_POST ["NameOnCard"]  ; 
- $CardNumber = $_POST ['CardNumber'] ; 
- $ExpiryDate = $_POST ['ExpiryDate'] ; 
- $CVV = $_POST ['CVV'] ; 
- $ZIP = $_POST ['ZIP'] ; 
- 
-  
- 
-  
- if(isset($_POST['btn_save'])){
-   $sql = "insert into  paiment (NameOnCard,CardNumber,ExpiryDate,CVV,ZIP) values (:NameOnCard,:CardNumber,:ExpiryDate,:CVV,:ZIP)" ;
-   try{
-   $db = config::getConnexion();
-   $query = $db->prepare($sql);
-   $query->execute([
-       'NameOnCard' => $NameOnCard,
-       'CardNumber'=>$CardNumber,
-       'ExpiryDate'=> $ExpiryDate,
-       'CVV'=>$CVV,
-       'ZIP'=>$ZIP
-     
-       
-       
-   ]);
-   }
-   catch (PDOException $e) {
-       $e->getMessage();
-   }
-  }
-  */
 ?>
  </section>
 

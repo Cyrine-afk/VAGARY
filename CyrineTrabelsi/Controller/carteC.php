@@ -2,12 +2,28 @@
 
 include "../../config.php";
 class carteC
-{
-   
-
-
-
+{ 
+    
     function modifierCarteFid($idclient)
+    {
+       
+        $sql="UPDATE fidelite SET  points=points+10 where id_client=:id";
+        $db = config::getConnexion();
+        try
+        {
+            $query=$db->prepare($sql);
+            $query->execute(['id' =>$idclient ]);
+            
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+
+    }
+
+
+   /* function modifierCarteFid($idclient)
     {
        
         $sql="update vagary.fidelite set  point=point+20 where idclient='$idclient'";
@@ -24,7 +40,7 @@ class carteC
             die('Erreur: '.$e->getMessage());
         }
 
-    }
+    }*/
 
 
 

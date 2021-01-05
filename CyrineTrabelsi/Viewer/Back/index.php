@@ -249,7 +249,7 @@ foreach ($list as $row ) {
               <li><a href="ajouterP.php">Add a product</a></li>
               <li><a href="AjouterHotel.php">Add a hotel</a></li>
               <li><a href="AjouterVol.php">Add a flight</a></li>
-              <li><a href="ajouterP.php">Add a community</a></li>
+              <li><a href="comm.php">Add a community</a></li>
             </ul>
           </li>
 
@@ -257,7 +257,6 @@ foreach ($list as $row ) {
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
-              <li><a href="comm.html">Communities</a></li>
               <li><a href="AfficherHotel.php">Hotels</a></li>
               <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
               <li><a href="AfficherVol.php">Flights</a></li>

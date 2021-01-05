@@ -215,6 +215,7 @@ if (isset($_POST['search'])) {
                       <td>Quantite</td>
                       <td>Date</td>
                       <td>Paiment</td>
+                      <td>ID_Client</td>
                         
                          <td>Edit</td>
                         <td>Delete</td>
@@ -233,6 +234,7 @@ if (isset($_POST['search'])) {
                             <td>'.$row["quantity"].'</td>
                              <td>'.$row["date_achat_comd"].'</td>
                              <td>'.$row["paiment"].'</td>
+                             <td>'.$row["id_client"].'</td>
                             
                             <td>
                                 <form action="ModifierCom.php" method="get">
@@ -241,6 +243,7 @@ if (isset($_POST['search'])) {
                                     <input type="hidden" id="quantity" name="quantity" value="'.$row["quantity"].'">
                                     <input type="hidden" id="date_achat_comd" name="date_achat_comd" value="'.$row["date_achat_comd"].'">
                                     <input type="hidden" id="paiment" name="paiment" value="'.$row["paiment"].'">
+                                    <input type="hidden" id="id_client" name="id_client" value="'.$row["id_client"].'">
                                     
                                     
                                     <input type="submit" name="edit" value="edit"  #d63031">
