@@ -2,7 +2,25 @@
 session_start (); 
 include '../../model/User.php';
 include '../../controller/ClientC.php';
+
 ?>
+
+
+<?php
+              
+              require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/msgC.php';
+              require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/msg.php';
+
+              if(isset($_POST["message"]) && isset($_SESSION["e"])) {
+                var_dump($_SESSION["e"]);
+                $msg1= new Msg($_POST["message"] ,$_SESSION["e"] );
+                $newmsg= new msgC();
+                $newmsg->ajouterMsg($msg1);
+                header("Location:contact.php");
+              }
+
+            ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -303,39 +321,35 @@ include '../../controller/ClientC.php';
       </div>
     </section>
 
+    <?php
+      if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+      { 
+    ?>
+
     <section class="py-6 bg-gray-100">
       <div class="container">
         <h2 class="h4 mb-5">Contact form</h2>
         <div class="row">
           <div class="col-md-7 mb-5 mb-md-0">
-            <form class="form" id="contact-form" method="post" action="contact.php">
+            <form method="post" >
               <div class="controls">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label class="form-label" for="name">Your firstname *</label>
-                      <input class="form-control" type="text" name="name" id="name" placeholder="Enter your firstname" required="required">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label class="form-label" for="surname">Your lastname *</label>
-                      <input class="form-control" type="text" name="surname" id="surname" placeholder="Enter your  lastname" required="required">
+                      <label class="form-label" for="name">Your login </label>
+                      <input class="form-control" readonly name="name" id="name" placeholder="<?php echo '@'.$_SESSION["l"] ?>" required="required">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="email">Your email *</label>
-                  <input class="form-control" type="email" name="email" id="email" placeholder="Enter your  email" required="required">
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="message">Your message for us *</label>
+                  <label class="form-label">Your message for us *</label>
                   <textarea class="form-control" rows="4" name="message" id="message" placeholder="Enter your message" required="required"></textarea>
                 </div>
-                <button class="btn btn-outline-primary" type="submit">Send message</button>
+                  <input type="button" value="Send message" name="Submit" class="btn btn-outline-primary"> 
               </div>
-
+ 
             </form>
+
             <br>
             <br>
             <div class="social center">
@@ -352,6 +366,11 @@ include '../../controller/ClientC.php';
         </div>
       </div>
     </section>
+
+    <?php
+      }
+    ?>
+
     <!-- Footer-->
     <!-- Footer-->
     <footer class="position-relative z-index-10 d-print-none">
