@@ -152,11 +152,9 @@ if (isset($_POST['search'])) {
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
-              <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
-              <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="AfficherHotel.php">Hotels</a></li> 
+              <li><a href="AfficherVol.php">Flights</a></li> 
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -232,6 +230,7 @@ if (isset($_POST['search'])) {
                             <td>'.$row["ExpiryDate"].'</td>
                             <td>'.$row["CVV"].'</td>
                              <td>'.$row["ZIP"].'</td>
+                             <td>'.$row["id_client"].'</td>
                            
                             
                             

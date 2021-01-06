@@ -19,12 +19,14 @@ session_start ();
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Directory Theme by Bootstrapious</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -43,7 +45,7 @@ session_start ();
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -372,234 +374,43 @@ session_start ();
           <!-- Additional required wrapper-->
           <div class="swiper-wrapper pb-5">
             <!-- Slides-->
+            <?PHP $total=0; ?>
+				    <?PHP 
+			      require_once 'db.class.php' ;
+			      $DB = new DB() ;
+			  
+			      $products = $DB->query('SELECT * FROM produit LIMIT 4') ;  ?>
+			      <?PHP foreach ( $products as  $product) :?>
             <div class="swiper-slide h-auto px-2">
               <!-- place item-->
               <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                 <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1484154218962-a197022b5858.jpg" alt="Modern, Well-Appointed Room"/><a class="tile-link" href="detail-rooms.html"></a>
+                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link"  href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
                     
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
                   </div>
                   <div class="card-body d-flex align-items-center">
                     <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Modern, Well-Appointed Room</a></h6>
+                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html"><?PHP echo $product->nom_prod; ?></a></h6>
                       <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Private room</p>
+                        <p class="flex-grow-1 mb-0 text-muted text-sm"><?PHP echo $product->categorie_prod; ?></p>
                         
                         </p>
                       </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$80</span> per night</p>
-                    </div>
+                      <p class="card-text text-muted"><del class="h4 text-primary"><span class="h4 text-primary"><?PHP echo $product->prix_prod.' '.'DT'; ?></span></del> <br> <ins class="h4 text-danger"> <span class="h4 text-danger"> <?PHP echo($product->prix_prod-5).' '.'DT'.' !'; ?> </span></ins> </p>
+                    </div> <!-- <del>blue</del> <ins>red</ins> -->
                   </div>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide h-auto px-2">
-              <!-- place item-->
-              <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e322f3375db4d89128">
-                <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1426122402199-be02db90eb90.jpg" alt="Cute Quirky Garden apt, NYC adjacent"/><a class="tile-link" href="detail-rooms.html"></a>
-                    
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
-                  </div>
-                  <div class="card-body d-flex align-items-center">
-                    <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Cute Quirky Garden apt, NYC adjacent</a></h6>
-                      <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Entire apartment</p>
-                        
-                        </p>
-                      </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$121</span> per night</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <!-- place item-->
-              <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e3a31e62979bf147c9">
-                <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1512917774080-9991f1c4c750.jpg" alt="Modern Apt - Vibrant Neighborhood!"/><a class="tile-link" href="detail-rooms.html"></a>
-                    
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
-                  </div>
-                  <div class="card-body d-flex align-items-center">
-                    <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Modern Apt - Vibrant Neighborhood!</a></h6>
-                      <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Entire apartment</p>
-                        
-                        </p>
-                      </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$75</span> per night</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <!-- place item-->
-              <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e3503eb77d487e8082">
-                <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1494526585095-c41746248156.jpg" alt="Sunny Private Studio-Apartment"/><a class="tile-link" href="detail-rooms.html"></a>
-                    
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
-                  </div>
-                  <div class="card-body d-flex align-items-center">
-                    <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Sunny Private Studio-Apartment</a></h6>
-                      <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Shared room</p>
-                        
-                        </p>
-                      </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$93</span> per night</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <!-- place item-->
-              <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e39aa2eed0626e485d">
-                <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1522771739844-6a9f6d5f14af.jpg" alt="Mid-Century Modern Garden Paradise"/><a class="tile-link" href="detail-rooms.html"></a>
-                    
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
-                  </div>
-                  <div class="card-body d-flex align-items-center">
-                    <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Mid-Century Modern Garden Paradise</a></h6>
-                      <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Entire house</p>
-                        
-                        </p>
-                      </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$115</span> per night</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <!-- place item-->
-              <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e39aa2edasd626e485d">
-                <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="img/photo/photo-1488805990569-3c9e1d76d51c.jpg" alt="Brooklyn Life, Easy to Manhattan"/><a class="tile-link" href="detail-rooms.html"></a>
-                    
-                    <div class="card-img-overlay-top text-right"><a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> 
-                        <svg class="svg-icon text-white">
-                          <use xlink:href="#heart-1"> </use>
-                        </svg></a></div>
-                  </div>
-                  <div class="card-body d-flex align-items-center">
-                    <div class="w-100">
-                      <h6 class="card-title"><a class="text-decoration-none text-dark" href="detail-rooms.html">Brooklyn Life, Easy to Manhattan</a></h6>
-                      <div class="d-flex card-subtitle mb-3">
-                        <p class="flex-grow-1 mb-0 text-muted text-sm">Private room</p>
-                        
-                        </p>
-                      </div>
-                      <p class="card-text text-muted"><span class="h4 text-primary">$123</span> per night</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+			      <?PHP endforeach ?>
           </div>
           <!-- If we need pagination-->
           <div class="swiper-pagination"></div>
         </div>
       </div>
     </section>
-    <!-- Divider Section-->
     
-    <section class="py-7">
-      <div class="container">
-        <div class="text-center">
-          <p class="subtitle text-primary">Testimonials</p>
-          <h2 class="mb-5">Our dear customers said about us</h2>
-        </div>
-        <!-- Slider main container-->
-        <div class="swiper-container testimonials-slider testimonials">
-          <!-- Additional required wrapper-->
-          <div class="swiper-wrapper pt-2 pb-5">
-            <!-- Slides-->
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide px-3">
-              <div class="testimonial card rounded-lg shadow border-0">
-                <div class="testimonial-avatar"><img class="img-fluid" src="img/avatar/avatar-3.jpg" alt="..."></div>
-                <div class="text">
-                  <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-                  <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong>Jessica Watson</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination">     </div>
-        </div>
-      </div>
-    </section>
     
     <!-- Instagram-->
     <section>

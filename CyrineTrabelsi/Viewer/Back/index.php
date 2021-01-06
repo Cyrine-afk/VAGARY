@@ -257,11 +257,9 @@ foreach ($list as $row ) {
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
-              <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
-              <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="AfficherHotel.php">Hotels</a></li> 
+              <li><a href="AfficherVol.php">Flights</a></li> 
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -442,27 +440,27 @@ foreach ($list as $row ) {
                   <div class="checklist">
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-1" name="input-1" class="checkbox-template">
-                      <label for="input-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-1"> intégration 1: parties aziz & cyrine</label>
                     </div>
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-2" name="input-2" checked class="checkbox-template">
-                      <label for="input-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-2"> intégration 2: partie aziza</label>
                     </div>
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-3" name="input-3" class="checkbox-template">
-                      <label for="input-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-3"> intégration 3: partie meriem nour</label>
                     </div>
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-4" name="input-4" class="checkbox-template">
-                      <label for="input-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-4"> intégration 4: partie hichem</label>
                     </div>
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-5" name="input-5" class="checkbox-template">
-                      <label for="input-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-5"> intégration 5: partie ghassen</label>
                     </div>
                     <div class="item d-flex align-items-center">
                       <input type="checkbox" id="input-6" name="input-6" class="checkbox-template">
-                      <label for="input-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      <label for="input-6"> intégration finale </label>
                     </div>
                   </div>
                 </div>

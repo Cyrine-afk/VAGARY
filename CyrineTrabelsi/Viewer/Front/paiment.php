@@ -67,7 +67,7 @@ if(isset($_POST['btn'])){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vagary </title>
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -86,7 +86,7 @@ if(isset($_POST['btn'])){
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -275,7 +275,7 @@ if(isset($_POST['btn'])){
             </div>
             <div class="text-block">
            
-              <form method="POST" > <!-- action="confirmpage.php" -->
+              <form method="POST" action="confirmpage.php"> <!-- action="confirmpage.php" -->
             
                 <div class="d-flex justify-content-between align-items-end mb-4">
                   <h5 class="mb-0">Pay with your card</h5>

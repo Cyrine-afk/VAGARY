@@ -41,7 +41,7 @@ $prod= new productsC;
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vagary </title>
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -60,7 +60,7 @@ $prod= new productsC;
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -279,12 +279,11 @@ $prod= new productsC;
                   </div>
                   <div class="col-6 col-md-4 col-lg-3 py-3">
                     <h6 class="label-heading">Charge</h6>
-                    <p class="text-sm font-weight-bold"><?PHP echo number_format($product->prix_prod,2,',',' '); ?> DT</p>
+                    <p class="text-sm font-weight-bold">
+                    <del class="text-primary font-weight-bold"><?PHP echo $product->prix_prod.' '.'DT'; ?></del> <br> <ins class="text-danger font-weight-bold"> <?PHP echo($product->prix_prod-5).' '.'DT'.' '; ?> </ins>
                     
                   </div>
-                  <div class="col-6 col-md-4 col-lg-3 py-3">
-                    <h6 class="label-heading">Booked Date</h6>
-                    <p class="text-sm font-weight-bold">December 15, 2020                                        </p>
+                  <div class="col-6 col-md-4 col-lg-3 py-3">                                      </p>
                     <h6 class="label-heading">Arrival Time</h6>
                     <p class="text-sm font-weight-bold mb-0">Around 4 PM</p>
                   </div>
@@ -301,7 +300,7 @@ $prod= new productsC;
       </div>
       <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row mb-5">
           <div class="mr-3">
-            <p class="mb-3 mb-lg-0"> <strong> Total = <?= number_format($commande->total(),2,',',' '); ?> DT </strong> </p>
+            <p class="mb-3 mb-lg-0"> <strong> Total = <?= $commande->total()-5; ?> DT </strong> </p>
           </div>
           <div class="text-center">
           <a href="paiment.php"> <input class="btn btn-primary px-3" type="submit" name="btn"></a>

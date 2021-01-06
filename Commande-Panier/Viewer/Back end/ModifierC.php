@@ -143,7 +143,7 @@
               <li><a href="themes.php">Themes</a></li>
               <li><a href="comm.html">Communities</a></li>
               <li><a href="trips.html">Trips</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>
               <li><a href="carts.html">Carts</a></li>
               <li><a href="users.php">Users</a></li>
               <li><a href="carte.php">Fidelité</a></li>

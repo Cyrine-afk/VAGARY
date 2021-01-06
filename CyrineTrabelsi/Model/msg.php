@@ -1,6 +1,5 @@
 <?php
 
-//Definition et structure d'un objet Influenceur
 
 class Msg {
     private $id_msg;
@@ -14,7 +13,7 @@ class Msg {
     }
 
     
-    public function setIdMsg ($id_msg) {
+    public function setIdMsg ($id_msg) { 
         $this->id_msg=$id_msg;
     }
     public function getIdMsg () {

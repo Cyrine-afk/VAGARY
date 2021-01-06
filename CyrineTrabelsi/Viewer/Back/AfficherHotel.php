@@ -73,7 +73,7 @@ $listeHotels=$HotelC->afficherlist_hotel();
             <!-- Tasks end-->
             
             <!-- Log out -->
-            <div class="list-inline-item logout">                   <a id="logout" href="../Logout.php" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
+            <div class="list-inline-item logout"><a id="logout" href="../Logout.php" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
           </div>
         </div>
       </nav>
@@ -110,10 +110,8 @@ $listeHotels=$HotelC->afficherlist_hotel();
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
               <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
               <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -150,7 +148,7 @@ $listeHotels=$HotelC->afficherlist_hotel();
                     <div class="title">
                            <div class="col mr-2">
                                            
-                                       <p>Ajouter Hotel </p>
+                                       <p>Add a Hotel </p>
                                         </div>
                                         <div class="col-auto">
                                              <a class="btn btn-primary"  href="AjouterHotel.php"><i class="icon-home"> </i></a>
@@ -173,17 +171,16 @@ $listeHotels=$HotelC->afficherlist_hotel();
   <thead>
     <tr>
 
-      <th scope="col">#</th>
-      <th scope="col">image</th>
-      <th scope="col">nom</th>
-      <th scope="col">lieu</th>
-       <th scope="col">description</th>
-      <th scope="col">date disponible Debut</th>
-        <th scope="col">date disponible Fin</th>
-               <th scope="col">nbr places Disponible</th>
+      <th scope="col">ID</th>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Place</th>
+       <th scope="col">Description</th>
+      <th scope="col">Available start date</th>
+        <th scope="col">Available end date</th>
+               <th scope="col">Available places number</th>
           <th scope="col">Delete</th>
               <th scope="col">Update</th>
-               <th scope="col">List Users </th>
     </tr>
   </thead>
   <tbody  id="myTable">
@@ -196,7 +193,7 @@ foreach($listeHotels as $row){
       <th scope="row"><?php echo$row['id'] ?></th>
       <td><img style="
     width: 50px;
-" src="../img/<?php echo $row['image'] ?>"></td>
+" src="<?php echo $row['image'] ?>"></td>
       <td><?php echo $row['nom'] ?></td>
       <td><?php echo $row['lieu'] ?></td>
       <td><?php echo $row['description'] ?></td>
@@ -218,8 +215,6 @@ foreach($listeHotels as $row){
 
       </td>
     <td> <a class="btn btn-primary"  href="ModifierHotel.php?id=<?PHP echo $row['id']; ?>"><i class="fa fa-edit"></i></a>
-         </td>
-       <td> <a class="btn btn-primary"  href="afficherlesreservation_hotel.php?id=<?PHP echo $row['id']; ?>"><i class="fa fa-bars"></i></a>
          </td>
     </tr>
                   <?PHP
@@ -250,7 +245,7 @@ $(document).ready(function(){
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

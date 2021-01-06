@@ -6,27 +6,13 @@ include '../../controller/ClientC.php';
 ?>
 
 
-<?php
-              
-              require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Controller/msgC.php';
-              require_once 'D:/Programmes/xampp/htdocs/projet/VAGARY/CyrineTrabelsi/Model/msg.php';
-
-              if(isset($_POST["message"]) && isset($_SESSION["e"])) {
-                var_dump($_SESSION["e"]);
-                $msg1= new Msg($_POST["message"] ,$_SESSION["e"] );
-                $newmsg= new msgC();
-                $newmsg->ajouterMsg($msg1);
-                header("Location:contact.php");
-              }
-
-            ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Directory Theme by Bootstrapious</title>
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -47,7 +33,7 @@ include '../../controller/ClientC.php';
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -260,7 +246,7 @@ include '../../controller/ClientC.php';
         <h4 class="subtitle centertxt text-primary mb-5">Our team members</h4>
         <div class="row mb-7 ">
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/cyrine.jpg" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/cyrine.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Cyrine Trabelsi</h6>
@@ -269,7 +255,7 @@ include '../../controller/ClientC.php';
             </div>
           </div>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/aziz.jpeg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Aziz Khemira</h6>
@@ -278,7 +264,7 @@ include '../../controller/ClientC.php';
             </div>
           </div>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/hichem.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Hichem Hammami</h6>
@@ -299,7 +285,7 @@ include '../../controller/ClientC.php';
             </div>
           </div>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-1.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/meriem.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Meriem Nour Ghozzi</h6>
@@ -308,7 +294,7 @@ include '../../controller/ClientC.php';
             </div>
           </div>
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3 ">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-2.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/aziza.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Aziza Ben Halima</h6>
@@ -321,55 +307,7 @@ include '../../controller/ClientC.php';
       </div>
     </section>
 
-    <?php
-      if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
-      { 
-    ?>
-
-    <section class="py-6 bg-gray-100">
-      <div class="container">
-        <h2 class="h4 mb-5">Contact form</h2>
-        <div class="row">
-          <div class="col-md-7 mb-5 mb-md-0">
-            <form method="post" >
-              <div class="controls">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label class="form-label" for="name">Your login </label>
-                      <input class="form-control" readonly name="name" id="name" placeholder="<?php echo '@'.$_SESSION["l"] ?>" required="required">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Your message for us *</label>
-                  <textarea class="form-control" rows="4" name="message" id="message" placeholder="Enter your message" required="required"></textarea>
-                </div>
-                  <input type="button" value="Send message" name="Submit" class="btn btn-outline-primary"> 
-              </div>
- 
-            </form>
-
-            <br>
-            <br>
-            <div class="social center">
-              <ul class="list-inline">
-                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-pinterest"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank"><i class="fab fa-vimeo"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
-    <?php
-      }
-    ?>
+    
 
     <!-- Footer-->
     <!-- Footer-->

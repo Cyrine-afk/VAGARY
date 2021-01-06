@@ -66,7 +66,7 @@ $prix=$row->prix;
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -115,11 +115,9 @@ $prix=$row->prix;
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
-              <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
-              <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="AfficherHotel.php">Hotels</a></li> 
+              <li><a href="AfficherVol.php">Flights</a></li> 
+              <li><a href="produit.html">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -146,7 +144,7 @@ $prix=$row->prix;
                     <div class="title">
                            <div class="col mr-2">
                                            
-                                       <p>Afficher Vol </p>
+                                       <p>See flights</p>
                                         </div>
                                         <div class="col-auto">
                                              <a class="btn btn-primary"  href="AfficherVol.php"><i class="fa fa-bars"> </i></a>
@@ -184,19 +182,19 @@ $prix=$row->prix;
                             <br>
                                    <div class="form-group">
                                 
- <input class="form-control"  id="depart" name="depart" value="<?php echo $depart ?> " type="text" placeholder="depart"   />
+ <input class="form-control"  id="depart" name="depart" value="<?php echo $depart ?> " type="text" placeholder="Departure"   />
                             </div>
                                   <div class="form-group">
                                 
- <input class="form-control"  id="destination" value="<?php echo $destination ?> " name="destination" type="text" placeholder="destination"   />
+ <input class="form-control"  id="destination" value="<?php echo $destination ?> " name="destination" type="text" placeholder="Destination"   />
                             </div>
                                 <div class="form-group">
                                 
- <input class="form-control"  id="nbr_places" name="nbr_places" value="<?php echo $nbr_places ?>" type="number" placeholder="nbr_places"   />
+ <input class="form-control"  id="nbr_places" name="nbr_places" value="<?php echo $nbr_places ?>" type="number" placeholder="Number of places"   />
                             </div>
                                 <div class="form-group">
                                 
- <input class="form-control"  id="prix" name="prix" value="<?php echo $prix ?>" type="number" placeholder="prix"   />
+ <input class="form-control"  id="prix" name="prix" value="<?php echo $prix ?>" type="number" placeholder="Price"   />
                             </div>
 
                              <div class="form-group">
@@ -211,7 +209,7 @@ $prix=$row->prix;
                     </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase"  type="submit">Envoi</button>
+                        <button class="btn btn-primary btn-xl text-uppercase"  type="submit">Send</button>
                     </div>
                 </form>
                 <script>
@@ -299,7 +297,7 @@ var now = new Date();
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

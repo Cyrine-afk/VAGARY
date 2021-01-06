@@ -14,7 +14,7 @@ $prod=new productsC;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Directory Theme by Bootstrapious</title>
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -28,12 +28,12 @@ $prod=new productsC;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
     <!-- Magnigic Popup-->
     <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css">
-    <!-- theme stylesheet-->
+    <!-- theme stylesheet--> 
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -216,7 +216,7 @@ $prod=new productsC;
               <!-- place item-->
               <div class="w-100 h-100 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
                 <div class="card h-100 border-0 shadow">
-                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?= $product->img_prod; ?>" alt="Modern, Well-Appointed Room"/><a class="tile-link"  href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
+                  <div class="card-img-top overflow-hidden gradient-overlay"> <img class="img-fluid" src="<?= $product->img_prod; ?>" ><a class="tile-link"  href="addpanier.php?id_prod= <?= $product->id_prod ; ?>"></a>
                     
                   </div>
                   <div class="card-body d-flex align-items-center">

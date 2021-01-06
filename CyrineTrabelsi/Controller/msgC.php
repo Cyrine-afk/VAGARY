@@ -23,8 +23,8 @@ class msgC {
         $db = config::getConnexion();
         $query = $db->prepare($sql);
         $query->execute([
-            'msg'=>$msg->getIdMsg(),
-            'id_client'=>$msg->getIdClient()
+            'msg'=>$msg->getMsg(),
+            'id_client'=>$msg->getIdClient() 
         ]);
         }
         catch (PDOException $e) {

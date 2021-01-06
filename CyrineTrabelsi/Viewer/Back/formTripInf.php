@@ -46,7 +46,7 @@
 <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Influencers' Tables</title>
+    <title>Influencers' trips forms</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -207,10 +207,8 @@
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
               <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
               <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>

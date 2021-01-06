@@ -59,7 +59,7 @@ $listevols=$VolC->afficherlist_vol();
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+            <!-- Navbar Header--><a href="index.php" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Vagary</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -109,10 +109,8 @@ $listevols=$VolC->afficherlist_vol();
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
               <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
               <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -149,7 +147,7 @@ $listevols=$VolC->afficherlist_vol();
                     <div class="title">
                            <div class="col mr-2">
                                            
-                                       <p>Ajouter Vol </p>
+                                       <p>Add Vol </p>
                                         </div>
                                         <div class="col-auto">
                                              <a class="btn btn-primary"  href="AjouterVol.php"><i class="icon-home"> </i></a>
@@ -172,16 +170,15 @@ $listevols=$VolC->afficherlist_vol();
   <thead>
     <tr>
 
-      <th scope="col">#</th>
-       <th scope="col">Depart</th>
+      <th scope="col">ID</th>
+       <th scope="col">Departure</th>
         <th scope="col">Destination</th>
-      <th scope="col">date_heur_disponible</th>
+      <th scope="col">Available date and hour</th>
       
-               <th scope="col">nbr places Disponible</th>
-                <th scope="col">prix</th>
+               <th scope="col">Available number if places</th>
+                <th scope="col">Price</th>
           <th scope="col">Delete</th>
               <th scope="col">Update</th>
-               <th scope="col">List Users </th>
     </tr>
   </thead>
   <tbody  id="myTable">
@@ -214,8 +211,6 @@ foreach($listevols as $row){
       </td>
     <td> <a class="btn btn-primary"  href="Modifiervol.php?id=<?PHP echo $row['id']; ?>"><i class="fa fa-edit"></i></a>
          </td>
-       <td> <a class="btn btn-primary"  href="afficherlesreservation_vol.php?id=<?PHP echo $row['id']; ?>"><i class="fa fa-bars"></i></a>
-         </td>
     </tr>
                   <?PHP
                   
@@ -245,7 +240,7 @@ $(document).ready(function(){
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

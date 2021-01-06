@@ -1,4 +1,6 @@
 <?php 
+
+session_start();
  include '../../Controller/productsC.php' ; 
  include '../../Model/panier.class.php' ; 
  require_once '../../Model/db.class.php' ;
@@ -15,7 +17,7 @@
  
   
  if(isset($_POST['btn_save'])){
-   $sql = "insert into  paiment (NameOnCard,CardNumber,ExpiryDate,CVV,ZIP) values (:NameOnCard,:CardNumber,:ExpiryDate,:CVV,:ZIP)" ;
+  $sql = "insert into  paiment (NameOnCard,CardNumber,ExpiryDate,CVV,ZIP,id_client) values (:NameOnCard,:CardNumber,:ExpiryDate,:CVV,:ZIP,:id_client)" ;
    try{
    $db = config::getConnexion();
    $query = $db->prepare($sql);
@@ -24,9 +26,8 @@
        'CardNumber'=>$CardNumber,
        'ExpiryDate'=> $ExpiryDate,
        'CVV'=>$CVV,
-       'ZIP'=>$ZIP
-     
-       
+       'ZIP'=>$ZIP,
+       'id_client'=>$_SESSION['e']
        
    ]);
    }
@@ -34,7 +35,6 @@
        $e->getMessage();
    }
   }
-  session_start();
 ?>
 
 
@@ -46,7 +46,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vagary </title>
+    <title>Vagary Travels</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -65,7 +65,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/v2.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->

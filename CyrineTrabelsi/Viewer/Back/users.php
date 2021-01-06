@@ -24,7 +24,7 @@ if (isset($_POST['tri'])) {
   <head> 
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Acceuil Admin</title>
+    <title>Users' table</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -151,11 +151,9 @@ if (isset($_POST['tri'])) {
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
-              <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
-              <li><a href="AfficherVol.php">Flights</a></li>
-              <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="AfficherHotel.php">Hotels</a></li> 
+              <li><a href="AfficherVol.php">Flights</a></li> 
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -176,25 +174,25 @@ if (isset($_POST['tri'])) {
         <!-- Breadcrumb-->
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tables        </li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active">Users</li>
           </ul>
         </div>
         <section class="no-padding-top">
           <div class="container">
-                  <div class="title"><strong>Les comptes clients </strong></div>
+                  <div class="title"><strong>Users' accounts</strong></div>
                   <div class="table-responsive"> 
                     <form action="" method="POST">
                       <table>
                         <tr>
 
-                    <td><input type="text" id="search" name="search"  class="mr-sm-25 form-control" placeholder="Je Chercher .."></td>
-                    <td><input type="submit" value="Rechercher" class="btn btn-primary" ></td>
+                    <td><input type="text" id="search" name="search"  class="mr-sm-25 form-control" placeholder="Look for .."></td>
+                    <td><input type="submit" value="Search" class="btn btn-primary" ></td>
                     <form action="" method="POST">
                        <td> <select name="tri" class="form-control mb-3 mb-3" style="position: relative; top: 6px; left: 680px">
-                             <option value="" disabled selected>Trier par ...</option>
-                            <option>age</option>
-                            <option>date ajout</option>
+                             <option value="" disabled selected>Sort by ...</option>
+                            <option>Age</option>
+                            <option>Add date</option>
 
                            
                           </select></td>
@@ -204,7 +202,7 @@ if (isset($_POST['tri'])) {
                     <td>  <form action="imprimer.php">
 
                       
-                     <input type="submit" value="Imprimer" class="btn btn-primary" style="position: relative; left: 750px ">
+                     <input type="submit" value="Imprint" class="btn btn-primary" style="position: relative; left: 750px ">
                     </form></td>
                         </tr>
                       </table>
@@ -215,18 +213,18 @@ if (isset($_POST['tri'])) {
                     <table class="table">
                       <tr>
                         <td>Image</td>
-                        <td>Id</td>
+                        <td>ID</td>
 
-                        <td>Name</td>
-                        <td>lastname</td>
+                        <td>First name</td>
+                        <td>Last name</td>
                         <td>Birthday</td>
-                        <td>Date ajout</td>
+                        <td>Add date</td>
                         <td>Login</td>
-                        <td>password</td>
+                        <td>Password</td>
                         <td>Email</td>
                         
                          <td>Edit</td>
-                          <td>delete</td>
+                          <td>Delete</td>
                 
                     </tr>
                 <?php
@@ -253,7 +251,7 @@ if (isset($_POST['tri'])) {
                                     <input type="hidden" id="login" name="login" value="'.$row["login_client"].'">
                                     <input type="hidden" id="mdp" name="mdp" value="'.$row["mdp_client"].'">
                                     <input type="hidden" id="email" name="email" value="'.$row["mail_client"].'">
-                                    <input type="submit" name="edit" value="edit" style="background-color: #636e72;">
+                                    <input type="submit" name="edit" value="Edit" style="background-color: #636e72;">
                                 </form>
                 
                             </td>
@@ -262,7 +260,7 @@ if (isset($_POST['tri'])) {
                 
                             <td><form  action="suppClient.php" method="POST">
                             <input type="hidden" id="id_client" name="id_client" value="'.$row["id_client"].'">
-                    <input type="submit" name="delete" value="delete" style="background-color: #d63031">
+                    <input type="submit" name="delete" value="Delete" style="background-color: #d63031">
                      
                     </form>
                     </td>
@@ -279,7 +277,7 @@ if (isset($_POST['tri'])) {
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
               <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.html">JD&Co</a>.</p>
+              <p class="no-margin-bottom">2020 &copy; Design by <a href="index.php">JD&Co</a>.</p>
             </div>
           </div>
         </footer>

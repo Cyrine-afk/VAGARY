@@ -114,10 +114,9 @@ $listelesreservation_tous_hotel=$Reservation_hotel_userC->afficherlesreservation
               <li><a href="influ.php">Influencers</a></li>
               <li><a href="themes.php">Themes</a></li>
               <li><a href="AfficherHotel.php">Hotels</a></li>
-              <li><a href="afficherlesreservation_hotel.php">Hotel reservations</a></li>
               <li><a href="AfficherVol.php">Flights</a></li>
               <li><a href="afficherlesreservation_vol.php">Flight reservations</a></li>
-              <li><a href="products.html">Products</a></li>
+              <li><a href="produit.php">Products</a></li>
               <li><a href="tableP.php">Orders</a></li>              
               <li><a href="TablePaiment.php">Payments</a></li>
               <li><a href="users.php">Users</a></li>
@@ -210,7 +209,7 @@ foreach($listelesreservation_tous_hotel as $row){
       <td><?php echo $row['mail'] ?></td>
         <td><img style="
     width: 50px;
-" src="../img/<?php echo $row['image'] ?>"></td>
+" src="<?php echo $row['image'] ?>"></td>
   <td><?php echo $row['nom'] ?></td>
   <td><?php echo $row['lieu'] ?></td>
  <td>de <?php echo $row['date_disponible_Debut'] ?> Jusqu' a <?php echo $row['date_disponible_Fin'] ?> </td>
