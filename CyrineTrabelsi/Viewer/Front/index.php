@@ -174,7 +174,7 @@ session_start ();
                 </div>
               </li>
               <!-- /Megamenu end-->
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a>
+              <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a>
               </li>
               
               <?php
@@ -304,48 +304,30 @@ session_start ();
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-8">
-            <p class="subtitle text-primary">Stay and eat like a local</p>
-            <h2>Popular destinations</h2>
+            <p class="subtitle text-primary">Travel with your favorite influencers</p>
+            <h2>Popular influencers</h2>
           </div>
-          <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="nat_trip.html">
-               See all guides<i class="fas fa-angle-double-right ml-2"></i></a></div>
+          <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="influ.php">
+               See all influencers<i class="fas fa-angle-double-right ml-2"></i></a></div>
         </div>
         <div class="swiper-container guides-slider mx-n2 pt-3">
           <!-- Additional required wrapper-->
           <div class="swiper-wrapper pb-5">
             <!-- Slides-->
+            <?php 
+              foreach($liste as $influencer) {
+            ?>
             <div class="swiper-slide h-auto px-2">
-              <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0"><a class="tile-link" href="category.html"></a><img class="bg-image" src="img/photo/new-york.jpg" alt="Card image">
+              <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0"><a class="tile-link" href="profile_influ.php?id_inf=<?php echo $influencer['id_inf'] ?>"></a><img class="bg-image" src="<?php echo $influencer["img_inf"] ?>" alt="Card image">
                 <div class="card-body overlay-content">
-                  <h6 class="card-title text-shadow text-uppercase">New York</h6>
-                  <p class="card-text text-sm">The big apple</p>
+                  <h6 class="card-title text-shadow text-uppercase"><?php echo $influencer["nom_inf"].' '.$influencer["prenom_inf"] ?></h6>
+                  <p class="card-text text-sm"><?php echo $influencer["nbr_ab_inf"].' '.'K visitors' ?></p>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide h-auto px-2">
-              <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0"><a class="tile-link" href="category.html"></a><img class="bg-image" src="img/photo/paris.jpg" alt="Card image">
-                <div class="card-body overlay-content">
-                  <h6 class="card-title text-shadow text-uppercase">Paris</h6>
-                  <p class="card-text text-sm">Artist capital of Europe</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0"><a class="tile-link" href="category.html"></a><img class="bg-image" src="img/photo/barcelona.jpg" alt="Card image">
-                <div class="card-body overlay-content">
-                  <h6 class="card-title text-shadow text-uppercase">Barcelona</h6>
-                  <p class="card-text text-sm">Dalí, Gaudí, Barrio Gotico</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide h-auto px-2">
-              <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0"><a class="tile-link" href="category.html"></a><img class="bg-image" src="img/photo/prague.jpg" alt="Card image">
-                <div class="card-body overlay-content">
-                  <h6 class="card-title text-shadow text-uppercase">Prague</h6>
-                  <p class="card-text text-sm">City of hundred towers</p>
-                </div>
-              </div>
-            </div>
+            <?php
+              }
+            ?>
           </div>
           <div class="swiper-pagination d-md-none"> </div>
         </div>

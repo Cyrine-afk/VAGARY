@@ -276,7 +276,7 @@ include '../../controller/ClientC.php';
         </div>
         <div class="row mb-7 ">
           <div class="mb-3 mb-lg-0 col-sm-6 col-lg-3">
-            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="img/avatar/agent-3.png" alt=""/>
+            <div class="card border-0 hover-animate bg-transparent"><a class="position-relative" href="#"><img class="card-img-top team-img" src="ghassen.jpg" alt=""/>
                 <div class="team-circle bg-secondary-light"></div></a>
               <div class="card-body team-body text-center">
                 <h6 class="card-title">Ghassen Bedduihech</h6>

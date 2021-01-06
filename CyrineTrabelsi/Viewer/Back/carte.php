@@ -191,7 +191,7 @@ $listcarte=$carteC->afficherCarte();
                              <td>'.$row["id_fidelite"].'</td>
                             <td>'.$row["id_client"].'</td>
                           
-                            <td>'.$row["point"].'</td>
+                            <td>'.$row["points"].'</td>
                            
                 
                 
