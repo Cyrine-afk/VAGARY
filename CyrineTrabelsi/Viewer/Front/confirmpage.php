@@ -1,12 +1,12 @@
 <?php 
 
-session_start();
  include '../../Controller/productsC.php' ; 
  include '../../Model/panier.class.php' ; 
  require_once '../../Model/db.class.php' ;
  require_once '../../Model/commande.class.php' ;
  require_once '../../Controller/ComC.php' ;
  
+session_start();
  $NameOnCard	=$_POST ["NameOnCard"]  ; 
  $CardNumber = $_POST ['CardNumber'] ; 
  $ExpiryDate = $_POST ['ExpiryDate'] ; 
@@ -16,7 +16,7 @@ session_start();
    
  
   
- if(isset($_POST['btn_save'])){
+ if(isset($_POST['pay'])){
   $sql = "insert into  paiment (NameOnCard,CardNumber,ExpiryDate,CVV,ZIP,id_client) values (:NameOnCard,:CardNumber,:ExpiryDate,:CVV,:ZIP,:id_client)" ;
    try{
    $db = config::getConnexion();
@@ -28,7 +28,7 @@ session_start();
        'CVV'=>$CVV,
        'ZIP'=>$ZIP,
        'id_client'=>$_SESSION['e']
-       
+
    ]);
    }
    catch (PDOException $e) {

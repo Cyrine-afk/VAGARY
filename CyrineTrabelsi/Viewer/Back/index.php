@@ -364,9 +364,6 @@ foreach ($list as $row ) {
                   </div><a href="#" class="user-title">
                     <h3 class="h5">Adil Taouil</h3></a>
                   <div class="contributions">846 k Followers</div>
-                  <div class="details d-flex">
-                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>5 trips</strong></div>
-                  </div>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -375,10 +372,7 @@ foreach ($list as $row ) {
                     <div class="order dashbg-1">2nd</div>
                   </div><a href="#" class="user-title">
                     <h3 class="h5">Rabii Ben Brahim</h3></a>
-                  <div class="contributions">785 k Followers</div>
-                  <div class="details d-flex">
-                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>3 Trips</strong></div>
-                  </div>
+                  <div class="contributions">786 k Followers</div>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -387,10 +381,7 @@ foreach ($list as $row ) {
                     <div class="order dashbg-4">3rd</div>
                   </div><a href="#" class="user-title">
                     <h3 class="h5">Balkis Ksouri</h3></a>
-                  <div class="contributions">698 k Followers</div>
-                  <div class="details d-flex">
-                    <div class="item centerInf"><i class="fa fa-gg"></i><strong>2 Trips</strong></div>
-                  </div>
+                  <div class="contributions">699 k Followers</div>
                 </div>
               </div>
             </div>

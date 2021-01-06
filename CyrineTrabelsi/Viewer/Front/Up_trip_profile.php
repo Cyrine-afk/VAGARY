@@ -247,10 +247,9 @@ session_start();
               <li class="list-inline-item mr-3"><i class="fa fa-bed mr-1 text-secondary"></i> <?php echo $trip['nbr_perso_voy']/4 ?> beds</li>
               <li class="list-inline-item mr-3"><i class="fa fa-bath mr-1 text-secondary"></i> 1 bath</li>
             </ul>
-            <p class="text-muted font-weight-light"><?php echo $trip['planning_voy'] ?></p>
             
-            <h6 class="mb-3">Interaction with guests</h6>
-            <p class="text-muted font-weight-light">We live in the two floors above the garden apartment so we are usually available to answer questions. The garden apartment is separate from our living space. We are happy to provide advice on local attractions, restaurants and transportation around the city. If there's anything you need please don't hesitate to ask!</p>
+            <h6 class="mb-3">About the trip</h6>
+            <p class="text-muted font-weight-light"><?php echo $trip['planning_voy'] ?></p>
           </div>
           <div class="text-block">
             <h4 class="mb-4">Amenities</h4>
